@@ -1,13 +1,19 @@
-const corever = 'v0.1';
+const corever = 'v0.2';
 const forbiddenChars = /['",:;<>?!@#$%^&*(){}|\[\]\/\\]/;
+
+const fs = require('fs');
+const path = require('path');
+const { loadlocale, timestampstyles } = require('./functions.js');
+const { ping, about, invite, timenow } = require('./builder.js');
+
 //Statistics
 const { loadStats, incrementStat, statsAutoSave } = require('./botstats.js');
 loadStats();
 //Autosave stats every (mins)
 statsAutoSave(60);
 
-// const fs = require('fs');
-// const { exec } = require("child_process");
+//loading bot localization
+loadlocale();
 
 // Require the necessary discord.js classes
 const { Client, Routes, Events, GatewayIntentBits, ActivityType, setPresence, SlashCommandBuilder } = require('discord.js');
@@ -23,105 +29,14 @@ client.once(Events.ClientReady, readyClient => {
     incrementStat('botlogin');
 });
 
-const ping = new SlashCommandBuilder()
-    .setName('ping')
-    .setDescription('Check Application response time')
-    .setDescriptionLocalizations({
-        "ru": 'Проверка скорости ответа приложения',
-        "en-US": 'Check Application response time',
-    })
-    .setIntegrationTypes(0, 1)
-    .setContexts(0, 1)
-  
-const about = new SlashCommandBuilder()
-    .setName('about')
-    .setDescription('About this app')
-    .setDescriptionLocalizations({
-        "ru": 'Подробная информация о приложении',
-        "en-US": 'About this app',
-    })
-    .setIntegrationTypes(0, 1)
-    .setContexts(0, 1)
-
-const invite = new SlashCommandBuilder()
-    .setName('invite')
-    .setDescription('Install TimestampHosa app on Server or as personal app!')
-    .setDescriptionLocalizations({
-        "ru": 'Установить TimestampHosa на сервер или как личное приложение!',
-        "en-US": 'Install TimestampHosa app on Server or as personal app!',
-    })
-    .setIntegrationTypes(0, 1)
-    .setContexts(0, 1, 2)
-
-const timenow = new SlashCommandBuilder()
-    .setName('now')
-    .setDescription('Display current time and timestamp')
-    .setDescriptionLocalizations({
-        "ru": 'Вывести текущее время и временную метку',
-        "en-US": 'Display current time and timestamp',
-    })
-//.setDefaultMemberPermissions(0) блокирует использование всем кроме администраторов. Удалить после закрытого тестирования
-    .setDefaultMemberPermissions(0)
-    .setIntegrationTypes(0, 1)
-    .setContexts(0, 1, 2)
-    .addStringOption(option =>
-        option.setName('style')
-			.setNameLocalizations({
-                "ru": 'стиль',
-                "en-US": 'style',
-			})
-            .setDescription('Select style of date output')
-			.setDescriptionLocalizations({
-                "ru": 'Выбор формата отображения даты',
-                "en-US": 'Select style of date output',
-			})
-            .setRequired(false)
-            .addChoices(
-                { name: '16:20',
-                  value: 'ShortT',
-                },
-                { name: '16:20:30',
-                  value: 'MediumT', 
-                },
-                { name: '20/04/2021',
-                  value: 'ShortD',
-                  nameLocalizations: { "ru": '20.04.2021', "en-US": '4/20/2021' }
-                },
-                { name: 'April 20, 2021',
-                  value: 'LongD',
-                  nameLocalizations: { "ru": '20 апреля 2021 г.', "en-US": 'April 20, 2021' }
-                },
-                { name: 'April 20, 2021 at 16:20',
-                  value: 'LongDshortT',
-                  nameLocalizations: { "ru": '20 апреля 2021 г. 16:20', "en-US": 'April 20, 2021 16:20' }
-                },
-                { name: 'Tuesday, April 20, 2021 at 16:20',
-                  value: 'FullDshortT',
-                  nameLocalizations: { "ru": 'вторник, 20 апреля 2021 г. 16:20', "en-US": 'Tuesday, April 20, 2021 16:20' }
-                },
-                { name: '20/04/2021, 16:20',
-                  value: 'ShortDshortT',
-                  nameLocalizations: { "ru": '20.04.2021 16:20', "en-US": '4/20/2021 16:20' }
-                },
-                { name: '20/04/2021, 16:20:30',
-                  value: 'ShortDmediumT',
-                  nameLocalizations: { "ru": '20.04.2021 16:20:30', "en-US": '4/20/2021 16:20:30' }
-                },
-                { name: '2 months ago (Relative)',
-                  value: 'Relative',
-                  nameLocalizations: { "ru": '2 месяца назад', "en-US": '2 months ago' }
-                }
-            )
-        )
-
 const commands = [ping, about, invite, timenow]; // Add your commands with commas to add them to the bot!
 
 const rl = createInterface({ input: process.stdin, output: process.stdout });
 
 client.on('interactionCreate', (interaction) => {
   if (interaction.commandName === 'ping') {
-    incrementStat('pingcmd');
-    interaction.reply({
+        incrementStat('pingcmd');
+        interaction.reply({
         content: `:ping_pong: *Понг!* Задержка ${Date.now() - interaction.createdTimestamp} миллисекунд! Задержка API ${Math.round(client.ws.ping)} миллисекунд.`,
         ephemeral: true,
       });
@@ -137,12 +52,17 @@ client.on('interactionCreate', (interaction) => {
     });
   } else if (interaction.commandName === 'invite') {
         incrementStat('invitecmd');
+        const inviteloc = {
+            "ru": `:gift_heart: Нет возможности приглашения во время раннего доступа`,
+            "en-US": `:gift_heart: Invites not work in Early Access`,
+        };
         interaction.reply({
-            content: `:gift_heart: Нет возможности приглашения во время раннего доступа`,
+            content: inviteloc[interaction.locale] ?? `:gift_heart: Invites not work in Early Access`,
             ephemeral: true,
     });
   } else if (interaction.commandName === 'now') {
         incrementStat('nowcmd');
+        var nowtimestamp = Math.floor(Date.now() / 1000)
         var style = interaction.options.getString('style');
         if (style === undefined || style === null) {
             var nowstyle = ''
@@ -165,9 +85,12 @@ client.on('interactionCreate', (interaction) => {
         } else if (style === 'Relative') {
             var nowstyle = ':R'
         }
-        var nowtimestamp = Math.floor(Date.now() / 1000)
+        const nowloc = {
+            "ru": `Сейчас: <t:${nowtimestamp}${nowstyle}> \nМетка для вставки: \`<t:${nowtimestamp}${nowstyle}>\``,
+            "en-US": `Now: <t:${nowtimestamp}${nowstyle}> \nTimestamp: \`<t:${nowtimestamp}${nowstyle}>\``,
+        };;
         interaction.reply({
-            content: `Сейчас: <t:${nowtimestamp}${nowstyle}> \nМетка для вставки: \`<t:${nowtimestamp}${nowstyle}>\``,
+            content: nowloc[interaction.locale] ?? `Now: <t:${nowtimestamp}${nowstyle}> \nTimestamp: \`<t:${nowtimestamp}${nowstyle}>\``,
             ephemeral: true,
     });
   }

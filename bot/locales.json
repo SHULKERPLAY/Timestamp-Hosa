@@ -1,0 +1,22 @@
+{
+    "en_us": {
+        "hello": "Hello!",
+        "ShortDate": "4/20/2021",
+        "LongDate": "April 20, 2021",
+        "LongDateShortTime": "April 20, 2021 16:20",
+        "FullDateShortTime": "Tuesday, April 20, 2021 16:20",
+        "ShortDateShortTime": "4/20/2021 16:20",
+        "ShortDateMediumTime": "4/20/2021 16:20:30",
+        "RelativeDate": "2 months ago (Relative)"
+    },
+    "ru": {
+        "hello": "Привет!",
+        "ShortDate": "20.04.2021",
+        "LongDate": "20 апреля 2021 г.",
+        "LongDateShortTime": "20 апреля 2021 г. 16:20",
+        "FullDateShortTime": "Вторник, 20 апреля 2021 г. 16:20",
+        "ShortDateShortTime": "20.04.2021 16:20",
+        "ShortDateMediumTime": "20.04.2021 16:20:30",
+        "RelativeDate": "2 месяца назад (Относительное)"
+    }
+}
