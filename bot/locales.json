@@ -17,6 +17,7 @@
         "now": "Now",
         "nowintz": "Now in this Timezone",
         "timestamp": "Timestamp to Paste",
+        "preview": "Preview",
         "gmtp0": "GMT +0 (Iceland, London, Dublin)",
         "gmtp1": "GMT +1 (Warsaw, Paris, Berlin)",
         "gmtp2": "GMT +2 (Kaliningrad, Helsinki, Kyiv)",
@@ -54,7 +55,19 @@
         "cst": "CST (China Standard Time)",
         "aest": "AEST (Australian Eastern Standard Time)",
         "ast": "AST (Atlantic Standard Time)",
-        "cest": "CEST (Central European Summer Time)"
+        "cest": "CEST (Central European Summer Time)",
+        "jan": "January",
+        "feb": "February",
+        "mar": "March",
+        "apr": "April",
+        "may": "May",
+        "jun": "June",
+        "jul": "July",
+        "aug": "August",
+        "sep": "September",
+        "oct": "October",
+        "nov": "November",
+        "dec": "December"
     },
     "ru": {
         "hello": "Привет!",
@@ -74,6 +87,7 @@
         "now": "Сейчас",
         "nowintz": "Сейчас в этом часовом поясе",
         "timestamp": "Метка для вставки",
+        "preview": "Предпросмотр",
         "gmtp0": "GMT +0 (Iceland, London, Dublin)",
         "gmtp1": "GMT +1 (Warsaw, Paris, Berlin)",
         "gmtp2": "GMT +2 (Kaliningrad, Helsinki, Kyiv)",
@@ -111,6 +125,18 @@
         "cst": "CST (China Standard Time)",
         "aest": "AEST (Australian Eastern Standard Time)",
         "ast": "AST (Atlantic Standard Time)",
-        "cest": "CEST (Central European Summer Time)"
+        "cest": "CEST (Central European Summer Time)",
+        "jan": "Январь",
+        "feb": "Февраль",
+        "mar": "Март",
+        "apr": "Апрель",
+        "may": "Май",
+        "jun": "Июнь",
+        "jul": "Июль",
+        "aug": "Август",
+        "sep": "Сентябрь",
+        "oct": "Октябрь",
+        "nov": "Ноябрь",
+        "dec": "Декабрь"
     }
 }

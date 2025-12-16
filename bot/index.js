@@ -1,10 +1,10 @@
-const corever = 'v0.2';
+const corever = 'v0.4';
 const forbiddenChars = /['",:;<>?!@#$%^&*(){}|\[\]\/\\]/;
 
 const fs = require('fs');
 const path = require('path');
-const { timestampstyles, timezonesgmtminus, timezonesgmtplus, timezoneskey } = require('./functions.js');
-const { ping, about, invite, timenow, timezonenow } = require('./builder.js');
+const { timestampstyles, timezonesgmtminus, timezonesgmtplus, timezoneskey, monthsoption, alltimezones, convertGmtToSeconds } = require('./functions.js');
+const { ping, about, invite, timenow, timezonenow, timestampint } = require('./builder.js');
 
 //Statistics
 const { loadStats, incrementStat, statsAutoSave } = require('./botstats.js');
@@ -41,7 +41,7 @@ client.once(Events.ClientReady, readyClient => {
     incrementStat('botlogin');
 });
 
-const commands = [ping, about, invite, timenow, timezonenow]; // Add your commands with commas to add them to the bot!
+const commands = [ping, about, invite, timenow, timezonenow, timestampint]; // Add your commands with commas to add them to the bot!
 
 const rl = createInterface({ input: process.stdin, output: process.stdout });
 
@@ -131,6 +131,82 @@ client.on('interactionCreate', (interaction) => {
         };;
         interaction.reply({
         content: timezoneloc[interaction.locale] ?? `:alarm_clock: Now in this timezone: **__${tzreply}__** \n*Local Time: <t:${Math.floor(tztimestamp / 1000)}:F>*`,
+            ephemeral: true,
+    });
+  } else if (interaction.commandName === 'timestamp') {
+        incrementStat('timestampcmd');
+        var tsyear = interaction.options.getInteger('year');
+        var tsmonth = interaction.options.getString('month');
+        var tsdayi = interaction.options.getInteger('day');
+        var tshouri = interaction.options.getInteger('hour');
+        var tsmini = interaction.options.getInteger('minute');
+        var tsseci = interaction.options.getInteger('second');
+        var style = interaction.options.getString('style');
+//Offset value to selected timezone
+        var timezonesel = interaction.options.getString('timezone');
+        if (timezonesel === undefined || timezonesel === null) {
+            var tzoffset = 0
+        } else { var tzoffset = convertGmtToSeconds(timezonesel) }
+//Test if option is specified and set postfix to timestamp
+        if (style === undefined || style === null) {
+            var tsstyle = ''
+        } else if (style === 'ShortT') {
+            var tsstyle = ':t'
+        } else if (style === 'MediumT') {
+            var tsstyle = ':T'
+        } else if (style === 'ShortD') {
+            var tsstyle = ':d'
+        } else if (style === 'LongD') {
+            var tsstyle = ':D'
+        } else if (style === 'LongDshortT') {
+            var tsstyle = ':f'
+        } else if (style === 'FullDshortT') {
+            var tsstyle = ':F'
+        } else if (style === 'ShortDshortT') {
+            var tsstyle = ':s'
+        } else if (style === 'ShortDmediumT') {
+            var tsstyle = ':S'
+        } else if (style === 'Relative') {
+            var tsstyle = ':R'
+        }
+//This need for the date convertor to work. It length sensitive so if we use int '1' it needs to be '01'
+//Also converting integers into strings
+        var tsday = tsdayi.toString();
+        if (tsday.length === 1) {
+            var tsday = `0${tsday}`
+        }
+//Test if option is specified
+        if (tshouri === undefined || tshouri === null) {
+            var tshour = '00'
+        } else { var tshour = tshouri.toString();
+            if (tshour.length === 1) {
+            var tshour = `0${tshour}`
+            }
+        }
+        if (tsmini === undefined || tsmini === null) {
+            var tsmin = '00'
+        } else { var tsmin = tsmini.toString();
+            if (tsmin.length === 1) {
+            var tsmin = `0${tsmin}`
+            }
+        }
+        if (tsseci === undefined || tsseci === null) {
+            var tssec = '00'
+        } else { var tssec = tsseci.toString();
+            if (tssec.length === 1) {
+            var tssec = `0${tssec}`
+            }
+        }
+        var tsdateString = `${tsyear}-${tsmonth}-${tsday}T${tshour}:${tsmin}:${tssec}.000Z`;
+        var calcDate = new Date(tsdateString);
+        var calctimestamp = Math.floor(calcDate.getTime() / 1000);
+        var gettimestamp = calctimestamp - tzoffset
+        const timestamploc = {
+            "ru": `:white_check_mark: ${locale.ru.preview}: <t:${gettimestamp}${tsstyle}> \n:arrow_right: **${locale.ru.timestamp}:** \`<t:${gettimestamp}${tsstyle}>\``,
+            "en-US": `:white_check_mark: ${locale.en_us.preview}: <t:${gettimestamp}${tsstyle}> \n:arrow_right: **${locale.en_us.timestamp}:** \`<t:${gettimestamp}${tsstyle}>\``,
+        };;
+        interaction.reply({
+        content: timestamploc[interaction.locale] ?? `:white_check_mark: Preview: <t:${gettimestamp}${tsstyle}> \n:arrow_right: **Timestamp to Paste:** \`<t:${gettimestamp}${tsstyle}>\``,
             ephemeral: true,
     });
   }
