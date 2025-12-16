@@ -1,7 +1,7 @@
 const fs = require('fs');
 const path = require('path');
 
-//load locales for functions cuz loadlocale(); doesn't work here
+//loading bot localization
 const localepath = path.join(__dirname, 'locales.json');
 let locale = {};
 try {
@@ -17,21 +17,6 @@ try {
 }
 
 //Functions
-function loadlocale() {
-    const localepath = path.join(__dirname, 'locales.json');
-    let locale = {};
-    try {
-        if (fs.existsSync(localepath)) {
-            const locdata = fs.readFileSync(localepath);
-            locale = JSON.parse(locdata.toString());
-        } else {
-            locale = {};
-        }
-    } catch (error) {
-        console.error('Error while loading locale:', error);
-        locale = {};
-    }
-}
 
 //Here constants
 //Reusable timestamp options
@@ -72,8 +57,171 @@ const timestampstyles = [
     }
 ];
 
+const timezonesgmtplus = [
+    { name: 'GMT +0 (Iceland, London, Dublin)',
+      value: 'GMT',
+      name_localizations: { "ru": `${locale.ru.gmtp0}`, "en-US": `${locale.en_us.gmtp0}` }
+    },
+    { name: 'GMT +1 (Warsaw, Paris, Berlin)',
+      value: 'GMT-1',
+      name_localizations: { "ru": `${locale.ru.gmtp1}`, "en-US": `${locale.en_us.gmtp1}` }
+    },
+    { name: 'GMT +2 (Kaliningrad, Helsinki, Kyiv)',
+      value: 'GMT-2',
+      name_localizations: { "ru": `${locale.ru.gmtp2}`, "en-US": `${locale.en_us.gmtp2}` }
+    },
+    { name: 'GMT +3 (Moscow, Istanbul, Qatar)',
+      value: 'GMT-3',
+      name_localizations: { "ru": `${locale.ru.gmtp3}`, "en-US": `${locale.en_us.gmtp3}` }
+    },
+    { name: 'GMT +4 (Dubai, Samara, Baku)',
+      value: 'GMT-4',
+      name_localizations: { "ru": `${locale.ru.gmtp4}`, "en-US": `${locale.en_us.gmtp4}` }
+    },
+    { name: 'GMT +5 (Almaty, Yekaterinburg, Tashkent)',
+      value: 'GMT-5',
+      name_localizations: { "ru": `${locale.ru.gmtp5}`, "en-US": `${locale.en_us.gmtp5}` }
+    },
+    { name: 'GMT +6 (Bishkek, Omsk, Dhaka)',
+      value: 'GMT-6',
+      name_localizations: { "ru": `${locale.ru.gmtp6}`, "en-US": `${locale.en_us.gmtp6}` }
+    },
+    { name: 'GMT +7 (Novokuznetsk, Bangkok, Jakarta)',
+      value: 'GMT-7',
+      name_localizations: { "ru": `${locale.ru.gmtp7}`, "en-US": `${locale.en_us.gmtp7}` }
+    },
+    { name: 'GMT +8 (Singapore, Shanghai, Western Australia)',
+      value: 'GMT-8',
+      name_localizations: { "ru": `${locale.ru.gmtp8}`, "en-US": `${locale.en_us.gmtp8}` }
+    },
+    { name: 'GMT +9 (Chita, Seoul, Tokyo)',
+      value: 'GMT-9',
+      name_localizations: { "ru": `${locale.ru.gmtp9}`, "en-US": `${locale.en_us.gmtp9}` }
+    },
+    { name: 'GMT +10 (Sydney, Vladivostok, Lindeman)',
+      value: 'GMT-10',
+      name_localizations: { "ru": `${locale.ru.gmtp10}`, "en-US": `${locale.en_us.gmtp10}` }
+    },
+    { name: 'GMT +11 (Magadan, Sakhalin, Auckland)',
+      value: 'GMT-11',
+      name_localizations: { "ru": `${locale.ru.gmtp11}`, "en-US": `${locale.en_us.gmtp11}` }
+    },
+    { name: 'GMT +12 (Kamchatka, Fiji, Kwajalein)',
+      value: 'GMT-12',
+      name_localizations: { "ru": `${locale.ru.gmtp12}`, "en-US": `${locale.en_us.gmtp12}` }
+    },
+    { name: 'GMT +13 (Tongatapu, Fakaofo, Apia)',
+      value: 'GMT-13',
+      name_localizations: { "ru": `${locale.ru.gmtp13}`, "en-US": `${locale.en_us.gmtp13}` }
+    },
+    { name: 'GMT +14 (Kiritimati, etcetera)',
+      value: 'GMT-14',
+      name_localizations: { "ru": `${locale.ru.gmtp14}`, "en-US": `${locale.en_us.gmtp14}` }
+    }
+];
+
+const timezonesgmtminus = [
+    { name: 'GMT +0 (Iceland, London, Dublin)',
+      value: 'GMT',
+      name_localizations: { "ru": `${locale.ru.gmtp0}`, "en-US": `${locale.en_us.gmtp0}` }
+    },
+    { name: 'GMT -1 (Azores, Cape Verde)',
+      value: 'GMT+1',
+      name_localizations: { "ru": `${locale.ru.gmtm1}`, "en-US": `${locale.en_us.gmtm1}` }
+    },
+    { name: 'GMT -2 (Greenland, Atlantic islands)',
+      value: 'GMT+2',
+      name_localizations: { "ru": `${locale.ru.gmtm2}`, "en-US": `${locale.en_us.gmtm2}` }
+    },
+    { name: 'GMT -3 (Catamarca, Mendoza, st.johns)',
+      value: 'GMT+3',
+      name_localizations: { "ru": `${locale.ru.gmtm3}`, "en-US": `${locale.en_us.gmtm3}` }
+    },
+    { name: 'GMT -4 (Puerto Rico, Halifax, Santiago)',
+      value: 'GMT+4',
+      name_localizations: { "ru": `${locale.ru.gmtm4}`, "en-US": `${locale.en_us.gmtm4}` }
+    },
+    { name: 'GMT -5 (New York, Jamaica, Louisville)',
+      value: 'GMT+5',
+      name_localizations: { "ru": `${locale.ru.gmtm5}`, "en-US": `${locale.en_us.gmtm5}` }
+    },
+    { name: 'GMT -6 (Costa Rica, Guatemala, Mexico City)',
+      value: 'GMT+6',
+      name_localizations: { "ru": `${locale.ru.gmtm6}`, "en-US": `${locale.en_us.gmtm6}` }
+    },
+    { name: 'GMT -7 (Denver, Phoenix, Mazatlan)',
+      value: 'GMT+7',
+      name_localizations: { "ru": `${locale.ru.gmtm7}`, "en-US": `${locale.en_us.gmtm7}` }
+    },
+    { name: 'GMT -8 (Pitcairn, Pacific Time (PT))',
+      value: 'GMT+8',
+      name_localizations: { "ru": `${locale.ru.gmtm8}`, "en-US": `${locale.en_us.gmtm8}` }
+    },
+    { name: 'GMT -9 (Alaska, Gambier Islands)',
+      value: 'GMT+9',
+      name_localizations: { "ru": `${locale.ru.gmtm9}`, "en-US": `${locale.en_us.gmtm9}` }
+    },
+    { name: 'GMT -10 (Rarotonga, Tahiti, Hawaii)',
+      value: 'GMT+10',
+      name_localizations: { "ru": `${locale.ru.gmtm10}`, "en-US": `${locale.en_us.gmtm10}` }
+    },
+    { name: 'GMT -11 (Niue, Pago Pago)',
+      value: 'GMT+11',
+      name_localizations: { "ru": `${locale.ru.gmtm11}`, "en-US": `${locale.en_us.gmtm11}` }
+    },
+    { name: 'GMT -12 (etcetera)',
+      value: 'GMT+12',
+      name_localizations: { "ru": `${locale.ru.gmtm12}`, "en-US": `${locale.en_us.gmtm12}` }
+    }
+];
+
+const timezoneskey = [
+    { name: 'UTC/GMT (Iceland, London, Dublin)',
+      value: 'GMT',
+      name_localizations: { "ru": `${locale.ru.utc}`, "en-US": `${locale.en_us.utc}` }
+    },
+    { name: 'PST/PDT (Pacific Standard Time)',
+      value: 'GMT+8',
+      name_localizations: { "ru": `${locale.ru.pst}`, "en-US": `${locale.en_us.pst}` }
+    },
+    { name: 'CET (Central European Time)',
+      value: 'GMT-1',
+      name_localizations: { "ru": `${locale.ru.cet}`, "en-US": `${locale.en_us.cet}` }
+    },
+    { name: 'EST (Eastern Standard Time)',
+      value: 'GMT+5',
+      name_localizations: { "ru": `${locale.ru.est}`, "en-US": `${locale.en_us.est}` }
+    },
+    { name: 'MST (Mountain Standard Time)',
+      value: 'GMT+7',
+      name_localizations: { "ru": `${locale.ru.mst}`, "en-US": `${locale.en_us.mst}` }
+    },
+    { name: 'JST (Japan Standard Time)',
+      value: 'GMT-9',
+      name_localizations: { "ru": `${locale.ru.jst}`, "en-US": `${locale.en_us.jst}` }
+    },
+    { name: 'CST (China Standard Time)',
+      value: 'GMT-8',
+      name_localizations: { "ru": `${locale.ru.cst}`, "en-US": `${locale.en_us.cst}` }
+    },
+    { name: 'AEST (Australian Eastern Standard Time)',
+      value: 'GMT-10',
+      name_localizations: { "ru": `${locale.ru.aest}`, "en-US": `${locale.en_us.aest}` }
+    },
+    { name: 'AST (Atlantic Standard Time)',
+      value: 'GMT+4',
+      name_localizations: { "ru": `${locale.ru.ast}`, "en-US": `${locale.en_us.ast}` }
+    },
+    { name: 'CEST (Central European Summer Time)',
+      value: 'GMT-2',
+      name_localizations: { "ru": `${locale.ru.cest}`, "en-US": `${locale.en_us.cest}` }
+    }
+];
+
 //export
 module.exports = {
-    loadlocale,
-    timestampstyles
+    timestampstyles,
+    timezonesgmtminus,
+    timezonesgmtplus,
+    timezoneskey
 };
