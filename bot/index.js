@@ -1,10 +1,10 @@
-const corever = 'v0.4';
+const corever = 'v0.5';
 const forbiddenChars = /['",:;<>?!@#$%^&*(){}|\[\]\/\\]/;
 
 const fs = require('fs');
 const path = require('path');
 const { timestampstyles, timezonesgmtminus, timezonesgmtplus, timezoneskey, monthsoption, alltimezones, convertGmtToSeconds } = require('./functions.js');
-const { ping, about, invite, timenow, timezonenow, timestampint } = require('./builder.js');
+const { ping, about, invite, timenow, timezonenow, timestampint, convertint } = require('./builder.js');
 
 //Statistics
 const { loadStats, incrementStat, statsAutoSave } = require('./botstats.js');
@@ -41,7 +41,7 @@ client.once(Events.ClientReady, readyClient => {
     incrementStat('botlogin');
 });
 
-const commands = [ping, about, invite, timenow, timezonenow, timestampint]; // Add your commands with commas to add them to the bot!
+const commands = [ping, about, invite, timenow, timezonenow, timestampint, convertint]; // Add your commands with commas to add them to the bot!
 
 const rl = createInterface({ input: process.stdin, output: process.stdout });
 
@@ -53,9 +53,9 @@ client.on('interactionCreate', (interaction) => {
             "en-US": `:ping_pong: *${locale.en_us.pong}!* ${locale.en_us.latency} ${Date.now() - interaction.createdTimestamp} ${locale.en_us.milliseconds}! ${locale.en_us.apilatency} ${Math.round(client.ws.ping)} ${locale.en_us.milliseconds}.`,
         }
         interaction.reply({
-        content: pingloc[interaction.locale] ?? `:ping_pong: *Pong!* Latency ${Date.now() - interaction.createdTimestamp} ms! API Latency ${Math.round(client.ws.ping)} ms.`,
-        ephemeral: true,
-      });
+            content: pingloc[interaction.locale] ?? `:ping_pong: *Pong!* Latency ${Date.now() - interaction.createdTimestamp} ms! API Latency ${Math.round(client.ws.ping)} ms.`,
+            ephemeral: true,
+        });
   } else if (interaction.commandName === 'about') {
         incrementStat('aboutcmd');
         const aboutloc = {
@@ -65,7 +65,7 @@ client.on('interactionCreate', (interaction) => {
         interaction.reply({
             content: aboutloc[interaction.locale] ?? `:blue_heart: We are still in early access. Additional info available on developer server`,
             ephemeral: true,
-    });
+        });
   } else if (interaction.commandName === 'invite') {
         incrementStat('invitecmd');
         const inviteloc = {
@@ -75,7 +75,7 @@ client.on('interactionCreate', (interaction) => {
         interaction.reply({
             content: inviteloc[interaction.locale] ?? `:gift_heart: Invites not work in Early Access`,
             ephemeral: true,
-    });
+        });
   } else if (interaction.commandName === 'now') {
         incrementStat('nowcmd');
         var nowtimestamp = Math.floor(Date.now() / 1000)
@@ -108,11 +108,11 @@ client.on('interactionCreate', (interaction) => {
         interaction.reply({
             content: nowloc[interaction.locale] ?? `Now: <t:${nowtimestamp}${nowstyle}> \nTimestamp: \`<t:${nowtimestamp}${nowstyle}>\``,
             ephemeral: true,
-    });
+        });
   } else if (interaction.commandName === 'timezone') {
         incrementStat('timezonecmd');
 //subcommand string: interaction.options.getSubcommand()
-        var tztimestamp = Math.floor(Date.now())
+        var tztimestamp = Date.now()
         var tzdate = new Date(tztimestamp)
         var timezonesel = interaction.options.getString('timezone');
         if (timezonesel === undefined || style === null) {
@@ -132,7 +132,7 @@ client.on('interactionCreate', (interaction) => {
         interaction.reply({
         content: timezoneloc[interaction.locale] ?? `:alarm_clock: Now in this timezone: **__${tzreply}__** \n*Local Time: <t:${Math.floor(tztimestamp / 1000)}:F>*`,
             ephemeral: true,
-    });
+        });
   } else if (interaction.commandName === 'timestamp') {
         incrementStat('timestampcmd');
         var tsyear = interaction.options.getInteger('year');
@@ -208,8 +208,120 @@ client.on('interactionCreate', (interaction) => {
         interaction.reply({
         content: timestamploc[interaction.locale] ?? `:white_check_mark: Preview: <t:${gettimestamp}${tsstyle}> \n:arrow_right: **Timestamp to Paste:** \`<t:${gettimestamp}${tsstyle}>\``,
             ephemeral: true,
-    });
-  }
+        });
+  } else if (interaction.commandName === 'convert') {
+        incrementStat('convertcmd');
+        if (interaction.options.getSubcommand() === 'tounix') {
+            var cvyear = interaction.options.getInteger('year');
+            var cvmonth = interaction.options.getString('month');
+            var cvdayi = interaction.options.getInteger('day');
+            var cvhouri = interaction.options.getInteger('hour');
+            var cvmini = interaction.options.getInteger('minute');
+            var cvseci = interaction.options.getInteger('second');
+            var cvmsi = interaction.options.getInteger('millisecond');
+            var cvmsdisplay = interaction.options.getBoolean('displayms');
+            //Offset value to selected timezone
+            var timezonesel = interaction.options.getString('timezone');
+            if (timezonesel === undefined || timezonesel === null) {
+                var tzoffset = 0
+            } else { var tzoffset = convertGmtToSeconds(timezonesel) }
+            //This need for the date convertor to work. It length sensitive so if we use int '1' it needs to be '01'
+            //Also converting integers into strings
+            var cvday = cvdayi.toString();
+            if (cvday.length === 1) {
+                var cvday = `0${cvday}`
+            }
+            //Test if option is specified
+            if (cvhouri === undefined || cvhouri === null) {
+                var cvhour = '00'
+            } else { var cvhour = cvhouri.toString();
+                if (cvhour.length === 1) {
+                var cvhour = `0${cvhour}`
+                }
+            }
+            if (cvmini === undefined || cvmini === null) {
+                var cvmin = '00'
+            } else { var cvmin = cvmini.toString();
+                if (cvmin.length === 1) {
+                var cvmin = `0${cvmin}`
+                }
+            }
+            if (cvseci === undefined || cvseci === null) {
+                var cvsec = '00'
+            } else { var cvsec = cvseci.toString();
+                if (cvsec.length === 1) {
+                var cvsec = `0${cvsec}`
+                }
+            }
+            if (cvmsi === undefined || cvmsi === null) {
+                var cvms = '000'
+            } else { var cvms = cvmsi.toString();
+                if (cvms.length === 1) {
+                var cvms = `0${cvms}`
+                } else if (cvms.length === 2) {
+                    var cvms = `00${cvms}`
+                }
+            }   
+            var cvdateString = `${cvyear}-${cvmonth}-${cvday}T${cvhour}:${cvmin}:${cvsec}.${cvms}Z`;
+            var cvcalcDate = new Date(cvdateString);
+            //Calculate value in seconds or in ms
+            if ( cvmsdisplay === true ) {
+                var calctimestamp = cvcalcDate.getTime();
+                var gettimestamp = calctimestamp - tzoffset * 1000
+                //adjust interaction reply
+                if ( interaction.locale === 'ru' ) {
+                    var cvreplystyle = locale.ru.milliseconds
+                } else if ( interaction.locale === 'en-us' ) {
+                    var cvreplystyle = locale.en_us.milliseconds
+                } else { var cvreplystyle = 'milliseconds' }
+            } else { var calctimestamp = Math.floor(cvcalcDate.getTime() / 1000);
+                var gettimestamp = calctimestamp - tzoffset
+                //adjust interaction reply
+                if ( interaction.locale === 'ru' ) {
+                    var cvreplystyle = locale.ru.seconds
+                } else if ( interaction.locale === 'en-us' ) {
+                    var cvreplystyle = locale.en_us.seconds
+                } else { var cvreplystyle = 'seconds' }
+            }
+            const cvunixloc = {
+                "ru": `:abacus: **${locale.ru.result}:** \`${gettimestamp}\` *${cvreplystyle} ${locale.ru.since1970} (UNIX)*`,
+                "en-US": `:abacus: **${locale.en_us.result}:** \`${gettimestamp}\` *${cvreplystyle} ${locale.en_us.since1970} (UNIX)*`,
+            };;
+            interaction.reply({
+            content: cvunixloc[interaction.locale] ?? `:abacus: **Result:** \`${gettimestamp}\` *${cvreplystyle} since Jan 1, 1970 (UNIX)*`,
+                ephemeral: true,
+            });
+        } else if (interaction.options.getSubcommand() === 'todate') {
+            var cvmscount = interaction.options.getBoolean('withms');
+            var cvtimestamp = interaction.options.getInteger('unixtime');
+            var intlocale = interaction.locale
+            var timezonesel = interaction.options.getString('timezone');
+            if (timezonesel === undefined || timezonesel === null) {
+                var timezonesel = 'GMT'
+            }
+            //is it milliseconds or seconds
+            if ( cvmscount === true ) {
+                var cvdate = new Date(cvtimestamp)
+            } else { var cvcalc = Math.floor(cvtimestamp * 1000)
+                var cvdate = new Date(cvcalc)
+            }
+            //Date output locale
+            if (intlocale === 'ru' || intlocale === 'en-US') {
+                var timelocale = interaction.locale
+            } else { 
+                var timelocale = 'en-UK'
+            }
+            var cvreply = cvdate.toLocaleString(`${timelocale}`, { timeZone: `Etc/${timezonesel}`, timeZoneName: 'longOffset', day: 'numeric', month: 'long', year: 'numeric', hour: 'numeric', minute: 'numeric', second: 'numeric', fractionalSecondDigits: `3`, weekday: "long" })
+            const cvdateloc = {
+                "ru": `:date: ${locale.ru.result}: **__${cvreply}__**`,
+                "en-US": `:date: ${locale.en_us.result}: **__${cvreply}__**`,
+            };;
+            interaction.reply({
+            content: cvdateloc[interaction.locale] ?? `:date: Result: **__${cvreply}__**`,
+                ephemeral: true,
+            });
+        }
+    }
 });
 (async ()=>{
     const question = (q) => new Promise((resolve) => rl.question(q, resolve));

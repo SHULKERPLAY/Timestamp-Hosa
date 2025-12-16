@@ -22,8 +22,8 @@ client.on(Events.InteractionCreate, (interaction) => {
 var nowtimestamp = Math.floor(Date.now())
 var tempdate = new Date(nowtimestamp)
 //Where 'ru' is locale and 'Etc/GMT-3' means GMT+3. Also works backwards: 'Etc/GMT+3' means GMT-3
-var iso = tempdate.toLocaleString(`en-US`, { timeZone: `Etc/GMT-3`, day: 'numeric', month: 'long', year: 'numeric', hour: 'numeric', minute: 'numeric', second: 'numeric', weekday: "long" })
-// Output: Monday, December 15, 2025 at 10:43:43 PM
+var iso = tempdate.toLocaleString(`en-UK`, { timeZone: `Etc/GMT-3`, timeZoneName: 'longOffset', day: 'numeric', month: 'long', year: 'numeric', hour: 'numeric', minute: 'numeric', second: 'numeric', fractionalSecondDigits: `3`, weekday: "long" })
+// Output: Tuesday, 16 December 2025 at 18:41:46.670 GMT+03:00
 console.log(iso)
 
 //experimental
