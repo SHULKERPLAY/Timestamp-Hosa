@@ -1,5 +1,5 @@
-const corever = 'v0.5';
-const forbiddenChars = /['",:;<>?!@#$%^&*(){}|\[\]\/\\]/;
+const corever = 'v0.6';
+const supportedtimelocale = ["en-US", "ru"];
 
 const fs = require('fs');
 const path = require('path');
@@ -118,8 +118,7 @@ client.on('interactionCreate', (interaction) => {
         if (timezonesel === undefined || style === null) {
             var timezonesel = 'GMT'
         }
-        var intlocale = interaction.locale
-        if (intlocale === 'ru' || intlocale === 'en-US') {
+        if (supportedtimelocale.includes(interaction.locale)) {
             var timelocale = interaction.locale
         } else { 
             var timelocale = 'en-UK'
@@ -289,7 +288,6 @@ client.on('interactionCreate', (interaction) => {
         } else if (interaction.options.getSubcommand() === 'todate') {
             var cvmscount = interaction.options.getBoolean('withms');
             var cvtimestamp = interaction.options.getInteger('unixtime');
-            var intlocale = interaction.locale
             var timezonesel = interaction.options.getString('timezone');
             if (timezonesel === undefined || timezonesel === null) {
                 var timezonesel = 'GMT'
@@ -303,8 +301,7 @@ client.on('interactionCreate', (interaction) => {
                 var msdigits = '0'
             }
             //Date output locale
-            var intlocale = interaction.locale
-            if (intlocale === 'ru' || intlocale === 'en-US') {
+            if (supportedtimelocale.includes(interaction.locale)) {
                 var timelocale = interaction.locale
             } else { 
                 var timelocale = 'en-UK'
@@ -435,10 +432,9 @@ client.on('interactionCreate', (interaction) => {
                 var timezonesel = 'GMT'
             }
             //Date output locale
-            var intlocale = interaction.locale
-            if (intlocale === 'ru' || intlocale === 'en-US') {
+            if (supportedtimelocale.includes(interaction.locale)) {
                 var timelocale = interaction.locale
-            } else { 
+            } else {
                 var timelocale = 'en-UK'
             }
             var calcresult = calcarg1 + calcarg2
