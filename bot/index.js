@@ -171,30 +171,29 @@ client.on('interactionCreate', (interaction) => {
         }
 //This need for the date convertor to work. It length sensitive so if we use int '1' it needs to be '01'
 //Also converting integers into strings
-        var tsday = tsdayi.toString();
-        if (tsday.length === 1) {
-            var tsday = `0${tsday}`
+        if (tsdayi < 10) {
+            var tsday = `0${tsdayi}`
         }
 //Test if option is specified
         if (tshouri === undefined || tshouri === null) {
             var tshour = '00'
-        } else { var tshour = tshouri.toString();
-            if (tshour.length === 1) {
-                var tshour = `0${tshour}`
+        } else {
+            if (tshouri < 10) {
+                var tshour = `0${tshouri}`
             }
         }
         if (tsmini === undefined || tsmini === null) {
             var tsmin = '00'
-        } else { var tsmin = tsmini.toString();
-            if (tsmin.length === 1) {
-                var tsmin = `0${tsmin}`
+        } else {
+            if (tsmini < 10) {
+                var tsmin = `0${tsmini}`
             }
         }
         if (tsseci === undefined || tsseci === null) {
             var tssec = '00'
-        } else { var tssec = tsseci.toString();
-            if (tssec.length === 1) {
-                var tssec = `0${tssec}`
+        } else {
+            if (tsseci < 10) {
+                var tssec = `0${tsseci}`
             }
         }
         var tsdateString = `${tsyear}-${tsmonth}-${tsday}T${tshour}:${tsmin}:${tssec}.000Z`;
@@ -225,40 +224,38 @@ client.on('interactionCreate', (interaction) => {
                 var tzoffset = 0
             } else { var tzoffset = convertGmtToSeconds(timezonesel) }
             //This need for the date convertor to work. It length sensitive so if we use int '1' it needs to be '01'
-            //Also converting integers into strings
-            var cvday = cvdayi.toString();
-            if (cvday.length === 1) {
-                var cvday = `0${cvday}`
+            if (cvdayi < 10) {
+                var cvday = `0${cvdayi}`
             }
             //Test if option is specified
             if (cvhouri === undefined || cvhouri === null) {
                 var cvhour = '00'
-            } else { var cvhour = cvhouri.toString();
-                if (cvhour.length === 1) {
-                var cvhour = `0${cvhour}`
+            } else {
+                if (cvhouri < 10) {
+                var cvhour = `0${cvhouri}`
                 }
             }
             if (cvmini === undefined || cvmini === null) {
                 var cvmin = '00'
-            } else { var cvmin = cvmini.toString();
-                if (cvmin.length === 1) {
-                var cvmin = `0${cvmin}`
+            } else {
+                if (cvmini < 10) {
+                var cvmin = `0${cvmini}`
                 }
             }
             if (cvseci === undefined || cvseci === null) {
                 var cvsec = '00'
-            } else { var cvsec = cvseci.toString();
-                if (cvsec.length === 1) {
-                var cvsec = `0${cvsec}`
+            } else {
+                if (cvseci < 10) {
+                var cvsec = `0${cvseci}`
                 }
             }
             if (cvmsi === undefined || cvmsi === null) {
                 var cvms = '000'
-            } else { var cvms = cvmsi.toString();
-                if (cvms.length === 1) {
-                var cvms = `00${cvms}`
-                } else if (cvms.length === 2) {
-                    var cvms = `0${cvms}`
+            } else {
+                if (cvmsi < 10) {
+                var cvms = `00${cvmsi}`
+                } else if (cvmsi < 100) {
+                    var cvms = `0${cvmsi}`
                 }
             }
             var cvdateString = `${cvyear}-${cvmonth}-${cvday}T${cvhour}:${cvmin}:${cvsec}.${cvms}Z`;
@@ -327,69 +324,135 @@ client.on('interactionCreate', (interaction) => {
         //get Add or Subtract for entire calc command
         var calcmatharg = interaction.options.getString('matharg');
         if (interaction.options.getSubcommand() === 'from-to') {
-            
+            var calcfromyear = interaction.options.getInteger('fromyear');
+            var calcfrommonth = interaction.options.getString('frommonth');
+            var calcfromday = interaction.options.getInteger('fromday');
+            var calcfromhour = interaction.options.getInteger('fromhour');
+            var calcfrommin = interaction.options.getInteger('fromminute');
+            var calcfromsec = interaction.options.getInteger('fromsecond');
+            if (calcfromday < 10) {
+                var calcfromday = `0${calcfromday}`
+            }
+            if (calcfromhour === undefined || calcfromhour === null) {
+                var calcfromhour = '00'
+            } else if (calcfromhour < 10) {
+                var calcfromhour = `0${calcfromhour}`
+            }
+            if (calcfrommin === undefined || calcfrommin === null) {
+                var calcfrommin = '00'
+            } else if (calcfrommin < 10) {
+                var calcfrommin = `0${calcfrommin}`
+            }
+            if (calcfromsec === undefined || calcfromsec === null) {
+                var calcfromsec = '00'
+            } else if (calcfromsec < 10) {
+                var calcfromsec = `0${calcfromsec}`
+            }
+            var calctoyear = interaction.options.getInteger('toyear');
+            var calctomonth = interaction.options.getString('tomonth');
+            var calctoday = interaction.options.getInteger('today');
+            var calctohour = interaction.options.getInteger('tohour');
+            var calctomin = interaction.options.getInteger('tominute');
+            var calctosec = interaction.options.getInteger('tosecond');
+            if (calctoday < 10) {
+                var calctoday = `0${calctoday}`
+            }
+            if (calctohour === undefined || calctohour === null) {
+                var calctohour = '00'
+            } else if (calctohour < 10) {
+                var calctohour = `0${calctohour}`
+            }
+            if (calctomin === undefined || calctomin === null) {
+                var calctomin = '00'
+            } else if (calctomin < 10) {
+                var calctomin = `0${calctomin}`
+            }
+            if (calctosec === undefined || calctosec === null) {
+                var calctosec = '00'
+            } else if (calctosec < 10) {
+                var calctosec = `0${calctosec}`
+            }
+            var calcfromdateString = `${calcfromyear}-${calcfrommonth}-${calcfromday}T${calcfromhour}:${calcfrommin}:${calcfromsec}.000Z`;
+            var calctodateString = `${calctoyear}-${calctomonth}-${calctoday}T${calctohour}:${calctomin}:${calctosec}.000Z`;
+            var calcfromtimestamp = new Date(calcfromdateString).getTime();
+            var calctotimestamp = new Date(calctodateString).getTime();
+            var calcdiff = Math.floor(Math.abs(calctotimestamp - calcfromtimestamp) / 1000)
+            var daysdiff = Math.floor(calcdiff / 86400)
+            var hoursdiff = Math.floor((calcdiff - (daysdiff * 86400)) / 3600)
+            var minsdiff = Math.floor(((calcdiff - ((daysdiff * 86400) + (hoursdiff * 3600))) / 60))
+            var secsdiff = Math.floor(calcdiff - ((daysdiff * 86400) + (hoursdiff * 3600) + (minsdiff * 60)))
+            const calcfromtoloc = {
+                "ru": `:white_check_mark: ${locale.ru.datesdiff}: **__${daysdiff} ${locale.ru.days} ${hoursdiff} ${locale.ru.hours} ${minsdiff} ${locale.ru.minutes} ${secsdiff} ${locale.ru.seconds}__** \n:hourglass_flowing_sand: \`${calcdiff}\` *${locale.ru.seconds}*`,
+                "en-US": `:white_check_mark: ${locale.en_us.datesdiff}: **__${daysdiff} ${locale.en_us.days} ${hoursdiff} ${locale.en_us.hours} ${minsdiff} ${locale.en_us.minutes} ${secsdiff} ${locale.en_us.seconds}__** \n:hourglass_flowing_sand: \`${calcdiff}\` *${locale.en_us.seconds}*`,
+            };;
+            interaction.reply({
+            content: calcfromtoloc[interaction.locale] ?? `:white_check_mark: Difference between dates is: **__${daysdiff} Days ${hoursdiff} Hours ${minsdiff} Minutes ${secsdiff} Seconds__** \n:hourglass_flowing_sand: \`${calcdiff}\` *Seconds*`,
+                ephemeral: true,
+            });           
         } else if (interaction.options.getSubcommand() === 'fromnow') {
             var calcarg1 = Date.now()
-        } else {
+        } else if (interaction.options.getSubcommand() === 'fromdate') {
             var calcyear = interaction.options.getInteger('year');
             var calcmonth = interaction.options.getString('month');
-            var calcday = interaction.options.getInteger('day').toString();
-            var calchour = interaction.options.getInteger('hour').toString();
-            var calcmin = interaction.options.getInteger('minute').toString();
-            var calcsec = interaction.options.getInteger('second').toString();
-            var calcms = interaction.options.getInteger('millisecond').toString();
-            if (calcday.length === 1) {
+            var calcday = interaction.options.getInteger('day');
+            var calchour = interaction.options.getInteger('hour');
+            var calcmin = interaction.options.getInteger('minute');
+            var calcsec = interaction.options.getInteger('second');
+            var calcms = interaction.options.getInteger('millisecond');
+            if (calcday < 10) {
                 var calcday = `0${calcday}`
             }
-            if (calchour.length === 1) {
+            if (calchour < 10) {
                 var calchour = `0${calchour}`
             }
-            if (calcmin.length === 1) {
+            if (calcmin < 10) {
                 var calcmin = `0${calcmin}`
             }
-            if (calcsec.length === 1) {
+            if (calcsec < 10) {
                 var calcsec = `0${calcsec}`
             }
-            if (calcms.length === 1) {
+            if (calcms < 10) {
                 var calcms = `00${calcms}`
-            } else if (calcms.length === 2) {
+            } else if (calcms < 100) {
                 var calcms = `0${calcms}`
             }
             var calcdateString = `${calcyear}-${calcmonth}-${calcday}T${calchour}:${calcmin}:${calcsec}.${calcms}Z`;
             var calcarg1 = new Date(calcdateString).getTime();
         }
-        var timezonesel = interaction.options.getString('timezone');
-        var calcarg2y = interaction.options.getInteger('years') * 946080000000;
-        var calcarg2m = interaction.options.getInteger('months') * 2592000000;
-        var calcarg2w = interaction.options.getInteger('weeks') * 604800000;
-        var calcarg2d = interaction.options.getInteger('days') * 86400000;
-        var calcarg2h = interaction.options.getInteger('hours') * 3600000;
-        var calcarg2min = interaction.options.getInteger('minutes') * 60000;
-        var calcarg2s = interaction.options.getInteger('seconds') * 1000;
-        var calcarg2ms = interaction.options.getInteger('milliseconds');
-        var calcarg2 = calcarg2ms + calcarg2s + calcarg2min + calcarg2h + calcarg2d + calcarg2w + calcarg2m + calcarg2y
-        if (calcmatharg === 'Subtract') { var calcarg2 = -calcarg2 }
-        if (timezonesel === undefined || timezonesel === null) {
-            var timezonesel = 'GMT'
+        if (interaction.options.getSubcommand() === 'fromnow' || interaction.options.getSubcommand() === 'fromdate') {
+            var timezonesel = interaction.options.getString('timezone');
+            var calcarg2y = interaction.options.getInteger('years') * 31536000000;
+            var calcarg2m = interaction.options.getInteger('months') * 2592000000;
+            var calcarg2w = interaction.options.getInteger('weeks') * 604800000;
+            var calcarg2d = interaction.options.getInteger('days') * 86400000;
+            var calcarg2h = interaction.options.getInteger('hours') * 3600000;
+            var calcarg2min = interaction.options.getInteger('minutes') * 60000;
+            var calcarg2s = interaction.options.getInteger('seconds') * 1000;
+            var calcarg2ms = interaction.options.getInteger('milliseconds');
+            var calcarg2 = calcarg2ms + calcarg2s + calcarg2min + calcarg2h + calcarg2d + calcarg2w + calcarg2m + calcarg2y
+            if (calcmatharg === 'Subtract') { var calcarg2 = -calcarg2 }
+            if (timezonesel === undefined || timezonesel === null) {
+                var timezonesel = 'GMT'
+            }
+            //Date output locale
+            var intlocale = interaction.locale
+            if (intlocale === 'ru' || intlocale === 'en-US') {
+                var timelocale = interaction.locale
+            } else { 
+                var timelocale = 'en-UK'
+            }
+            var calcresult = calcarg1 + calcarg2
+            var calcresdate = new Date(calcresult)
+            var calcreply = calcresdate.toLocaleString(`${timelocale}`, { timeZone: `Etc/${timezonesel}`, timeZoneName: 'longOffset', day: 'numeric', month: 'long', year: 'numeric', hour: 'numeric', minute: 'numeric', second: 'numeric', fractionalSecondDigits: `3`, weekday: "long" })
+            const calcdateloc = {
+                "ru": `:white_check_mark: ${locale.ru.result}: **__${calcreply}__** \n:hourglass_flowing_sand: *UNIX: \`${calcresult}\` ${locale.ru.timestamp}: \`<t:${Math.floor(calcresult / 1000)}>\` ${locale.ru.localtime}: <t:${Math.floor(calcresult / 1000)}>*`,
+                "en-US": `:white_check_mark: ${locale.en_us.result}: **__${calcreply}__** \n:hourglass_flowing_sand: *UNIX: \`${calcresult}\` ${locale.en_us.timestamp}: \`<t:${Math.floor(calcresult / 1000)}>\` ${locale.en_us.localtime}: <t:${Math.floor(calcresult / 1000)}>*`,
+            };;
+            interaction.reply({
+            content: calcdateloc[interaction.locale] ?? `:white_check_mark: Result: **__${calcreply}__** \n:hourglass_flowing_sand: *UNIX: \`${calcresult}\` Timestamp to Paste: \`<t:${Math.floor(calcresult / 1000)}>\` Local Time: <t:${Math.floor(calcresult / 1000)}>*`,
+                ephemeral: true,
+            });
         }
-        //Date output locale
-        var intlocale = interaction.locale
-        if (intlocale === 'ru' || intlocale === 'en-US') {
-            var timelocale = interaction.locale
-        } else { 
-            var timelocale = 'en-UK'
-        }
-        var calcresult = calcarg1 + calcarg2
-        var calcresdate = new Date(calcresult)
-        var calcreply = calcresdate.toLocaleString(`${timelocale}`, { timeZone: `Etc/${timezonesel}`, timeZoneName: 'longOffset', day: 'numeric', month: 'long', year: 'numeric', hour: 'numeric', minute: 'numeric', second: 'numeric', fractionalSecondDigits: `3`, weekday: "long" })
-        const calcdateloc = {
-            "ru": `:white_check_mark: ${locale.ru.result}: **__${calcreply}__** \n:hourglass_flowing_sand: *UNIX: \`${calcresult}\` ${locale.ru.timestamp}: \`<t:${Math.floor(calcresult / 1000)}>\` ${locale.ru.localtime}: <t:${Math.floor(calcresult / 1000)}>*`,
-            "en-US": `:white_check_mark: ${locale.en_us.result}: **__${calcreply}__** \n:hourglass_flowing_sand: *UNIX: \`${calcresult}\` ${locale.en_us.timestamp}: \`<t:${Math.floor(calcresult / 1000)}>\` ${locale.en_us.localtime}: <t:${Math.floor(calcresult / 1000)}>*`,
-        };;
-        interaction.reply({
-        content: calcdateloc[interaction.locale] ?? `:white_check_mark: Result: **__${calcreply}__** \n:hourglass_flowing_sand: *UNIX: \`${calcresult}\` Timestamp to Paste: \`<t:${Math.floor(calcresult / 1000)}>\` Local Time: <t:${Math.floor(calcresult / 1000)}>*`,
-            ephemeral: true,
-        });
     }
 });
 (async ()=>{
