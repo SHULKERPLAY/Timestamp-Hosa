@@ -37,3 +37,9 @@ if (testlocale === 'ru' || testlocale === 'en-US') {
         }
 var iso = tempdate.toLocaleString(`${timelocale}`, { timeZone: 'Etc/GMT-3', day: 'numeric', month: 'long', year: 'numeric', hour: 'numeric', minute: 'numeric', second: 'numeric', weekday: "long" })
 console.log(iso)
+
+//difference of dates
+var arg1 = 1354
+var arg2 = 1353
+var diff = Math.abs(arg2 - arg1)
+console.log(diff)

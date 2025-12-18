@@ -4,7 +4,7 @@ const forbiddenChars = /['",:;<>?!@#$%^&*(){}|\[\]\/\\]/;
 const fs = require('fs');
 const path = require('path');
 const { timestampstyles, timezonesgmtminus, timezonesgmtplus, timezoneskey, monthsoption, alltimezones, convertGmtToSeconds } = require('./functions.js');
-const { ping, about, invite, timenow, timezonenow, timestampint, convertint } = require('./builder.js');
+const { ping, about, invite, timenow, timezonenow, timestampint, convertint, calcint } = require('./builder.js');
 
 //Statistics
 const { loadStats, incrementStat, statsAutoSave } = require('./botstats.js');
@@ -41,7 +41,7 @@ client.once(Events.ClientReady, readyClient => {
     incrementStat('botlogin');
 });
 
-const commands = [ping, about, invite, timenow, timezonenow, timestampint, convertint]; // Add your commands with commas to add them to the bot!
+const commands = [ping, about, invite, timenow, timezonenow, timestampint, convertint, calcint]; // Add your commands with commas to add them to the bot!
 
 const rl = createInterface({ input: process.stdin, output: process.stdout });
 
@@ -180,27 +180,26 @@ client.on('interactionCreate', (interaction) => {
             var tshour = '00'
         } else { var tshour = tshouri.toString();
             if (tshour.length === 1) {
-            var tshour = `0${tshour}`
+                var tshour = `0${tshour}`
             }
         }
         if (tsmini === undefined || tsmini === null) {
             var tsmin = '00'
         } else { var tsmin = tsmini.toString();
             if (tsmin.length === 1) {
-            var tsmin = `0${tsmin}`
+                var tsmin = `0${tsmin}`
             }
         }
         if (tsseci === undefined || tsseci === null) {
             var tssec = '00'
         } else { var tssec = tsseci.toString();
             if (tssec.length === 1) {
-            var tssec = `0${tssec}`
+                var tssec = `0${tssec}`
             }
         }
         var tsdateString = `${tsyear}-${tsmonth}-${tsday}T${tshour}:${tsmin}:${tssec}.000Z`;
-        var calcDate = new Date(tsdateString);
-        var calctimestamp = Math.floor(calcDate.getTime() / 1000);
-        var gettimestamp = calctimestamp - tzoffset
+        var calcDate = new Date(tsdateString).getTime();
+        var gettimestamp = calcDate / 1000 - tzoffset
         const timestamploc = {
             "ru": `:white_check_mark: ${locale.ru.preview}: <t:${gettimestamp}${tsstyle}> \n:arrow_right: **${locale.ru.timestamp}:** \`<t:${gettimestamp}${tsstyle}>\``,
             "en-US": `:white_check_mark: ${locale.en_us.preview}: <t:${gettimestamp}${tsstyle}> \n:arrow_right: **${locale.en_us.timestamp}:** \`<t:${gettimestamp}${tsstyle}>\``,
@@ -257,16 +256,15 @@ client.on('interactionCreate', (interaction) => {
                 var cvms = '000'
             } else { var cvms = cvmsi.toString();
                 if (cvms.length === 1) {
-                var cvms = `0${cvms}`
+                var cvms = `00${cvms}`
                 } else if (cvms.length === 2) {
-                    var cvms = `00${cvms}`
+                    var cvms = `0${cvms}`
                 }
-            }   
+            }
             var cvdateString = `${cvyear}-${cvmonth}-${cvday}T${cvhour}:${cvmin}:${cvsec}.${cvms}Z`;
-            var cvcalcDate = new Date(cvdateString);
+            var calctimestamp = new Date(cvdateString).getTime();
             //Calculate value in seconds or in ms
             if ( cvmsdisplay === true ) {
-                var calctimestamp = cvcalcDate.getTime();
                 var gettimestamp = calctimestamp - tzoffset * 1000
                 //adjust interaction reply
                 if ( interaction.locale === 'ru' ) {
@@ -274,8 +272,8 @@ client.on('interactionCreate', (interaction) => {
                 } else if ( interaction.locale === 'en-us' ) {
                     var cvreplystyle = locale.en_us.milliseconds
                 } else { var cvreplystyle = 'milliseconds' }
-            } else { var calctimestamp = Math.floor(cvcalcDate.getTime() / 1000);
-                var gettimestamp = calctimestamp - tzoffset
+            } else {
+                var gettimestamp = Math.floor(calctimestamp / 1000 - tzoffset)
                 //adjust interaction reply
                 if ( interaction.locale === 'ru' ) {
                     var cvreplystyle = locale.ru.seconds
@@ -302,17 +300,20 @@ client.on('interactionCreate', (interaction) => {
             //is it milliseconds or seconds
             if ( cvmscount === true ) {
                 var cvdate = new Date(cvtimestamp)
-            } else { var cvcalc = Math.floor(cvtimestamp * 1000)
-                var cvdate = new Date(cvcalc)
+                var msdigits = '3'
+            } else {
+                var cvdate = new Date(cvtimestamp * 1000)
+                var msdigits = '0'
             }
             //Date output locale
+            var intlocale = interaction.locale
             if (intlocale === 'ru' || intlocale === 'en-US') {
                 var timelocale = interaction.locale
             } else { 
                 var timelocale = 'en-UK'
             }
-            var cvreply = cvdate.toLocaleString(`${timelocale}`, { timeZone: `Etc/${timezonesel}`, timeZoneName: 'longOffset', day: 'numeric', month: 'long', year: 'numeric', hour: 'numeric', minute: 'numeric', second: 'numeric', fractionalSecondDigits: `3`, weekday: "long" })
-            const cvdateloc = {
+            var cvreply = cvdate.toLocaleString(`${timelocale}`, { timeZone: `Etc/${timezonesel}`, timeZoneName: 'longOffset', day: 'numeric', month: 'long', year: 'numeric', hour: 'numeric', minute: 'numeric', second: 'numeric', fractionalSecondDigits: `${msdigits}`, weekday: "long" })
+            const cvdateloc = { 
                 "ru": `:date: ${locale.ru.result}: **__${cvreply}__**`,
                 "en-US": `:date: ${locale.en_us.result}: **__${cvreply}__**`,
             };;
@@ -321,6 +322,74 @@ client.on('interactionCreate', (interaction) => {
                 ephemeral: true,
             });
         }
+    } else if (interaction.commandName === 'calc') {
+        incrementStat('calccmd');
+        //get Add or Subtract for entire calc command
+        var calcmatharg = interaction.options.getString('matharg');
+        if (interaction.options.getSubcommand() === 'from-to') {
+            
+        } else if (interaction.options.getSubcommand() === 'fromnow') {
+            var calcarg1 = Date.now()
+        } else {
+            var calcyear = interaction.options.getInteger('year');
+            var calcmonth = interaction.options.getString('month');
+            var calcday = interaction.options.getInteger('day').toString();
+            var calchour = interaction.options.getInteger('hour').toString();
+            var calcmin = interaction.options.getInteger('minute').toString();
+            var calcsec = interaction.options.getInteger('second').toString();
+            var calcms = interaction.options.getInteger('millisecond').toString();
+            if (calcday.length === 1) {
+                var calcday = `0${calcday}`
+            }
+            if (calchour.length === 1) {
+                var calchour = `0${calchour}`
+            }
+            if (calcmin.length === 1) {
+                var calcmin = `0${calcmin}`
+            }
+            if (calcsec.length === 1) {
+                var calcsec = `0${calcsec}`
+            }
+            if (calcms.length === 1) {
+                var calcms = `00${calcms}`
+            } else if (calcms.length === 2) {
+                var calcms = `0${calcms}`
+            }
+            var calcdateString = `${calcyear}-${calcmonth}-${calcday}T${calchour}:${calcmin}:${calcsec}.${calcms}Z`;
+            var calcarg1 = new Date(calcdateString).getTime();
+        }
+        var timezonesel = interaction.options.getString('timezone');
+        var calcarg2y = interaction.options.getInteger('years') * 946080000000;
+        var calcarg2m = interaction.options.getInteger('months') * 2592000000;
+        var calcarg2w = interaction.options.getInteger('weeks') * 604800000;
+        var calcarg2d = interaction.options.getInteger('days') * 86400000;
+        var calcarg2h = interaction.options.getInteger('hours') * 3600000;
+        var calcarg2min = interaction.options.getInteger('minutes') * 60000;
+        var calcarg2s = interaction.options.getInteger('seconds') * 1000;
+        var calcarg2ms = interaction.options.getInteger('milliseconds');
+        var calcarg2 = calcarg2ms + calcarg2s + calcarg2min + calcarg2h + calcarg2d + calcarg2w + calcarg2m + calcarg2y
+        if (calcmatharg === 'Subtract') { var calcarg2 = -calcarg2 }
+        if (timezonesel === undefined || timezonesel === null) {
+            var timezonesel = 'GMT'
+        }
+        //Date output locale
+        var intlocale = interaction.locale
+        if (intlocale === 'ru' || intlocale === 'en-US') {
+            var timelocale = interaction.locale
+        } else { 
+            var timelocale = 'en-UK'
+        }
+        var calcresult = calcarg1 + calcarg2
+        var calcresdate = new Date(calcresult)
+        var calcreply = calcresdate.toLocaleString(`${timelocale}`, { timeZone: `Etc/${timezonesel}`, timeZoneName: 'longOffset', day: 'numeric', month: 'long', year: 'numeric', hour: 'numeric', minute: 'numeric', second: 'numeric', fractionalSecondDigits: `3`, weekday: "long" })
+        const calcdateloc = {
+            "ru": `:white_check_mark: ${locale.ru.result}: **__${calcreply}__** \n:hourglass_flowing_sand: *UNIX: \`${calcresult}\` ${locale.ru.timestamp}: \`<t:${Math.floor(calcresult / 1000)}>\` ${locale.ru.localtime}: <t:${Math.floor(calcresult / 1000)}>*`,
+            "en-US": `:white_check_mark: ${locale.en_us.result}: **__${calcreply}__** \n:hourglass_flowing_sand: *UNIX: \`${calcresult}\` ${locale.en_us.timestamp}: \`<t:${Math.floor(calcresult / 1000)}>\` ${locale.en_us.localtime}: <t:${Math.floor(calcresult / 1000)}>*`,
+        };;
+        interaction.reply({
+        content: calcdateloc[interaction.locale] ?? `:white_check_mark: Result: **__${calcreply}__** \n:hourglass_flowing_sand: *UNIX: \`${calcresult}\` Timestamp to Paste: \`<t:${Math.floor(calcresult / 1000)}>\` Local Time: <t:${Math.floor(calcresult / 1000)}>*`,
+            ephemeral: true,
+        });
     }
 });
 (async ()=>{

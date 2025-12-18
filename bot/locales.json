@@ -1,5 +1,8 @@
 {
     "en_us": {
+        "arg": {
+            "_comment": "arguments_can_contain_only_lowercase_and_max_16_characters_long"
+        },
         "hello": "Hello!",
         "ShortDate": "4/20/2021",
         "LongDate": "April 20, 2021",
@@ -9,13 +12,21 @@
         "ShortDateMediumTime": "4/20/2021 16:20:30",
         "RelativeDate": "2 months ago (Relative)",
         "pong": "Pong",
+        "add": "Add (+)",
+        "subtract": "Subtract (-)",
         "latency": "Latency",
         "apilatency": "API Latency",
         "milliseconds": "ms",
         "second": "second",
-        "seconds": "seconds",
+        "seconds": "Seconds",
+        "minutes": "Minutes",
+        "hours": "Hours",
+        "days": "Days",
+        "months": "Months",
+        "years": "Years",
         "aboutcmd": "We are still in early access. Additional info available on developer server",
         "invitecmd": "Invites not work in Early Access",
+        "datesdiff": "Difference between dates is",
         "since1970": "Since Jan 1, 1970",
         "now": "Now",
         "nowintz": "Now in this Timezone",
@@ -74,6 +85,9 @@
         "dec": "December"
     },
     "ru": {
+        "arg": {
+            "_comment": "аргументы_могут_содержать_только_маленькие_буквы_и_должны_быть_не_более_16_символов_длинной"
+        },
         "hello": "Привет!",
         "ShortDate": "20.04.2021",
         "LongDate": "20 апреля 2021 г.",
@@ -83,57 +97,65 @@
         "ShortDateMediumTime": "20.04.2021 16:20:30",
         "RelativeDate": "2 месяца назад (Относительное)",
         "pong": "Понг",
+        "add": "Прибавить (+)",
+        "subtract": "Отнять (-)",
         "latency": "Задержка",
         "apilatency": "Задержка API",
         "milliseconds": "миллисекунд",
         "second": "секунда",
-        "seconds": "секунд",
+        "seconds": "Секунд",
+        "minutes": "Минут",
+        "hours": "Часов",
+        "days": "Дней",
+        "months": "Месяцев",
+        "years": "Лет",
         "aboutcmd": "Мы в раннем доступе, все объявления есть на сервере разработчика",
         "invitecmd": "Нет возможности приглашения во время раннего доступа",
+        "datesdiff": "Разница между датами составляет",
         "since1970": "прошло с 1 Янв 1970 г.",
         "now": "Сейчас",
         "nowintz": "Сейчас в этом часовом поясе",
         "timestamp": "Метка для вставки",
         "preview": "Предпросмотр",
         "result": "Результат",
-        "gmtp0": "GMT +0 (Iceland, London, Dublin)",
-        "gmtp1": "GMT +1 (Warsaw, Paris, Berlin)",
-        "gmtp2": "GMT +2 (Kaliningrad, Helsinki, Kyiv)",
-        "gmtp3": "GMT +3 (Moscow, Istanbul, Qatar)",
-        "gmtp4": "GMT +4 (Dubai, Samara, Baku)",
-        "gmtp5": "GMT +5 (Almaty, Yekaterinburg, Tashkent)",
-        "gmtp6": "GMT +6 (Bishkek, Omsk, Dhaka)",
-        "gmtp7": "GMT +7 (Novokuznetsk, Bangkok, Jakarta)",
-        "gmtp8": "GMT +8 (Singapore, Shanghai, Western Australia)",
-        "gmtp9": "GMT +9 (Chita, Seoul, Tokyo)",
-        "gmtp10": "GMT +10 (Sydney, Vladivostok, Lindeman)",
-        "gmtp11": "GMT +11 (Magadan, Sakhalin, Auckland)",
-        "gmtp12": "GMT +12 (Kamchatka, Fiji, Kwajalein)",
-        "gmtp13": "GMT +13 (Tongatapu, Fakaofo, Apia)",
-        "gmtp14": "GMT +14 (Kiritimati, etcetera)",
-        "gmtm1": "GMT -1 (Azores, Cape Verde)",
-        "gmtm2": "GMT -2 (Greenland, Atlantic islands)",
-        "gmtm3": "GMT -3 (Catamarca, Mendoza, st.johns)",
-        "gmtm4": "GMT -4 (Puerto Rico, Halifax, Santiago)",
-        "gmtm5": "GMT -5 (New York, Jamaica, Louisville)",
-        "gmtm6": "GMT -6 (Costa Rica, Guatemala, Mexico City)",
-        "gmtm7": "GMT -7 (Denver, Phoenix, Mazatlan)",
-        "gmtm8": "GMT -8 (Pitcairn, Pacific Time (PT))",
-        "gmtm9": "GMT -9 (Alaska, Gambier Islands)",
-        "gmtm10": "GMT -10 (Rarotonga, Tahiti, Hawaii)",
-        "gmtm11": "GMT -11 (Niue, Pago Pago)",
-        "gmtm12": "GMT -12 (etcetera)",
+        "gmtp0": "GMT +0 (Исландия, Лондон, Дублин)",
+        "gmtp1": "GMT +1 (Варшава, Париж, Берлин)",
+        "gmtp2": "GMT +2 (Калининград, Хельсинки, Киев)",
+        "gmtp3": "GMT +3 (Москва, Стамбул, Катар)",
+        "gmtp4": "GMT +4 (Дубаи, Самара, Баку)",
+        "gmtp5": "GMT +5 (Алматы, Екатеринбург, Ташкент)",
+        "gmtp6": "GMT +6 (Бишкек, Омск, Дакка)",
+        "gmtp7": "GMT +7 (Новокузнецк, Бангкок, Джакарта)",
+        "gmtp8": "GMT +8 (Сингапур, Шанхай, Западная Австралия)",
+        "gmtp9": "GMT +9 (Чита, Сеул, Токио)",
+        "gmtp10": "GMT +10 (Сидней, Владивосток, Остров Линдеманн)",
+        "gmtp11": "GMT +11 (Магадан, Сахалин, Окленд)",
+        "gmtp12": "GMT +12 (Камчатка, Фиджи, Кваджалей Атолл)",
+        "gmtp13": "GMT +13 (Тонгатапу, Факаофо, Апиа)",
+        "gmtp14": "GMT +14 (Кирибати атолл, прочее)",
+        "gmtm1": "GMT -1 (Азорские Острова, Кабо-Верде)",
+        "gmtm2": "GMT -2 (Гренландия, Атлантические Острова)",
+        "gmtm3": "GMT -3 (Катамарка, Мендоса, Сэнт-Джонс)",
+        "gmtm4": "GMT -4 (Пуэрто-Рико, Галифакс, Сантьяго)",
+        "gmtm5": "GMT -5 (Нью-Йорк, Ямайка, Луисвилл)",
+        "gmtm6": "GMT -6 (Коста-Рика, Гватемала, Мехико)",
+        "gmtm7": "GMT -7 (Дэнвер, Финикс, Масалтан)",
+        "gmtm8": "GMT -8 (Острова Питкэрн, Тихоокеанское Время)",
+        "gmtm9": "GMT -9 (Аляска, Острова Гамбье)",
+        "gmtm10": "GMT -10 (Раротонга, Таити, Гаваи)",
+        "gmtm11": "GMT -11 (Ниуэ, Паго-Паго)",
+        "gmtm12": "GMT -12 (прочее)",
         "localtime": "Ваше время",
-        "utc": "UTC/GMT (Iceland, London, Dublin)",
-        "pst": "PST/PDT (Pacific Standard Time)",
-        "cet": "CET (Central European Time)",
-        "est": "EST (Eastern Standard Time)",
-        "mst": "MST (Mountain Standard Time)",
-        "jst": "JST (Japan Standard Time)",
-        "cst": "CST (China Standard Time)",
-        "aest": "AEST (Australian Eastern Standard Time)",
-        "ast": "AST (Atlantic Standard Time)",
-        "cest": "CEST (Central European Summer Time)",
+        "utc": "UTC/GMT (Исландия, Лондон, Дублин)",
+        "pst": "PST/PDT (Тихоокеанское Стандартное Время)",
+        "cet": "CET (Центральное Европейское Время)",
+        "est": "EST (Восточное Стандартное Время)",
+        "mst": "MST (Горное Стандартное Время)",
+        "jst": "JST (Японское Стандартное Время)",
+        "cst": "CST (Китайское Стандартное Время)",
+        "aest": "AEST (Австралийское Восточное Стандартное Время)",
+        "ast": "AST (Атлантическое Стандартное Время)",
+        "cest": "CEST (Центральное Европейское Летнее Время)",
         "jan": "Январь",
         "feb": "Февраль",
         "mar": "Март",
@@ -146,5 +168,53 @@
         "oct": "Октябрь",
         "nov": "Ноябрь",
         "dec": "Декабрь"
+    },
+    "de": {
+        "_comment": "Planned support for German language",
+        "arg": {
+            "_comment": "arguments_can_contain_only_lowercase_and_max_16_characters_long"
+        }
+    },
+    "pl": {
+        "_comment": "Planned support for Polish",
+        "arg": {
+            "_comment": "arguments_can_contain_only_lowercase_and_max_16_characters_long"
+        }
+    },
+    "fr": {
+        "_comment": "Planned support for French",
+        "arg": {
+            "_comment": "arguments_can_contain_only_lowercase_and_max_16_characters_long"
+        }
+    },
+    "ja": {
+        "_comment": "Planned support for Japanese language",
+        "arg": {
+            "_comment": "arguments_can_contain_only_lowercase_and_max_16_characters_long"
+        }
+    },
+    "pt_BR": {
+        "_comment": "Planned support for Brazilian language",
+        "arg": {
+            "_comment": "arguments_can_contain_only_lowercase_and_max_16_characters_long"
+        }
+    },
+    "ko": {
+        "_comment": "Planned support for Korean language",
+        "arg": {
+            "_comment": "arguments_can_contain_only_lowercase_and_max_16_characters_long"
+        }
+    },
+    "bg": {
+        "_comment": "Planned support for Bulgarian language",
+        "arg": {
+            "_comment": "arguments_can_contain_only_lowercase_and_max_16_characters_long"
+        }
+    },
+    "uk": {
+        "_comment": "Planned support for Ukranian language",
+        "arg": {
+            "_comment": "arguments_can_contain_only_lowercase_and_max_16_characters_long"
+        }
     }
 }
