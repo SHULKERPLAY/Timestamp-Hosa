@@ -1637,7 +1637,7 @@
         "withmilliseconds": "Дали да се чете и връща стойност с милисекунди",
         "years": "Години"
     },
-    "sv": {
+    "sv_SE": {
         "arg": {
             "_comment": "gemener_och_max_16_tecken",
             "day": "dag",

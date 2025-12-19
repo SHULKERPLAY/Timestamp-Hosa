@@ -73,6 +73,26 @@ const timenow = new SlashCommandBuilder()
         .setRequired(false)
         .addChoices(timestampstyles)
     )
+    //decide if reply be ephemeral (publicreply: false / true)
+    .addBooleanOption(option =>
+        option.setName('publicreply')
+        .setDescription('Make the result visible to everyone in the chat')
+        .setDescriptionLocalizations({
+            "ru": `${locale.ru.publicreply}`,
+            "en-US": `${locale.en_us.publicreply}`,
+            "de": `${locale.de.publicreply}`,
+            "pl": `${locale.pl.publicreply}`,
+            "fr": `${locale.fr.publicreply}`,
+            "ja": `${locale.ja.publicreply}`,
+            "pt-BR": `${locale.pt_BR.publicreply}`,
+            "ko": `${locale.ko.publicreply}`,
+            "bg": `${locale.bg.publicreply}`,
+            "sv-SE": `${locale.sv_SE.publicreply}`,
+            "uk": `${locale.uk.publicreply}`,
+        })
+        .setRequired(false)
+    )
+    //end of publicreply
         
 const timezonenow = new SlashCommandBuilder()
     .setName('timezone')
@@ -102,6 +122,26 @@ const timezonenow = new SlashCommandBuilder()
             .setRequired(true)
             .addChoices(timezonesgmtplus)
         )
+        //decide if reply be ephemeral (publicreply: false / true)
+        .addBooleanOption(option =>
+            option.setName('publicreply')
+            .setDescription('Make the result visible to everyone in the chat')
+            .setDescriptionLocalizations({
+                "ru": `${locale.ru.publicreply}`,
+                "en-US": `${locale.en_us.publicreply}`,
+                "de": `${locale.de.publicreply}`,
+                "pl": `${locale.pl.publicreply}`,
+                "fr": `${locale.fr.publicreply}`,
+                "ja": `${locale.ja.publicreply}`,
+                "pt-BR": `${locale.pt_BR.publicreply}`,
+                "ko": `${locale.ko.publicreply}`,
+                "bg": `${locale.bg.publicreply}`,
+                "sv-SE": `${locale.sv_SE.publicreply}`,
+                "uk": `${locale.uk.publicreply}`,
+            })
+            .setRequired(false)
+        )
+        //end of publicreply
     )
     .addSubcommand(subcommand =>
         subcommand.setName('gmtminus')
@@ -124,7 +164,28 @@ const timezonenow = new SlashCommandBuilder()
             .setRequired(true)
             .addChoices(timezonesgmtminus)
         )
+        //decide if reply be ephemeral (publicreply: false / true)
+        .addBooleanOption(option =>
+            option.setName('publicreply')
+            .setDescription('Make the result visible to everyone in the chat')
+            .setDescriptionLocalizations({
+                "ru": `${locale.ru.publicreply}`,
+                "en-US": `${locale.en_us.publicreply}`,
+                "de": `${locale.de.publicreply}`,
+                "pl": `${locale.pl.publicreply}`,
+                "fr": `${locale.fr.publicreply}`,
+                "ja": `${locale.ja.publicreply}`,
+                "pt-BR": `${locale.pt_BR.publicreply}`,
+                "ko": `${locale.ko.publicreply}`,
+                "bg": `${locale.bg.publicreply}`,
+                "sv-SE": `${locale.sv_SE.publicreply}`,
+                "uk": `${locale.uk.publicreply}`,
+            })
+            .setRequired(false)
+        )
+        //end of publicreply
     )
+    
     .addSubcommand(subcommand =>
         subcommand.setName('keyzones')
         .setDescription('Check time in timezone different from GMT')
@@ -133,19 +194,39 @@ const timezonenow = new SlashCommandBuilder()
             "en-US": `${locale.en_us.desctimezonekey}`,
         })
         .addStringOption(option =>
-        option.setName('timezone')
-        .setNameLocalizations({
-            "ru": `${locale.ru.arg.timezone}`,
-            "en-US": `${locale.en_us.arg.timezone}`,
-        })
-        .setDescription('Select timezone')
-        .setDescriptionLocalizations({
-            "ru": `${locale.ru.selecttimezone}`,
-            "en-US": `${locale.en_us.selecttimezone}`,
-        })
-        .setRequired(true)
-        .addChoices(timezoneskey)
+            option.setName('timezone')
+            .setNameLocalizations({
+                "ru": `${locale.ru.arg.timezone}`,
+                "en-US": `${locale.en_us.arg.timezone}`,
+            })
+            .setDescription('Select timezone')
+            .setDescriptionLocalizations({
+                "ru": `${locale.ru.selecttimezone}`,
+                "en-US": `${locale.en_us.selecttimezone}`,
+            })
+            .setRequired(true)
+            .addChoices(timezoneskey)
         )
+        //decide if reply be ephemeral (publicreply: false / true)
+        .addBooleanOption(option =>
+            option.setName('publicreply')
+            .setDescription('Make the result visible to everyone in the chat')
+            .setDescriptionLocalizations({
+                "ru": `${locale.ru.publicreply}`,
+                "en-US": `${locale.en_us.publicreply}`,
+                "de": `${locale.de.publicreply}`,
+                "pl": `${locale.pl.publicreply}`,
+                "fr": `${locale.fr.publicreply}`,
+                "ja": `${locale.ja.publicreply}`,
+                "pt-BR": `${locale.pt_BR.publicreply}`,
+                "ko": `${locale.ko.publicreply}`,
+                "bg": `${locale.bg.publicreply}`,
+                "sv-SE": `${locale.sv_SE.publicreply}`,
+                "uk": `${locale.uk.publicreply}`,
+            })
+            .setRequired(false)
+        )
+        //end of publicreply
     )
         
 const timestampint = new SlashCommandBuilder()
@@ -276,6 +357,26 @@ const timestampint = new SlashCommandBuilder()
         .setRequired(false)
         .addChoices(timestampstyles)
     )
+    //decide if reply be ephemeral (publicreply: false / true)
+    .addBooleanOption(option =>
+        option.setName('publicreply')
+        .setDescription('Make the result visible to everyone in the chat')
+        .setDescriptionLocalizations({
+            "ru": `${locale.ru.publicreply}`,
+            "en-US": `${locale.en_us.publicreply}`,
+            "de": `${locale.de.publicreply}`,
+            "pl": `${locale.pl.publicreply}`,
+            "fr": `${locale.fr.publicreply}`,
+            "ja": `${locale.ja.publicreply}`,
+            "pt-BR": `${locale.pt_BR.publicreply}`,
+            "ko": `${locale.ko.publicreply}`,
+            "bg": `${locale.bg.publicreply}`,
+            "sv-SE": `${locale.sv_SE.publicreply}`,
+            "uk": `${locale.uk.publicreply}`,
+        })
+        .setRequired(false)
+    )
+    //end of publicreply
     
 const convertint = new SlashCommandBuilder()
     .setName('convert')
@@ -648,6 +749,26 @@ const calcint = new SlashCommandBuilder()
             .setMaxValue(1000000000)
             .setRequired(false)
         )
+        //decide if reply be ephemeral (publicreply: false / true)
+        .addBooleanOption(option =>
+            option.setName('publicreply')
+            .setDescription('Make the result visible to everyone in the chat')
+            .setDescriptionLocalizations({
+                "ru": `${locale.ru.publicreply}`,
+                "en-US": `${locale.en_us.publicreply}`,
+                "de": `${locale.de.publicreply}`,
+                "pl": `${locale.pl.publicreply}`,
+                "fr": `${locale.fr.publicreply}`,
+                "ja": `${locale.ja.publicreply}`,
+                "pt-BR": `${locale.pt_BR.publicreply}`,
+                "ko": `${locale.ko.publicreply}`,
+                "bg": `${locale.bg.publicreply}`,
+                "sv-SE": `${locale.sv_SE.publicreply}`,
+                "uk": `${locale.uk.publicreply}`,
+            })
+            .setRequired(false)
+        )
+        //end of publicreply
     )
     //Calc with custom first arg
     .addSubcommand(subcommand =>
@@ -923,6 +1044,26 @@ const calcint = new SlashCommandBuilder()
             .setMaxValue(1000000000)
             .setRequired(false)
         )
+        //decide if reply be ephemeral (publicreply: false / true)
+        .addBooleanOption(option =>
+            option.setName('publicreply')
+            .setDescription('Make the result visible to everyone in the chat')
+            .setDescriptionLocalizations({
+                "ru": `${locale.ru.publicreply}`,
+                "en-US": `${locale.en_us.publicreply}`,
+                "de": `${locale.de.publicreply}`,
+                "pl": `${locale.pl.publicreply}`,
+                "fr": `${locale.fr.publicreply}`,
+                "ja": `${locale.ja.publicreply}`,
+                "pt-BR": `${locale.pt_BR.publicreply}`,
+                "ko": `${locale.ko.publicreply}`,
+                "bg": `${locale.bg.publicreply}`,
+                "sv-SE": `${locale.sv_SE.publicreply}`,
+                "uk": `${locale.uk.publicreply}`,
+            })
+            .setRequired(false)
+        )
+        //end of publicreply
     )
     //calculate time betweed dates
     .addSubcommand(subcommand =>
@@ -1114,6 +1255,26 @@ const calcint = new SlashCommandBuilder()
             .setMaxValue(59)
             .setRequired(false)
         )
+        //decide if reply be ephemeral (publicreply: false / true)
+        .addBooleanOption(option =>
+            option.setName('publicreply')
+            .setDescription('Make the result visible to everyone in the chat')
+            .setDescriptionLocalizations({
+                "ru": `${locale.ru.publicreply}`,
+                "en-US": `${locale.en_us.publicreply}`,
+                "de": `${locale.de.publicreply}`,
+                "pl": `${locale.pl.publicreply}`,
+                "fr": `${locale.fr.publicreply}`,
+                "ja": `${locale.ja.publicreply}`,
+                "pt-BR": `${locale.pt_BR.publicreply}`,
+                "ko": `${locale.ko.publicreply}`,
+                "bg": `${locale.bg.publicreply}`,
+                "sv-SE": `${locale.sv_SE.publicreply}`,
+                "uk": `${locale.uk.publicreply}`,
+            })
+            .setRequired(false)
+        )
+        //end of publicreply
     )
     
 module.exports = {

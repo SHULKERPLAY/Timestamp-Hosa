@@ -1,5 +1,5 @@
 const corever = 'v0.6';
-const supportedtimelocale = ["en-US", "ru", "de", "pl", "fr", "ja", "pt-BR", "ko", "bg", "sv", "uk"];
+const supportedtimelocale = ["en-US", "ru", "de", "pl", "fr", "ja", "pt-BR", "ko", "bg", "sv-SE", "uk"];
 
 const fs = require('fs');
 const path = require('path');
@@ -46,7 +46,12 @@ const commands = [ping, about, invite, timenow, timezonenow, timestampint, conve
 const rl = createInterface({ input: process.stdin, output: process.stdout });
 
 client.on('interactionCreate', (interaction) => {
-  if (interaction.commandName === 'ping') {
+    //decide if reply be ephemeral (publicreply: false / true)
+    if (interaction.options.getBoolean('publicreply') === undefined || interaction.options.getBoolean('publicreply') === null || interaction.options.getBoolean('publicreply') === false) {
+        var isephemeral = true
+    } else { var isephemeral = false }
+    //get commandName
+    if (interaction.commandName === 'ping') {
         incrementStat('pingcmd');
         const pingloc = {
             "ru": `:ping_pong: *${locale.ru.pong}!* ${locale.ru.latency} ${Date.now() - interaction.createdTimestamp} ${locale.ru.milliseconds}! ${locale.ru.apilatency} ${Math.round(client.ws.ping)} ${locale.ru.milliseconds}.`,
@@ -56,7 +61,7 @@ client.on('interactionCreate', (interaction) => {
             content: pingloc[interaction.locale] ?? `:ping_pong: *Pong!* Latency ${Date.now() - interaction.createdTimestamp} ms! API Latency ${Math.round(client.ws.ping)} ms.`,
             ephemeral: true,
         });
-  } else if (interaction.commandName === 'about') {
+    } else if (interaction.commandName === 'about') {
         incrementStat('aboutcmd');
         const aboutloc = {
             "ru": `:blue_heart: ${locale.ru.aboutcmd}`,
@@ -66,7 +71,7 @@ client.on('interactionCreate', (interaction) => {
             content: aboutloc[interaction.locale] ?? `:blue_heart: We are still in early access. Additional info available on developer server`,
             ephemeral: true,
         });
-  } else if (interaction.commandName === 'invite') {
+    } else if (interaction.commandName === 'invite') {
         incrementStat('invitecmd');
         const inviteloc = {
             "ru": `:gift_heart: ${locale.ru.invitecmd}`,
@@ -76,7 +81,7 @@ client.on('interactionCreate', (interaction) => {
             content: inviteloc[interaction.locale] ?? `:gift_heart: Invites not work in Early Access`,
             ephemeral: true,
         });
-  } else if (interaction.commandName === 'now') {
+    } else if (interaction.commandName === 'now') {
         incrementStat('nowcmd');
         var nowtimestamp = Math.floor(Date.now() / 1000)
         var style = interaction.options.getString('style');
@@ -107,9 +112,9 @@ client.on('interactionCreate', (interaction) => {
         };;
         interaction.reply({
             content: nowloc[interaction.locale] ?? `Now: <t:${nowtimestamp}${nowstyle}> \nTimestamp: \`<t:${nowtimestamp}${nowstyle}>\``,
-            ephemeral: true,
+            ephemeral: isephemeral,
         });
-  } else if (interaction.commandName === 'timezone') {
+    } else if (interaction.commandName === 'timezone') {
         incrementStat('timezonecmd');
 //subcommand string: interaction.options.getSubcommand()
         var tztimestamp = Date.now()
@@ -130,9 +135,9 @@ client.on('interactionCreate', (interaction) => {
         };;
         interaction.reply({
         content: timezoneloc[interaction.locale] ?? `:alarm_clock: Now in this timezone: **__${tzreply}__** \n*Local Time: <t:${Math.floor(tztimestamp / 1000)}:F>*`,
-            ephemeral: true,
+            ephemeral: isephemeral,
         });
-  } else if (interaction.commandName === 'timestamp') {
+    } else if (interaction.commandName === 'timestamp') {
         incrementStat('timestampcmd');
         var tsyear = interaction.options.getInteger('year');
         var tsmonth = interaction.options.getString('month');
@@ -204,9 +209,9 @@ client.on('interactionCreate', (interaction) => {
         };;
         interaction.reply({
         content: timestamploc[interaction.locale] ?? `:white_check_mark: Preview: <t:${gettimestamp}${tsstyle}> \n:arrow_right: **Timestamp to Paste:** \`<t:${gettimestamp}${tsstyle}>\``,
-            ephemeral: true,
+            ephemeral: isephemeral,
         });
-  } else if (interaction.commandName === 'convert') {
+    } else if (interaction.commandName === 'convert') {
         incrementStat('convertcmd');
         if (interaction.options.getSubcommand() === 'tounix') {
             var cvyear = interaction.options.getInteger('year');
@@ -384,7 +389,7 @@ client.on('interactionCreate', (interaction) => {
             };;
             interaction.reply({
             content: calcfromtoloc[interaction.locale] ?? `:white_check_mark: Difference between dates is: **__${daysdiff} Days ${hoursdiff} Hours ${minsdiff} Minutes ${secsdiff} Seconds__** \n:hourglass_flowing_sand: \`${calcdiff}\` *Seconds*`,
-                ephemeral: true,
+                ephemeral: isephemeral,
             });           
         } else if (interaction.options.getSubcommand() === 'fromnow') {
             var calcarg1 = Date.now()
@@ -446,7 +451,7 @@ client.on('interactionCreate', (interaction) => {
             };;
             interaction.reply({
             content: calcdateloc[interaction.locale] ?? `:white_check_mark: Result: **__${calcreply}__** \n:hourglass_flowing_sand: *UNIX: \`${calcresult}\` Timestamp to Paste: \`<t:${Math.floor(calcresult / 1000)}>\` Local Time: <t:${Math.floor(calcresult / 1000)}>*`,
-                ephemeral: true,
+                ephemeral: isephemeral,
             });
         }
     }
