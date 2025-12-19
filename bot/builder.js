@@ -22,8 +22,8 @@ const ping = new SlashCommandBuilder()
     .setName('ping')
     .setDescription('Check Application response time')
     .setDescriptionLocalizations({
-        "ru": 'Проверка скорости ответа приложения',
-        "en-US": 'Check Application response time',
+        "ru": `${locale.ru.checkping}`,
+        "en-US": `${locale.en_us.checkping}`,
     })
     .setIntegrationTypes(0, 1)
     .setContexts(0, 1)
@@ -32,8 +32,8 @@ const about = new SlashCommandBuilder()
     .setName('about')
     .setDescription('About this app')
     .setDescriptionLocalizations({
-        "ru": 'Подробная информация о приложении',
-        "en-US": 'About this app',
+        "ru": `${locale.ru.aboutapp}`,
+        "en-US": `${locale.en_us.aboutapp}`,
     })
     .setIntegrationTypes(0, 1)
     .setContexts(0, 1)
@@ -42,8 +42,8 @@ const invite = new SlashCommandBuilder()
     .setName('invite')
     .setDescription('Install TimestampHosa app on Server or as personal app!')
     .setDescriptionLocalizations({
-        "ru": 'Установить TimestampHosa на сервер или как личное приложение!',
-        "en-US": 'Install TimestampHosa app on Server or as personal app!',
+        "ru": `${locale.ru.installapp}`,
+        "en-US": `${locale.en_us.installapp}`,
     })
     .setIntegrationTypes(0, 1)
     .setContexts(0, 1, 2)
@@ -52,8 +52,8 @@ const timenow = new SlashCommandBuilder()
     .setName('now')
     .setDescription('Display current time and timestamp')
     .setDescriptionLocalizations({
-        "ru": 'Вывести текущее время и временную метку',
-        "en-US": 'Display current time and timestamp',
+        "ru": `${locale.ru.descnow}`,
+        "en-US": `${locale.en_us.descnow}`,
     })
 //.setDefaultMemberPermissions(0) блокирует использование всем кроме администраторов. Удалить после закрытого тестирования
     .setDefaultMemberPermissions(0)
@@ -62,13 +62,13 @@ const timenow = new SlashCommandBuilder()
     .addStringOption(option =>
         option.setName('style')
         .setNameLocalizations({
-            "ru": 'стиль',
-            "en-US": 'style',
+            "ru": `${locale.ru.arg.style}`,
+            "en-US": `${locale.en_us.arg.style}`,
         })
         .setDescription('Select style of date output')
         .setDescriptionLocalizations({
-            "ru": 'Выбор формата отображения даты',
-            "en-US": 'Select style of date output',
+            "ru": `${locale.ru.selectstyleformat}`,
+            "en-US": `${locale.en_us.selectstyleformat}`,
         })
         .setRequired(false)
         .addChoices(timestampstyles)
@@ -85,19 +85,19 @@ const timezonenow = new SlashCommandBuilder()
         subcommand.setName('gmtplus')
         .setDescription('Select timezone from GMT to GMT +14')
         .setDescriptionLocalizations({
-            "ru": 'Узнайте время в часовых поясах от GMT до GMT +14',
-            "en-US": 'Check time in timezones from GMT to GMT +14',
+            "ru": `${locale.ru.desctimezoneplus}`,
+            "en-US": `${locale.en_us.desctimezoneplus}`,
         })
         .addStringOption(option =>
             option.setName('timezone')
             .setNameLocalizations({
-                "ru": 'часовойпояс',
-                "en-US": 'timezone',
+                "ru": `${locale.ru.arg.timezone}`,
+                "en-US": `${locale.en_us.arg.timezone}`,
             })
             .setDescription('Select timezone')
             .setDescriptionLocalizations({
-                "ru": 'Выберите часовой пояс',
-                "en-US": 'Select timezone',
+                "ru": `${locale.ru.selecttimezone}`,
+                "en-US": `${locale.en_us.selecttimezone}`,
             })
             .setRequired(true)
             .addChoices(timezonesgmtplus)
@@ -107,19 +107,19 @@ const timezonenow = new SlashCommandBuilder()
         subcommand.setName('gmtminus')
         .setDescription('Select timezone from GMT -12 to GMT')
         .setDescriptionLocalizations({
-            "ru": 'Узнайте время в часовых поясах от GMT -12 до GMT',
-            "en-US": 'Check time in timezones from GMT -12 to GMT',
+            "ru": `${locale.ru.desctimezoneminus}`,
+            "en-US": `${locale.en_us.desctimezoneminus}`,
         })
         .addStringOption(option =>
             option.setName('timezone')
             .setNameLocalizations({
-                "ru": 'часовойпояс',
-                "en-US": 'timezone',
+                "ru": `${locale.ru.arg.timezone}`,
+                "en-US": `${locale.en_us.arg.timezone}`,
             })
             .setDescription('Select timezone')
             .setDescriptionLocalizations({
-                "ru": 'Выберите часовой пояс',
-                "en-US": 'Select timezone',
+                "ru": `${locale.ru.selecttimezone}`,
+                "en-US": `${locale.en_us.selecttimezone}`,
             })
             .setRequired(true)
             .addChoices(timezonesgmtminus)
@@ -129,19 +129,19 @@ const timezonenow = new SlashCommandBuilder()
         subcommand.setName('keyzones')
         .setDescription('Check time in timezone different from GMT')
         .setDescriptionLocalizations({
-            "ru": 'Узнайте время в часовом поясе, отличном от GMT',
-            "en-US": 'Check time in timezone different from GMT',
+            "ru": `${locale.ru.desctimezonekey}`,
+            "en-US": `${locale.en_us.desctimezonekey}`,
         })
         .addStringOption(option =>
         option.setName('timezone')
         .setNameLocalizations({
-            "ru": 'часовойпояс',
-            "en-US": 'timezone',
+            "ru": `${locale.ru.arg.timezone}`,
+            "en-US": `${locale.en_us.arg.timezone}`,
         })
         .setDescription('Select timezone')
         .setDescriptionLocalizations({
-            "ru": 'Выберите часовой пояс',
-            "en-US": 'Select timezone',
+            "ru": `${locale.ru.selecttimezone}`,
+            "en-US": `${locale.en_us.selecttimezone}`,
         })
         .setRequired(true)
         .addChoices(timezoneskey)
@@ -152,8 +152,8 @@ const timestampint = new SlashCommandBuilder()
     .setName('timestamp')
     .setDescription('Create timestamp to embed it in your message!')
     .setDescriptionLocalizations({
-        "ru": 'Создать временную метку для вставки в ваше сообщение!',
-        "en-US": 'Create timestamp to embed in your message!',
+        "ru": `${locale.ru.desctimestamp}`,
+        "en-US": `${locale.en_us.desctimestamp}`,
     })
 //.setDefaultMemberPermissions(0) блокирует использование всем кроме администраторов. Удалить после закрытого тестирования
     .setDefaultMemberPermissions(0)
@@ -162,13 +162,13 @@ const timestampint = new SlashCommandBuilder()
     .addIntegerOption(option =>
         option.setName('year')
         .setNameLocalizations({
-            "ru": 'год',
-            "en-US": 'year',
+            "ru": `${locale.ru.arg.year}`,
+            "en-US": `${locale.en_us.arg.year}`,
         })
         .setDescription('Type Year of timestamp you want to do')
         .setDescriptionLocalizations({
-            "ru": 'Впишите год, который будет на временной метке',
-            "en-US": 'Type Year of timestamp you want to do',
+            "ru": `${locale.ru.typetimestampyear}`,
+            "en-US": `${locale.en_us.typetimestampyear}`,
         })
         .setMinValue(1901)
         .setMaxValue(2999)
@@ -177,13 +177,13 @@ const timestampint = new SlashCommandBuilder()
     .addStringOption(option =>
         option.setName('month')
         .setNameLocalizations({
-            "ru": 'месяц',
-            "en-US": 'month',
+            "ru": `${locale.ru.arg.month}`,
+            "en-US": `${locale.en_us.arg.month}`,
         })
         .setDescription('Select Month of timestamp you want to do')
         .setDescriptionLocalizations({
-            "ru": 'Выберите месяц, который будет на временной метке',
-            "en-US": 'Select Month of timestamp you want to do',
+            "ru": `${locale.ru.seltimestampmonth}`,
+            "en-US": `${locale.en_us.seltimestampmonth}`,
         })
         .setRequired(true)
         .addChoices(monthsoption)
@@ -191,13 +191,13 @@ const timestampint = new SlashCommandBuilder()
     .addIntegerOption(option =>
         option.setName('day')
         .setNameLocalizations({
-            "ru": 'день',
-            "en-US": 'day',
+            "ru": `${locale.ru.arg.day}`,
+            "en-US": `${locale.en_us.arg.day}`,
         })
         .setDescription('Type Day of timestamp you want to do')
         .setDescriptionLocalizations({
-            "ru": 'Впишите день, который будет на временной метке',
-            "en-US": 'Type Day of timestamp you want to do',
+            "ru": `${locale.ru.typetimestampday}`,
+            "en-US": `${locale.en_us.typetimestampday}`,
         })
         .setMinValue(1)
         .setMaxValue(31)
@@ -206,13 +206,13 @@ const timestampint = new SlashCommandBuilder()
     .addIntegerOption(option =>
         option.setName('hour')
         .setNameLocalizations({
-            "ru": 'час',
-            "en-US": 'hour',
+            "ru": `${locale.ru.arg.hour}`,
+            "en-US": `${locale.en_us.arg.hour}`,
         })
         .setDescription('Type Hour of timestamp you want to do')
         .setDescriptionLocalizations({
-            "ru": 'Впишите час, который будет на временной метке',
-            "en-US": 'Type Hour of timestamp you want to do',
+            "ru": `${locale.ru.typetimestamphour}`,
+            "en-US": `${locale.en_us.typetimestamphour}`,
         })
         .setMinValue(0)
         .setMaxValue(23)
@@ -221,13 +221,13 @@ const timestampint = new SlashCommandBuilder()
     .addIntegerOption(option =>
         option.setName('minute')
         .setNameLocalizations({
-            "ru": 'минута',
-            "en-US": 'minute',
+            "ru": `${locale.ru.arg.minute}`,
+            "en-US": `${locale.en_us.arg.minute}`,
         })
         .setDescription('Type Minute of timestamp you want to do')
         .setDescriptionLocalizations({
-            "ru": 'Впишите минуту, которая будет на временной метке',
-            "en-US": 'Type Minute of timestamp you want to do',
+            "ru": `${locale.ru.typetimestampminute}`,
+            "en-US": `${locale.en_us.typetimestampminute}`,
         })
         .setMinValue(0)
         .setMaxValue(59)
@@ -236,13 +236,13 @@ const timestampint = new SlashCommandBuilder()
     .addIntegerOption(option =>
         option.setName('second')
         .setNameLocalizations({
-            "ru": 'секунда',
-            "en-US": 'second',
+            "ru": `${locale.ru.arg.second}`,
+            "en-US": `${locale.en_us.arg.second}`,
         })
         .setDescription('Type Second of timestamp you want to do')
         .setDescriptionLocalizations({
-            "ru": 'Впишите секунду, которая будет на временной метке',
-            "en-US": 'Type Second of timestamp you want to do',
+            "ru": `${locale.ru.typetimestampsecond}`,
+            "en-US": `${locale.en_us.typetimestampsecond}`,
         })
         .setMinValue(0)
         .setMaxValue(59)
@@ -251,13 +251,13 @@ const timestampint = new SlashCommandBuilder()
     .addStringOption(option =>
         option.setName('timezone')
         .setNameLocalizations({
-            "ru": 'часовойпояс',
-            "en-US": 'timezone',
+            "ru": `${locale.ru.arg.timezone}`,
+            "en-US": `${locale.en_us.arg.timezone}`,
         })
         .setDescription('Select timezone of timestamp (Default: GMT+0)')
         .setDescriptionLocalizations({
-            "ru": 'Выберите часовой пояс метки (По умолчанию: GMT+0)',
-            "en-US": 'Select timezone of timestamp (Default: GMT+0)',
+            "ru": `${locale.ru.seltimestamptimezone}`,
+            "en-US": `${locale.en_us.seltimestamptimezone}`,
         })
         .setRequired(false)
         .addChoices(alltimezones)
@@ -265,13 +265,13 @@ const timestampint = new SlashCommandBuilder()
     .addStringOption(option =>
         option.setName('style')
         .setNameLocalizations({
-            "ru": 'стиль',
-            "en-US": 'style',
+            "ru": `${locale.ru.arg.style}`,
+            "en-US": `${locale.en_us.arg.style}`,
         })
         .setDescription('Select style of date output')
         .setDescriptionLocalizations({
-            "ru": 'Выбор формата отображения даты',
-            "en-US": 'Select style of date output',
+            "ru": `${locale.ru.selectstyleformat}`,
+            "en-US": `${locale.en_us.selectstyleformat}`,
         })
         .setRequired(false)
         .addChoices(timestampstyles)
@@ -288,19 +288,19 @@ const convertint = new SlashCommandBuilder()
         subcommand.setName('tounix')
         .setDescription('Convert selected date to UNIX date integer')
         .setDescriptionLocalizations({
-            "ru": 'Преобразуйте читаемую дату в метку времени UNIX',
-            "en-US": 'Convert selected date to UNIX date integer',
+            "ru": `${locale.ru.descconverttounix}`,
+            "en-US": `${locale.en_us.descconverttounix}`,
         })
         .addIntegerOption(option =>
             option.setName('year')
             .setNameLocalizations({
-                "ru": 'год',
-                "en-US": 'year',
+                "ru": `${locale.ru.arg.year}`,
+                "en-US": `${locale.en_us.arg.year}`,
             })
             .setDescription('Type Year you want')
             .setDescriptionLocalizations({
-                "ru": 'Впишите нужный год',
-                "en-US": 'Type Year you want',
+                "ru": `${locale.ru.typeyear}`,
+                "en-US": `${locale.en_us.typeyear}`,
             })
             .setMinValue(1601)
             .setMaxValue(3333)
@@ -309,13 +309,13 @@ const convertint = new SlashCommandBuilder()
         .addStringOption(option =>
             option.setName('month')
             .setNameLocalizations({
-                "ru": 'месяц',
-                "en-US": 'month',
+                "ru": `${locale.ru.arg.month}`,
+                "en-US": `${locale.en_us.arg.month}`,
             })
             .setDescription('Select Month you want')
             .setDescriptionLocalizations({
-                "ru": 'Выберите нужный месяц',
-                "en-US": 'Select Month you want',
+                "ru": `${locale.ru.selmonth}`,
+                "en-US": `${locale.en_us.selmonth}`,
             })
             .setRequired(true)
             .addChoices(monthsoption)
@@ -323,13 +323,13 @@ const convertint = new SlashCommandBuilder()
         .addIntegerOption(option =>
             option.setName('day')
             .setNameLocalizations({
-                "ru": 'день',
-                "en-US": 'day',
+                "ru": `${locale.ru.arg.day}`,
+                "en-US": `${locale.en_us.arg.day}`,
             })
             .setDescription('Type Day you want')
             .setDescriptionLocalizations({
-                "ru": 'Впишите нужный день',
-                "en-US": 'Type Day you want',
+                "ru": `${locale.ru.typeday}`,
+                "en-US": `${locale.en_us.typeday}`,
             })
             .setMinValue(1)
             .setMaxValue(31)
@@ -338,26 +338,26 @@ const convertint = new SlashCommandBuilder()
         .addBooleanOption(option =>
             option.setName('displayms')
             .setNameLocalizations({
-                "ru": 'отображатьмс',
-                "en-US": 'displayms',
+                "ru": `${locale.ru.arg.displayms}`,
+                "en-US": `${locale.en_us.displayms}`,
             })
             .setDescription('Whether or not to return value with milliseconds')
             .setDescriptionLocalizations({
-                "ru": 'Следует ли возвращать значение с миллисекундами',
-                "en-US": 'Whether or not to return value with milliseconds',
+                "ru": `${locale.ru.returnmilliseconds}`,
+                "en-US": `${locale.en_us.returnmilliseconds}`,
             })
             .setRequired(true)
         )
         .addIntegerOption(option =>
             option.setName('hour')
             .setNameLocalizations({
-                "ru": 'час',
-                "en-US": 'hour',
+                "ru": `${locale.ru.arg.hour}`,
+                "en-US": `${locale.en_us.arg.hour}`,
             })
             .setDescription('Type Hour you want')
             .setDescriptionLocalizations({
-                "ru": 'Впишите нужный час',
-                "en-US": 'Type Hour you want',
+                "ru": `${locale.ru.typehour}`,
+                "en-US": `${locale.en_us.typehour}`,
             })
             .setMinValue(0)
             .setMaxValue(23)
@@ -366,13 +366,13 @@ const convertint = new SlashCommandBuilder()
         .addIntegerOption(option =>
             option.setName('minute')
             .setNameLocalizations({
-                "ru": 'минута',
-                "en-US": 'minute',
+                "ru": `${locale.ru.arg.minute}`,
+                "en-US": `${locale.en_us.arg.minute}`,
             })
             .setDescription('Type Minute you want')
             .setDescriptionLocalizations({
-                "ru": 'Впишите нужную минуту',
-                "en-US": 'Type Minute you want',
+                "ru": `${locale.ru.typeminute}`,
+                "en-US": `${locale.en_us.typeminute}`,
             })
             .setMinValue(0)
             .setMaxValue(59)
@@ -381,13 +381,13 @@ const convertint = new SlashCommandBuilder()
         .addIntegerOption(option =>
             option.setName('second')
             .setNameLocalizations({
-                "ru": 'секунда',
-                "en-US": 'second',
+                "ru": `${locale.ru.arg.second}`,
+                "en-US": `${locale.en_us.arg.second}`,
             })
             .setDescription('Type Second you want')
             .setDescriptionLocalizations({
-                "ru": 'Впишите нужную секунду',
-                "en-US": 'Type Second you want',
+                "ru": `${locale.ru.typesecond}`,
+                "en-US": `${locale.en_us.typesecond}`,
             })
             .setMinValue(0)
             .setMaxValue(59)
@@ -396,13 +396,13 @@ const convertint = new SlashCommandBuilder()
         .addIntegerOption(option =>
             option.setName('millisecond')
             .setNameLocalizations({
-                "ru": 'миллисекунда',
-                "en-US": 'millisecond',
+                "ru": `${locale.ru.arg.millisecond}`,
+                "en-US": `${locale.en_us.arg.millisecond}`,
             })
             .setDescription('Type Millisecond you want')
             .setDescriptionLocalizations({
-                "ru": 'Впишите нужную миллисекунду',
-                "en-US": 'Type Millisecond you want',
+                "ru": `${locale.ru.typemillisecond}`,
+                "en-US": `${locale.en_us.typemillisecond}`,
             })
             .setMinValue(0)
             .setMaxValue(999)
@@ -411,13 +411,13 @@ const convertint = new SlashCommandBuilder()
         .addStringOption(option =>
             option.setName('timezone')
             .setNameLocalizations({
-                "ru": 'часовойпояс',
-                "en-US": 'timezone',
+                "ru": `${locale.ru.arg.timezone}`,
+                "en-US": `${locale.en_us.arg.timezone}`,
             })
             .setDescription('Select timezone of input (Default: GMT+0)')
             .setDescriptionLocalizations({
-                "ru": 'Выберите часовой пояс вашей даты (По умолчанию: GMT+0)',
-                "en-US": 'Select timezone of input (Default: GMT+0)',
+                "ru": `${locale.ru.seldatetimezone}`,
+                "en-US": `${locale.en_us.seldatetimezone}`,
             })
             .setRequired(false)
             .addChoices(alltimezones)
@@ -427,19 +427,19 @@ const convertint = new SlashCommandBuilder()
         subcommand.setName('todate')
         .setDescription('Convert UNIX date integer to Human Date')
         .setDescriptionLocalizations({
-            "ru": 'Преобразуйте метку времени UNIX читаемую дату',
-            "en-US": 'Convert UNIX date integer to Human Date',
+            "ru": `${locale.ru.descconverttodate}`,
+            "en-US": `${locale.en_us.descconverttodate}`,
         })
         .addIntegerOption(option =>
             option.setName('unixtime')
             .setNameLocalizations({
-                "ru": 'unixвремя',
-                "en-US": 'unixtime',
+                "ru": `${locale.ru.arg.unixtime}`,
+                "en-US": `${locale.en_us.arg.unixtime}`,
             })
             .setDescription('Type UNIX Epoch Time Integer')
             .setDescriptionLocalizations({
-                "ru": 'Вставьте значение времени UNIX Epoch',
-                "en-US": 'Type UNIX Epoch Time Integer',
+                "ru": `${locale.ru.typeunixint}`,
+                "en-US": `${locale.en_us.typeunixint}`,
             })
             .setMinValue(-8639999999999)
             .setMaxValue(8639999999999)
@@ -448,26 +448,26 @@ const convertint = new SlashCommandBuilder()
         .addBooleanOption(option =>
             option.setName('withms')
             .setNameLocalizations({
-                "ru": 'учитыватьмс',
-                "en-US": 'withms',
+                "ru": `${locale.ru.arg.withms}`,
+                "en-US": `${locale.en_us.arg.withms}`,
             })
             .setDescription('Whether or not to read and return value with milliseconds')
             .setDescriptionLocalizations({
-                "ru": 'Следует ли считывать и возвращать значение с миллисекундами',
-                "en-US": 'Whether or not to read and return value with milliseconds',
+                "ru": `${locale.ru.withmilliseconds}`,
+                "en-US": `${locale.en_us.withmilliseconds}`,
             })
             .setRequired(true)
         )
         .addStringOption(option =>
             option.setName('timezone')
             .setNameLocalizations({
-                "ru": 'часовойпояс',
-                "en-US": 'timezone',
+                "ru": `${locale.ru.arg.timezone}`,
+                "en-US": `${locale.en_us.arg.timezone}`,
             })
             .setDescription('Select timezone for output (Default: GMT+0)')
             .setDescriptionLocalizations({
-                "ru": 'Выберите часовой пояс для вывода (По умолчанию: GMT+0)',
-                "en-US": 'Select timezone for output (Default: GMT+0)',
+                "ru": `${locale.ru.outputtimezone}`,
+                "en-US": `${locale.en_us.outputtimezone}`,
             })
             .setRequired(false)
             .addChoices(alltimezones)
@@ -485,20 +485,20 @@ const calcint = new SlashCommandBuilder()
         subcommand.setName('fromnow')
         .setDescription('Add or subtract time from the current time')
         .setDescriptionLocalizations({
-            "ru": 'Прибавить или отнять время от текущего момента',
-            "en-US": 'Add or subtract time from the current time',
+            "ru": `${locale.ru.desccalcfromnow}`,
+            "en-US": `${locale.en_us.desccalcfromnow}`,
         })
         //Add or subtract
         .addStringOption(option =>
             option.setName('matharg')
             .setNameLocalizations({
-                "ru": 'матемзнак',
-                "en-US": 'matharg',
+                "ru": `${locale.ru.arg.matharg}`,
+                "en-US": `${locale.en_us.arg.matharg}`,
             })
             .setDescription('ADD OR SUBTRACT')
             .setDescriptionLocalizations({
-                "ru": 'ПРИБАВТЬ ИЛИ ОТНЯТЬ',
-                "en-US": 'ADD OR SUBTRACT',
+                "ru": `${locale.ru.addorsub}`,
+                "en-US": `${locale.en_us.addorsub}`,
             })
             .setRequired(true)
             .addChoices({
@@ -516,13 +516,13 @@ const calcint = new SlashCommandBuilder()
         .addStringOption(option =>
             option.setName('timezone')
             .setNameLocalizations({
-                "ru": 'часовойпояс',
-                "en-US": 'timezone',
+                "ru": `${locale.ru.arg.timezone}`,
+                "en-US": `${locale.en_us.arg.timezone}`,
             })
             .setDescription('Select timezone of input (Default: GMT+0)')
             .setDescriptionLocalizations({
-                "ru": 'Выберите часовой пояс вашей даты (По умолчанию: GMT+0)',
-                "en-US": 'Select timezone of input (Default: GMT+0)',
+                "ru": `${locale.ru.seltimezone}`,
+                "en-US": `${locale.en_us.seltimezone}`,
             })
             .setRequired(false)
             .addChoices(alltimezones)
@@ -531,13 +531,13 @@ const calcint = new SlashCommandBuilder()
         .addIntegerOption(option =>
             option.setName('years')
             .setNameLocalizations({
-                "ru": 'лет',
-                "en-US": 'years',
+                "ru": `${locale.ru.arg.years}`,
+                "en-US": `${locale.en_us.arg.years}`,
             })
             .setDescription('ADD OR SUBTRACT this amount of years (Inaccurate. 365 days)')
             .setDescriptionLocalizations({
-                "ru": 'ОТНЯТЬ ИЛИ ПРИБАВТЬ это кол-во лет (Неточный. 365 дней)',
-                "en-US": 'ADD OR SUBTRACT this amount of years (Inaccurate. 365 days)',
+                "ru": `${locale.ru.addorsubyears}`,
+                "en-US": `${locale.en_us.addorsubyears}`,
             })
             .setMinValue(0)
             .setMaxValue(1000)
@@ -546,13 +546,13 @@ const calcint = new SlashCommandBuilder()
         .addIntegerOption(option =>
             option.setName('months')
             .setNameLocalizations({
-                "ru": 'месяцев',
-                "en-US": 'months',
+                "ru": `${locale.ru.arg.months}`,
+                "en-US": `${locale.en_us.arg.months}`,
             })
             .setDescription('ADD OR SUBTRACT this amount of months (Inaccurate. 30 days)')
             .setDescriptionLocalizations({
-                "ru": 'ОТНЯТЬ ИЛИ ПРИБАВТЬ это кол-во месяцев (Неточный. 30 дней)',
-                "en-US": 'ADD OR SUBTRACT this amount of months (Inaccurate. 30 days)',
+                "ru": `${locale.ru.addorsubmonths}`,
+                "en-US": `${locale.en_us.addorsubmonths}`,
             })
             .setMinValue(0)
             .setMaxValue(1000)
@@ -561,13 +561,13 @@ const calcint = new SlashCommandBuilder()
         .addIntegerOption(option =>
             option.setName('weeks')
             .setNameLocalizations({
-                "ru": 'недель',
-                "en-US": 'weeks',
+                "ru": `${locale.ru.arg.weeks}`,
+                "en-US": `${locale.en_us.arg.weeks}`,
             })
             .setDescription('ADD OR SUBTRACT this amount of Weeks')
             .setDescriptionLocalizations({
-                "ru": 'ОТНЯТЬ ИЛИ ПРИБАВТЬ это кол-во недель',
-                "en-US": 'ADD OR SUBTRACT this amount of Weeks',
+                "ru": `${locale.ru.addorsubweeks}`,
+                "en-US": `${locale.en_us.addorsubweeks}`,
             })
             .setMinValue(0)
             .setMaxValue(5000)
@@ -576,13 +576,13 @@ const calcint = new SlashCommandBuilder()
         .addIntegerOption(option =>
             option.setName('days')
             .setNameLocalizations({
-                "ru": 'дней',
-                "en-US": 'days',
+                "ru": `${locale.ru.arg.days}`,
+                "en-US": `${locale.en_us.arg.days}`,
             })
             .setDescription('ADD OR SUBTRACT this amount of Days')
             .setDescriptionLocalizations({
-                "ru": 'ОТНЯТЬ ИЛИ ПРИБАВТЬ это кол-во дней',
-                "en-US": 'ADD OR SUBTRACT this amount of Days',
+                "ru": `${locale.ru.addorsubdays}`,
+                "en-US": `${locale.en_us.addorsubdays}`,
             })
             .setMinValue(0)
             .setMaxValue(50000)
@@ -591,13 +591,13 @@ const calcint = new SlashCommandBuilder()
         .addIntegerOption(option =>
             option.setName('hours')
             .setNameLocalizations({
-                "ru": 'часов',
-                "en-US": 'hours',
+                "ru": `${locale.ru.arg.hours}`,
+                "en-US": `${locale.en_us.arg.hours}`,
             })
             .setDescription('ADD OR SUBTRACT this amount of Hours')
             .setDescriptionLocalizations({
-                "ru": 'ОТНЯТЬ ИЛИ ПРИБАВТЬ это кол-во часов',
-                "en-US": 'ADD OR SUBTRACT this amount of Hours',
+                "ru": `${locale.ru.addorsubhours}`,
+                "en-US": `${locale.en_us.addorsubhours}`,
             })
             .setMinValue(0)
             .setMaxValue(240000)
@@ -606,13 +606,13 @@ const calcint = new SlashCommandBuilder()
         .addIntegerOption(option =>
             option.setName('minutes')
             .setNameLocalizations({
-                "ru": 'минут',
-                "en-US": 'minutes',
+                "ru": `${locale.ru.arg.minutes}`,
+                "en-US": `${locale.en_us.arg.minutes}`,
             })
             .setDescription('ADD OR SUBTRACT this amount of Minutes')
             .setDescriptionLocalizations({
-                "ru": 'ОТНЯТЬ ИЛИ ПРИБАВТЬ это кол-во минут',
-                "en-US": 'ADD OR SUBTRACT this amount of Minutes',
+                "ru": `${locale.ru.addorsubminutes}`,
+                "en-US": `${locale.en_us.addorsubminutes}`,
             })
             .setMinValue(0)
             .setMaxValue(1000000)
@@ -621,28 +621,28 @@ const calcint = new SlashCommandBuilder()
         .addIntegerOption(option =>
             option.setName('seconds')
             .setNameLocalizations({
-                "ru": 'секунд',
-                "en-US": 'seconds',
+                "ru": `${locale.ru.arg.seconds}`,
+                "en-US": `${locale.en_us.arg.seconds}`,
             })
             .setDescription('ADD OR SUBTRACT this amount of Seconds')
             .setDescriptionLocalizations({
-                "ru": 'ОТНЯТЬ ИЛИ ПРИБАВТЬ это кол-во секунд',
-                "en-US": 'ADD OR SUBTRACT this amount of Seconds',
+                "ru": `${locale.ru.addorsubseconds}`,
+                "en-US": `${locale.en_us.addorsubseconds}`,
             })
             .setMinValue(0)
             .setMaxValue(100000000)
             .setRequired(false)
         )
         .addIntegerOption(option =>
-            option.setName('millisecond')
+            option.setName('milliseconds')
             .setNameLocalizations({
-                "ru": 'миллисекунд',
-                "en-US": 'milliseconds',
+                "ru": `${locale.ru.arg.milliseconds}`,
+                "en-US": `${locale.en_us.arg.milliseconds}`,
             })
             .setDescription('ADD OR SUBTRACT this amount of Milliseconds')
             .setDescriptionLocalizations({
-                "ru": 'ОТНЯТЬ ИЛИ ПРИБАВТЬ это кол-во миллисекунд',
-                "en-US": 'ADD OR SUBTRACT this amount of Milliseconds',
+                "ru": `${locale.ru.addorsubmilliseconds}`,
+                "en-US": `${locale.en_us.addorsubmilliseconds}`,
             })
             .setMinValue(0)
             .setMaxValue(1000000000)
@@ -654,20 +654,20 @@ const calcint = new SlashCommandBuilder()
         subcommand.setName('fromdate')
         .setDescription('Add or subtract time from the specified date')
         .setDescriptionLocalizations({
-            "ru": 'Прибавить или отнять время от выбранной даты',
-            "en-US": 'Add or subtract time from the specified date',
+            "ru": `${locale.ru.desccalcfromdate}`,
+            "en-US": `${locale.en_us.desccalcfromdate}`,
         })
         //arg1
         .addIntegerOption(option =>
             option.setName('year')
             .setNameLocalizations({
-                "ru": 'год',
-                "en-US": 'year',
+                "ru": `${locale.ru.arg.year}`,
+                "en-US": `${locale.en_us.arg.year}`,
             })
             .setDescription('Type Year to calculate from')
             .setDescriptionLocalizations({
-                "ru": 'Впишите год от которого нужно считать',
-                "en-US": 'Type Year to calculate from',
+                "ru": `${locale.ru.typeyeartocountfrom}`,
+                "en-US": `${locale.en_us.typeyeartocountfrom}`,
             })
             .setMinValue(1601)
             .setMaxValue(3333)
@@ -676,13 +676,13 @@ const calcint = new SlashCommandBuilder()
         .addStringOption(option =>
             option.setName('month')
             .setNameLocalizations({
-                "ru": 'месяц',
-                "en-US": 'month',
+                "ru": `${locale.ru.arg.month}`,
+                "en-US": `${locale.en_us.arg.month}`,
             })
             .setDescription('Select Month to calculate from')
             .setDescriptionLocalizations({
-                "ru": 'Выберите месяц от которого нужно считать',
-                "en-US": 'Select Month to calculate from',
+                "ru": `${locale.ru.selmonthtocountfrom}`,
+                "en-US": `${locale.en_us.selmonthtocountfrom}`,
             })
             .setRequired(true)
             .addChoices(monthsoption)
@@ -690,13 +690,13 @@ const calcint = new SlashCommandBuilder()
         .addIntegerOption(option =>
             option.setName('day')
             .setNameLocalizations({
-                "ru": 'день',
-                "en-US": 'day',
+                "ru": `${locale.ru.arg.day}`,
+                "en-US": `${locale.en_us.arg.day}`,
             })
             .setDescription('Type Day to calculate from')
             .setDescriptionLocalizations({
-                "ru": 'Впишите день от которого нужно считать',
-                "en-US": 'Type Day to calculate from',
+                "ru": `${locale.ru.typedaytocountfrom}`,
+                "en-US": `${locale.en_us.typedaytocountfrom}`,
             })
             .setMinValue(1)
             .setMaxValue(31)
@@ -706,13 +706,13 @@ const calcint = new SlashCommandBuilder()
         .addIntegerOption(option =>
             option.setName('hour')
             .setNameLocalizations({
-                "ru": 'час',
-                "en-US": 'hour',
+                "ru": `${locale.ru.arg.hour}`,
+                "en-US": `${locale.en_us.arg.hour}`,
             })
             .setDescription('Type Hour to calculate from')
             .setDescriptionLocalizations({
-                "ru": 'Впишите час от которого нужно считать',
-                "en-US": 'Type Hour to calculate from',
+                "ru": `${locale.ru.typehourtocountfrom}`,
+                "en-US": `${locale.en_us.typehourtocountfrom}`,
             })
             .setMinValue(0)
             .setMaxValue(23)
@@ -721,13 +721,13 @@ const calcint = new SlashCommandBuilder()
         .addIntegerOption(option =>
             option.setName('minute')
             .setNameLocalizations({
-                "ru": 'минута',
-                "en-US": 'minute',
+                "ru": `${locale.ru.arg.minute}`,
+                "en-US": `${locale.en_us.arg.minute}`,
             })
             .setDescription('Type Minute to calculate from')
             .setDescriptionLocalizations({
-                "ru": 'Впишите минуту от которой нужно считать',
-                "en-US": 'Type Minute to calculate from',
+                "ru": `${locale.ru.typeminutetocountfrom}`,
+                "en-US": `${locale.en_us.typeminutetocountfrom}`,
             })
             .setMinValue(0)
             .setMaxValue(59)
@@ -736,13 +736,13 @@ const calcint = new SlashCommandBuilder()
         .addIntegerOption(option =>
             option.setName('second')
             .setNameLocalizations({
-                "ru": 'секунда',
-                "en-US": 'second',
+                "ru": `${locale.ru.arg.second}`,
+                "en-US": `${locale.en_us.arg.second}`,
             })
             .setDescription('Type Second to calculate from')
             .setDescriptionLocalizations({
-                "ru": 'Впишите секунду от которой нужно считать',
-                "en-US": 'Type Second to calculate from',
+                "ru": `${locale.ru.typesecondtocountfrom}`,
+                "en-US": `${locale.en_us.typesecondtocountfrom}`,
             })
             .setMinValue(0)
             .setMaxValue(59)
@@ -751,13 +751,13 @@ const calcint = new SlashCommandBuilder()
         .addIntegerOption(option =>
             option.setName('millisecond')
             .setNameLocalizations({
-                "ru": 'миллисекунда',
-                "en-US": 'millisecond',
+                "ru": `${locale.ru.arg.millisecond}`,
+                "en-US": `${locale.en_us.arg.millisecond}`,
             })
             .setDescription('Type Millisecond to calculate from')
             .setDescriptionLocalizations({
-                "ru": 'Впишите миллисекунду от которой нужно считать',
-                "en-US": 'Type Millisecond to calculate from',
+                "ru": `${locale.ru.typemillisecondtocountfrom}`,
+                "en-US": `${locale.en_us.typemillisecondtocountfrom}`,
             })
             .setMinValue(0)
             .setMaxValue(999)
@@ -767,13 +767,13 @@ const calcint = new SlashCommandBuilder()
         .addStringOption(option =>
             option.setName('matharg')
             .setNameLocalizations({
-                "ru": 'матемзнак',
-                "en-US": 'matharg',
+                "ru": `${locale.ru.arg.matharg}`,
+                "en-US": `${locale.en_us.arg.matharg}`,
             })
             .setDescription('ADD OR SUBTRACT')
             .setDescriptionLocalizations({
-                "ru": 'ПРИБАВТЬ ИЛИ ОТНЯТЬ',
-                "en-US": 'ADD OR SUBTRACT',
+                "ru": `${locale.ru.addorsub}`,
+                "en-US": `${locale.en_us.addorsub}`,
             })
             .setRequired(true)
             .addChoices({
@@ -791,13 +791,13 @@ const calcint = new SlashCommandBuilder()
         .addStringOption(option =>
             option.setName('timezone')
             .setNameLocalizations({
-                "ru": 'часовойпояс',
-                "en-US": 'timezone',
+                "ru": `${locale.ru.arg.timezone}`,
+                "en-US": `${locale.en_us.arg.timezone}`,
             })
             .setDescription('Select timezone of input (Default: GMT+0)')
             .setDescriptionLocalizations({
-                "ru": 'Выберите часовой пояс вашей даты (По умолчанию: GMT+0)',
-                "en-US": 'Select timezone of input (Default: GMT+0)',
+                "ru": `${locale.ru.seltimezone}`,
+                "en-US": `${locale.en_us.seltimezone}`,
             })
             .setRequired(false)
             .addChoices(alltimezones)
@@ -806,13 +806,13 @@ const calcint = new SlashCommandBuilder()
         .addIntegerOption(option =>
             option.setName('years')
             .setNameLocalizations({
-                "ru": 'лет',
-                "en-US": 'years',
+                "ru": `${locale.ru.arg.years}`,
+                "en-US": `${locale.en_us.arg.years}`,
             })
             .setDescription('ADD OR SUBTRACT this amount of years (Inaccurate. 365 days)')
             .setDescriptionLocalizations({
-                "ru": 'ОТНЯТЬ ИЛИ ПРИБАВТЬ это кол-во лет (Неточный. 365 дней)',
-                "en-US": 'ADD OR SUBTRACT this amount of years (Inaccurate. 365 days)',
+                "ru": `${locale.ru.addorsubyears}`,
+                "en-US": `${locale.en_us.addorsubyears}`,
             })
             .setMinValue(0)
             .setMaxValue(1000)
@@ -821,13 +821,13 @@ const calcint = new SlashCommandBuilder()
         .addIntegerOption(option =>
             option.setName('months')
             .setNameLocalizations({
-                "ru": 'месяцев',
-                "en-US": 'months',
+                "ru": `${locale.ru.arg.months}`,
+                "en-US": `${locale.en_us.arg.months}`,
             })
             .setDescription('ADD OR SUBTRACT this amount of months (Inaccurate. 30 days)')
             .setDescriptionLocalizations({
-                "ru": 'ОТНЯТЬ ИЛИ ПРИБАВТЬ это кол-во месяцев (Неточный. 30 дней)',
-                "en-US": 'ADD OR SUBTRACT this amount of months (Inaccurate. 30 days)',
+                "ru": `${locale.ru.addorsubmonths}`,
+                "en-US": `${locale.en_us.addorsubmonths}`,
             })
             .setMinValue(0)
             .setMaxValue(1000)
@@ -836,13 +836,13 @@ const calcint = new SlashCommandBuilder()
         .addIntegerOption(option =>
             option.setName('weeks')
             .setNameLocalizations({
-                "ru": 'недель',
-                "en-US": 'weeks',
+                "ru": `${locale.ru.arg.weeks}`,
+                "en-US": `${locale.en_us.arg.weeks}`,
             })
             .setDescription('ADD OR SUBTRACT this amount of Weeks')
             .setDescriptionLocalizations({
-                "ru": 'ОТНЯТЬ ИЛИ ПРИБАВТЬ это кол-во недель',
-                "en-US": 'ADD OR SUBTRACT this amount of Weeks',
+                "ru": `${locale.ru.addorsubweeks}`,
+                "en-US": `${locale.en_us.addorsubweeks}`,
             })
             .setMinValue(0)
             .setMaxValue(5000)
@@ -851,13 +851,13 @@ const calcint = new SlashCommandBuilder()
         .addIntegerOption(option =>
             option.setName('days')
             .setNameLocalizations({
-                "ru": 'дней',
-                "en-US": 'days',
+                "ru": `${locale.ru.arg.days}`,
+                "en-US": `${locale.en_us.arg.days}`,
             })
             .setDescription('ADD OR SUBTRACT this amount of Days')
             .setDescriptionLocalizations({
-                "ru": 'ОТНЯТЬ ИЛИ ПРИБАВТЬ это кол-во дней',
-                "en-US": 'ADD OR SUBTRACT this amount of Days',
+                "ru": `${locale.ru.addorsubdays}`,
+                "en-US": `${locale.en_us.addorsubdays}`,
             })
             .setMinValue(0)
             .setMaxValue(50000)
@@ -866,13 +866,13 @@ const calcint = new SlashCommandBuilder()
         .addIntegerOption(option =>
             option.setName('hours')
             .setNameLocalizations({
-                "ru": 'часов',
-                "en-US": 'hours',
+                "ru": `${locale.ru.arg.hours}`,
+                "en-US": `${locale.en_us.arg.hours}`,
             })
             .setDescription('ADD OR SUBTRACT this amount of Hours')
             .setDescriptionLocalizations({
-                "ru": 'ОТНЯТЬ ИЛИ ПРИБАВТЬ это кол-во часов',
-                "en-US": 'ADD OR SUBTRACT this amount of Hours',
+                "ru": `${locale.ru.addorsubhours}`,
+                "en-US": `${locale.en_us.addorsubhours}`,
             })
             .setMinValue(0)
             .setMaxValue(240000)
@@ -881,13 +881,13 @@ const calcint = new SlashCommandBuilder()
         .addIntegerOption(option =>
             option.setName('minutes')
             .setNameLocalizations({
-                "ru": 'минут',
-                "en-US": 'minutes',
+                "ru": `${locale.ru.arg.minutes}`,
+                "en-US": `${locale.en_us.arg.minutes}`,
             })
             .setDescription('ADD OR SUBTRACT this amount of Minutes')
             .setDescriptionLocalizations({
-                "ru": 'ОТНЯТЬ ИЛИ ПРИБАВТЬ это кол-во минут',
-                "en-US": 'ADD OR SUBTRACT this amount of Minutes',
+                "ru": `${locale.ru.addorsubminutes}`,
+                "en-US": `${locale.en_us.addorsubminutes}`,
             })
             .setMinValue(0)
             .setMaxValue(1000000)
@@ -896,13 +896,13 @@ const calcint = new SlashCommandBuilder()
         .addIntegerOption(option =>
             option.setName('seconds')
             .setNameLocalizations({
-                "ru": 'секунд',
-                "en-US": 'seconds',
+                "ru": `${locale.ru.arg.seconds}`,
+                "en-US": `${locale.en_us.arg.seconds}`,
             })
             .setDescription('ADD OR SUBTRACT this amount of Seconds')
             .setDescriptionLocalizations({
-                "ru": 'ОТНЯТЬ ИЛИ ПРИБАВТЬ это кол-во секунд',
-                "en-US": 'ADD OR SUBTRACT this amount of Seconds',
+                "ru": `${locale.ru.addorsubseconds}`,
+                "en-US": `${locale.en_us.addorsubseconds}`,
             })
             .setMinValue(0)
             .setMaxValue(100000000)
@@ -911,13 +911,13 @@ const calcint = new SlashCommandBuilder()
         .addIntegerOption(option =>
             option.setName('milliseconds')
             .setNameLocalizations({
-                "ru": 'миллисекунд',
-                "en-US": 'milliseconds',
+                "ru": `${locale.ru.arg.milliseconds}`,
+                "en-US": `${locale.en_us.arg.milliseconds}`,
             })
             .setDescription('ADD OR SUBTRACT this amount of Milliseconds')
             .setDescriptionLocalizations({
-                "ru": 'ОТНЯТЬ ИЛИ ПРИБАВТЬ это кол-во миллисекунд',
-                "en-US": 'ADD OR SUBTRACT this amount of Milliseconds',
+                "ru": `${locale.ru.addorsubmilliseconds}`,
+                "en-US": `${locale.en_us.addorsubmilliseconds}`,
             })
             .setMinValue(0)
             .setMaxValue(1000000000)
@@ -929,20 +929,20 @@ const calcint = new SlashCommandBuilder()
         subcommand.setName('from-to')
         .setDescription('Calculate time between two dates')
         .setDescriptionLocalizations({
-            "ru": 'Вычислить время между двумя датами',
-            "en-US": 'Calculate time between two dates',
+            "ru": `${locale.ru.desccalcfromto}`,
+            "en-US": `${locale.en_us.desccalcfromto}`,
         })
         //first date
         .addIntegerOption(option =>
             option.setName('fromyear')
             .setNameLocalizations({
-                "ru": 'отгода',
-                "en-US": 'fromyear',
+                "ru": `${locale.ru.arg.fromyear}`,
+                "en-US": `${locale.en_us.arg.fromyear}`,
             })
             .setDescription('Type first date Year')
             .setDescriptionLocalizations({
-                "ru": 'Впишите год первой даты',
-                "en-US": 'Type first date Year',
+                "ru": `${locale.ru.typefirstyear}`,
+                "en-US": `${locale.en_us.typefirstyear}`,
             })
             .setMinValue(1001)
             .setMaxValue(3333)
@@ -951,13 +951,13 @@ const calcint = new SlashCommandBuilder()
         .addStringOption(option =>
             option.setName('frommonth')
             .setNameLocalizations({
-                "ru": 'отмесяца',
-                "en-US": 'frommonth',
+                "ru": `${locale.ru.arg.frommonth}`,
+                "en-US": `${locale.en_us.arg.frommonth}`,
             })
             .setDescription('Select first date Month')
             .setDescriptionLocalizations({
-                "ru": 'Выберите месяц первой даты',
-                "en-US": 'Select first date Month',
+                "ru": `${locale.ru.selfirstmonth}`,
+                "en-US": `${locale.en_us.selfirstmonth}`,
             })
             .setRequired(true)
             .addChoices(monthsoption)
@@ -965,13 +965,13 @@ const calcint = new SlashCommandBuilder()
         .addIntegerOption(option =>
             option.setName('fromday')
             .setNameLocalizations({
-                "ru": 'отдня',
-                "en-US": 'fromday',
+                "ru": `${locale.ru.arg.fromday}`,
+                "en-US": `${locale.en_us.arg.fromday}`,
             })
             .setDescription('Type first date Day')
             .setDescriptionLocalizations({
-                "ru": 'Впишите день первой даты',
-                "en-US": 'Type first date Day',
+                "ru": `${locale.ru.typefirstday}`,
+                "en-US": `${locale.en_us.typefirstday}`,
             })
             .setMinValue(1)
             .setMaxValue(31)
@@ -981,13 +981,13 @@ const calcint = new SlashCommandBuilder()
         .addIntegerOption(option =>
             option.setName('toyear')
             .setNameLocalizations({
-                "ru": 'догода',
-                "en-US": 'toyear',
+                "ru": `${locale.ru.arg.toyear}`,
+                "en-US": `${locale.en_us.arg.toyear}`,
             })
             .setDescription('Type second date Year')
             .setDescriptionLocalizations({
-                "ru": 'Впишите год второй даты',
-                "en-US": 'Type second date Year',
+                "ru": `${locale.ru.typesecondyear}`,
+                "en-US": `${locale.en_us.typesecondyear}`,
             })
             .setMinValue(1001)
             .setMaxValue(3333)
@@ -996,13 +996,13 @@ const calcint = new SlashCommandBuilder()
         .addStringOption(option =>
             option.setName('tomonth')
             .setNameLocalizations({
-                "ru": 'домесяца',
-                "en-US": 'tomonth',
+                "ru": `${locale.ru.arg.tomonth}`,
+                "en-US": `${locale.en_us.arg.tomonth}`,
             })
             .setDescription('Select second date Month')
             .setDescriptionLocalizations({
-                "ru": 'Выберите месяц второй даты',
-                "en-US": 'Select second date Month',
+                "ru": `${locale.ru.selsecondmonth}`,
+                "en-US": `${locale.en_us.selsecondmonth}`,
             })
             .setRequired(true)
             .addChoices(monthsoption)
@@ -1010,13 +1010,13 @@ const calcint = new SlashCommandBuilder()
         .addIntegerOption(option =>
             option.setName('today')
             .setNameLocalizations({
-                "ru": 'додня',
-                "en-US": 'today',
+                "ru": `${locale.ru.arg.today}`,
+                "en-US": `${locale.en_us.arg.today}`,
             })
             .setDescription('Type second date Day')
             .setDescriptionLocalizations({
-                "ru": 'Впишите день второй даты',
-                "en-US": 'Type second date Day',
+                "ru": `${locale.ru.typesecondday}`,
+                "en-US": `${locale.en_us.typesecondday}`,
             })
             .setMinValue(1)
             .setMaxValue(31)
@@ -1026,13 +1026,13 @@ const calcint = new SlashCommandBuilder()
         .addIntegerOption(option =>
             option.setName('fromhour')
             .setNameLocalizations({
-                "ru": 'отчаса',
-                "en-US": 'fromhour',
+                "ru": `${locale.ru.arg.fromhour}`,
+                "en-US": `${locale.en_us.arg.fromhour}`,
             })
             .setDescription('Type first date Hour')
             .setDescriptionLocalizations({
-                "ru": 'Впишите час первой даты',
-                "en-US": 'Type first date Hour',
+                "ru": `${locale.ru.typefirsthour}`,
+                "en-US": `${locale.en_us.typefirsthour}`,
             })
             .setMinValue(0)
             .setMaxValue(23)
@@ -1041,13 +1041,13 @@ const calcint = new SlashCommandBuilder()
         .addIntegerOption(option =>
             option.setName('fromminute')
             .setNameLocalizations({
-                "ru": 'отминуты',
-                "en-US": 'fromminute',
+                "ru": `${locale.ru.arg.fromminute}`,
+                "en-US": `${locale.en_us.arg.fromminute}`,
             })
             .setDescription('Type first date Minute')
             .setDescriptionLocalizations({
-                "ru": 'Впишите минуту первой даты',
-                "en-US": 'Type first date Minute',
+                "ru": `${locale.ru.typefirstminute}`,
+                "en-US": `${locale.en_us.typefirstminute}`,
             })
             .setMinValue(0)
             .setMaxValue(59)
@@ -1056,13 +1056,13 @@ const calcint = new SlashCommandBuilder()
         .addIntegerOption(option =>
             option.setName('fromsecond')
             .setNameLocalizations({
-                "ru": 'отсекунды',
-                "en-US": 'fromsecond',
+                "ru": `${locale.ru.arg.fromsecond}`,
+                "en-US": `${locale.en_us.arg.fromsecond}`,
             })
             .setDescription('Type first date Second')
             .setDescriptionLocalizations({
-                "ru": 'Впишите секунду первой даты',
-                "en-US": 'Type first date Second',
+                "ru": `${locale.ru.typefirstsecond}`,
+                "en-US": `${locale.en_us.typefirstsecond}`,
             })
             .setMinValue(0)
             .setMaxValue(59)
@@ -1072,13 +1072,13 @@ const calcint = new SlashCommandBuilder()
         .addIntegerOption(option =>
             option.setName('tohour')
             .setNameLocalizations({
-                "ru": 'дочаса',
-                "en-US": 'tohour',
+                "ru": `${locale.ru.arg.tohour}`,
+                "en-US": `${locale.en_us.arg.tohour}`,
             })
             .setDescription('Type second date Hour')
             .setDescriptionLocalizations({
-                "ru": 'Впишите час второй даты',
-                "en-US": 'Type second date Hour',
+                "ru": `${locale.ru.typesecondhour}`,
+                "en-US": `${locale.en_us.typesecondhour}`,
             })
             .setMinValue(0)
             .setMaxValue(23)
@@ -1087,13 +1087,13 @@ const calcint = new SlashCommandBuilder()
         .addIntegerOption(option =>
             option.setName('tominute')
             .setNameLocalizations({
-                "ru": 'доминуты',
-                "en-US": 'tominute',
+                "ru": `${locale.ru.arg.tominute}`,
+                "en-US": `${locale.en_us.arg.tominute}`,
             })
             .setDescription('Type second date Minute')
             .setDescriptionLocalizations({
-                "ru": 'Впишите минуту второй даты',
-                "en-US": 'Type second date Minute',
+                "ru": `${locale.ru.typesecondminute}`,
+                "en-US": `${locale.en_us.typesecondminute}`,
             })
             .setMinValue(0)
             .setMaxValue(59)
@@ -1102,13 +1102,13 @@ const calcint = new SlashCommandBuilder()
         .addIntegerOption(option =>
             option.setName('tosecond')
             .setNameLocalizations({
-                "ru": 'досекунды',
-                "en-US": 'tosecond',
+                "ru": `${locale.ru.arg.tosecond}`,
+                "en-US": `${locale.en_us.arg.tosecond}`,
             })
             .setDescription('Type second date Second')
             .setDescriptionLocalizations({
-                "ru": 'Впишите секунду второй даты',
-                "en-US": 'Type second date Second',
+                "ru": `${locale.ru.typesecondsecond}`,
+                "en-US": `${locale.en_us.typesecondsecond}`,
             })
             .setMinValue(0)
             .setMaxValue(59)

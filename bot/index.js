@@ -1,5 +1,5 @@
 const corever = 'v0.6';
-const supportedtimelocale = ["en-US", "ru"];
+const supportedtimelocale = ["en-US", "ru", "de", "pl", "fr", "ja", "pt-BR", "ko", "bg", "sv", "uk"];
 
 const fs = require('fs');
 const path = require('path');
