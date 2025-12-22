@@ -185,9 +185,9 @@ client.on('interactionCreate', (interaction) => {
         incrementStat('timestampcmd');
         var tsyear = interaction.options.getInteger('year');
         var tsmonth = interaction.options.getString('month');
-        var tsdayi = interaction.options.getInteger('day');
-        var tshouri = interaction.options.getInteger('hour');
-        var tsmini = interaction.options.getInteger('minute');
+        var tsday = interaction.options.getInteger('day');
+        var tshour = interaction.options.getInteger('hour');
+        var tsmin = interaction.options.getInteger('minute');
         var tsseci = interaction.options.getInteger('second');
         var style = interaction.options.getString('style');
 //Offset value to selected timezone
@@ -218,30 +218,30 @@ client.on('interactionCreate', (interaction) => {
             var tsstyle = ':R'
         }
 //This need for the date convertor to work. It length sensitive so if we use int '1' it needs to be '01'
-        if (tsdayi < 10) {
-            var tsday = `0${tsdayi}`
-        } else { var tsday = `${tsdayi}` }
+        if (tsday < 10) {
+            var tsday = `0${tsday}`
+        }
 //Test if option is specified
-        if (tshouri === undefined || tshouri === null) {
+        if (tshour === undefined || tshour === null) {
             var tshour = '00'
         } else {
-            if (tshouri < 10) {
-                var tshour = `0${tshouri}`
-            } else { var tsday = `${tsdayi}` }
+            if (tshour < 10) {
+                var tshour = `0${tshour}`
+            }
         }
-        if (tsmini === undefined || tsmini === null) {
+        if (tsmin === undefined || tsmin === null) {
             var tsmin = '00'
         } else {
-            if (tsmini < 10) {
-                var tsmin = `0${tsmini}`
-            } else { var tsmin = `${tsmini}` }
+            if (tsmin < 10) {
+                var tsmin = `0${tsmin}`
+            }
         }
-        if (tsseci === undefined || tsseci === null) {
+        if (tssec === undefined || tssec === null) {
             var tssec = '00'
         } else {
-            if (tsseci < 10) {
-                var tssec = `0${tsseci}`
-            } else { var tssec = `${tsseci}` }
+            if (tssec < 10) {
+                var tssec = `0${tssec}`
+            }
         }
         var tsdateString = `${tsyear}-${tsmonth}-${tsday}T${tshour}:${tsmin}:${tssec}.000Z`;
         var calcDate = new Date(tsdateString).getTime();
@@ -268,11 +268,11 @@ client.on('interactionCreate', (interaction) => {
         if (interaction.options.getSubcommand() === 'tounix') {
             var cvyear = interaction.options.getInteger('year');
             var cvmonth = interaction.options.getString('month');
-            var cvdayi = interaction.options.getInteger('day');
-            var cvhouri = interaction.options.getInteger('hour');
-            var cvmini = interaction.options.getInteger('minute');
-            var cvseci = interaction.options.getInteger('second');
-            var cvmsi = interaction.options.getInteger('millisecond');
+            var cvday = interaction.options.getInteger('day');
+            var cvhour = interaction.options.getInteger('hour');
+            var cvmin = interaction.options.getInteger('minute');
+            var cvsec = interaction.options.getInteger('second');
+            var cvms = interaction.options.getInteger('millisecond');
             var cvmsdisplay = interaction.options.getBoolean('displayms');
             //Offset value to selected timezone
             var timezonesel = interaction.options.getString('timezone');
@@ -280,39 +280,39 @@ client.on('interactionCreate', (interaction) => {
                 var tzoffset = 0
             } else { var tzoffset = convertGmtToSeconds(timezonesel) }
             //This need for the date convertor to work. It length sensitive so if we use int '1' it needs to be '01'
-            if (cvdayi < 10) {
-                var cvday = `0${cvdayi}`
-            } else { var cvday = `${cvdayi}` } 
+            if (cvday < 10) {
+                var cvday = `0${cvday}`
+            }
             //Test if option is specified
-            if (cvhouri === undefined || cvhouri === null) {
+            if (cvhour === undefined || cvhour === null) {
                 var cvhour = '00'
             } else {
-                if (cvhouri < 10) {
-                    var cvhour = `0${cvhouri}`
-                } else { var cvhour = `${cvhouri}` }
+                if (cvhour < 10) {
+                    var cvhour = `0${cvhour}`
+                }
             }
-            if (cvmini === undefined || cvmini === null) {
+            if (cvmin === undefined || cvmin === null) {
                 var cvmin = '00'
             } else {
-                if (cvmini < 10) {
-                    var cvmin = `0${cvmini}`
-                } else { var cvmin = `${cvmini}` }
+                if (cvmin < 10) {
+                    var cvmin = `0${cvmin}`
+                }
             }
-            if (cvseci === undefined || cvseci === null) {
+            if (cvsec === undefined || cvsec === null) {
                 var cvsec = '00'
             } else {
-                if (cvseci < 10) {
-                    var cvsec = `0${cvseci}`
-                } else { var cvsec = `${cvseci}` }
+                if (cvsec < 10) {
+                    var cvsec = `0${cvsec}`
+                }
             }
-            if (cvmsi === undefined || cvmsi === null) {
+            if (cvms === undefined || cvms === null) {
                 var cvms = '000'
             } else {
-                if (cvmsi < 10) {
-                    var cvms = `00${cvmsi}`
-                } else if (cvmsi < 100) {
-                    var cvms = `0${cvmsi}`
-                } else { var cvms = `${cvmsi}` }
+                if (cvms < 10) {
+                    var cvms = `00${cvms}`
+                } else if (cvms < 100) {
+                    var cvms = `0${cvms}`
+                }
             }
             var cvdateString = `${cvyear}-${cvmonth}-${cvday}T${cvhour}:${cvmin}:${cvsec}.${cvms}Z`;
             var calctimestamp = new Date(cvdateString).getTime();
