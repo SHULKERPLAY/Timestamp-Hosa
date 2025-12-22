@@ -1,73 +1,54 @@
-![Акари <3](https://github.com/SHULKERPLAY/Timestamp-Hosa/blob/main/TimestampHosa.png)
-> Readme is also available in [Russian](https://github.com/SHULKERPLAY/Timestamp-Hosa/blob/main/README-ru.md), [Japanese](https://github.com/SHULKERPLAY/Timestamp-Hosa/blob/main/README-jp.md), [French](https://github.com/SHULKERPLAY/Timestamp-Hosa/blob/main/README-fr.md), [Deutsch](https://github.com/SHULKERPLAY/Timestamp-Hosa/blob/main/README-de.md) and [Korean](https://github.com/SHULKERPLAY/Timestamp-Hosa/blob/main/README-ko.md) Languages
+![Akari <3](https://github.com/SHULKERPLAY/Timestamp-Hosa/blob/main/TimestampHosa.png)
+> Readme ist auch in den Sprachen [Russisch](https://github.com/SHULKERPLAY/Timestamp-Hosa/blob/main/README-ru.md), [Japanisch](https://github.com/SHULKERPLAY/Timestamp-Hosa/blob/main/README-jp.md), [Französisch](https://github.com/SHULKERPLAY/Timestamp-Hosa/blob/main/README-fr.md), [Englisch](https://github.com/SHULKERPLAY/Timestamp-Hosa/blob/main/README-en.md) und [Koreanisch](https://github.com/SHULKERPLAY/Timestamp-Hosa/blob/main/README-ko.md) verfügbar.
 
-### Хотите помочь с переводом? Создайте новое обращение в [issues](https://github.com/SHULKERPLAY/Timestamp-Hosa/issues) где вы можете указать в каком месте нужно исправить перевод и какой именно перевод там должен быть, или с запросом на перевод на конкретный язык. Вы также можете создавать [Pull Request](https://github.com/SHULKERPLAY/Timestamp-Hosa/pulls) с правками или с новым языком - все локализации доступны в [locales.json](https://github.com/SHULKERPLAY/Timestamp-Hosa/blob/main/bot/locales.json).
+### Möchten Sie bei der Übersetzung helfen? Erstellen Sie eine neue Anfrage unter [issues](https://github.com/SHULKERPLAY/Timestamp-Hosa/issues), in der Sie angeben können, wo die Übersetzung korrigiert werden muss und wie sie lauten sollte, oder fordern Sie eine Übersetzung in eine bestimmte Sprache an. Sie können auch [Pull Requests](https://github.com/SHULKERPLAY/Timestamp-Hosa/pulls) mit Korrekturen oder einer neuen Sprache erstellen – alle Lokalisierungen sind in [locales.json](https://github.com/SHULKERPLAY/Timestamp-Hosa/blob/main/bot/locales.json) verfügbar.
 
-[Посмотрите подробности](https://lunarcreators.ru/timestamp-hosa/) или [установите бота на любой свой сервер Discord или на свой аккаунт из магазина приложений](https://discord.com/discovery/applications/1449839745910964254)! *Бота также можно [установить на Discord сервер напрямую](https://discord.com/oauth2/authorize?client_id=1449839745910964254&permissions=277025410048&integration_type=0&scope=bot)*. Оригинальный бот: `Timestamp 補佐#1785`
+[Details ansehen](https://lunarcreators.ru/timestamp-hosa/) oder [installieren Sie den Bot auf einem beliebigen Discord-Server oder in Ihrem Konto über das App-Verzeichnis](https://discord.com/discovery/applications/1449839745910964254)! *Der Bot kann auch [direkt auf einem Discord-Server installiert werden](https://discord.com/oauth2/authorize?client_id=1449839745910964254&permissions=277025410048&integration_type=0&scope=bot)*. Originaler Bot: `Timestamp 補佐#1785`.
 
-# Timestamp 補佐 - Discord Бот
+# Timestamp 補佐 - Discord Bot
 [![CodeFactor](https://www.codefactor.io/repository/github/shulkerplay/timestamp-hosa/badge/main)](https://www.codefactor.io/repository/github/shulkerplay/timestamp-hosa/overview/main) ![GitHub Release](https://img.shields.io/github/v/release/shulkerplay/timestamp-hosa) ![GitHub code size in bytes](https://img.shields.io/github/languages/code-size/shulkerplay/timestamp-hosa) ![Discord](https://img.shields.io/discord/683814496942424078?label=Discord) ![YouTube Channel Views](https://img.shields.io/youtube/channel/views/UCWoypHEOaTh6N9zwCtRzr0w) ![Website](https://img.shields.io/website?url=https%3A%2F%2Flunarcreators.ru&link=https%3A%2F%2Flunarcreators.ru)
-![Bot Uptime (30 days)](https://img.shields.io/uptimerobot/ratio/m797417008-25ccd350ca5e2f9624767928?link=m797417008-25ccd350ca5e2f9624767928)
+![Bot Uptime (30 days)](https://img.shields.io/uptimerobot/ratio/m797417008-25ccd350ca5e2f9624767928?link=m797417008-25ccd350ca5e2f9624767928).
 
-**Создавайте метки времени для встраивания в сообщения, используйте калькулятор дат и многое другое не выходя из Discord!**  
+**Erstellen Sie Zeitstempel zum Einbetten in Nachrichten, nutzen Sie einen Datumsrechner und vieles mehr, ohne Discord zu verlassen!**.
 
-Timestamp 補佐 - это Discord Бот / Приложение для профиля, позволяющее создавать любые временные метки для встройки в ваше сообщение, использовать калькулятор дат, считать количество времени прошедшего с одной даты до другой, а также конвертер дат из UNIX формата в читаемый формат и наоборот! На данный момент поддерживает 11 языков: Немецкий `de`, Польский `pl`, Французкий `fr`, Японский `ja`, Португальский (Бразильский) `pt-BR`, Корейский `ko`, Болгарский `bg`, Шведский `sv-SE`, Украинский `uk`
+Timestamp 補佐 ist ein Discord Bot / eine Profil-App, mit der Sie beliebige Zeitstempel zum Einbetten in Ihre Nachrichten erstellen, einen Datumsrechner verwenden, die vergangene Zeit zwischen zwei Daten berechnen sowie Daten vom UNIX-Format in ein lesbares Format und umgekehrt konvertieren können! Derzeit werden 11 Sprachen unterstützt: Deutsch `de`, Polnisch `pl`, Französisch `fr`, Japanisch `ja`, Portugiesisch (Brasilien) `pt-BR`, Koreanisch `ko`, Bulgarisch `bg`, Schwedisch `sv-SE`, Ukrainisch `uk`.
 
-## Команды
-- К некоторым командам доступен аргумент `publicreply: true / false`. Если `True`, то ответ от бота увидят все в чате, а не только вы. 
+## Befehle
+- Bei einigen Befehlen ist das Argument `publicreply: true / false` verfügbar. Wenn `True`, sehen alle im Chat die Antwort des Bots, nicht nur Sie.
+- Bei einigen Befehlen ist das Argument `timezone` verfügbar. Je nach gewählter Zeitzone wird die Antwort des Bots entsprechend verschoben.
+- Bei Befehlen, die einen Zeitstempel ausgeben, ist das Argument `style` verfügbar. Damit können Sie das Format von Datum und Uhrzeit für den Zeitstempel wählen.
 
-- К некоторым командам доступен аргумент `timezone`. В зависимости от часового пояса, который вы выберете, ответ бота будет отклоняться по времени к вашему выбору
+ - `/now` - Gibt das aktuelle Datum und den Zeitstempel zum Einfügen aus. Argumente: `style`, `publicreply`.
+ 
 
-- К командам, которые выводят метку времени, доступен аргумент `style`. Он позволяет выбрать в каком формате будет дата и время которую вы хотите увидеть на метке времени
+ - `/timestamp` - Erstellt einen Zeitstempel zum Einfügen basierend auf dem von Ihnen angegebenen Datum. Argumente: `year`, `month`, `day`, `hour`, `minute`, `second`, `timezone`, `style`, `publicreply`.
+ 
+ - `/timezone` - Unterfunktionen `gmtplus [timezone]` (für GMT +1 bis +14), `gmtminus [timezone]` (für GMT -1 bis -12), `keyzones [timezone]` (für andere Zonen wie PST, CET usw.). Zeigt die aktuelle Zeit in der gewählten Zeitzone an.
 
- - `/now` - Выводит текущую дату и метку времени для вставки. Аргументы: `style`,`publicreply`
+ - `/convert` - Konvertiert Zeit:
+    - `todate` - Konvertiert einen UNIX-Zeitstempel in ein lesbares Datum/Zeit. Argumente: `unixtime`, `withms` (`true` für Millisekunden seit 1.1.1970, `false` für Sekunden).
+    - `tounix` - Konvertiert ein angegebenes Datum in einen UNIX-Zeitstempel. Argumente: `year`, `month`, `day`, `displayms`, `hour`, `minute`, `second`, `millisecond`, `timezone`.
 
- - `/timestamp` - Создаёт метку времени для вставки на основе вами указанной даты. Аргументы: `year`, `month`, `day`, `hour`, `minute`, `second`, `timezone`, `style`, `publicreply`,
+-  `/calc` - Unterfunktionen `fromnow`, `fromdate` und `from-to` für Berechnungen mit beliebigen Daten:
+   - `fromnow`: Addiert oder subtrahiert Zeit vom aktuellen Datum. Argumente: `timezone`, `matharg`, `years`, `months`, `days`, `hours`, `minutes`, `seconds`, `milliseconds`.
+   - `fromdate`: Addiert oder subtrahiert Zeit von einem beliebigen Datum. Argumente: `timezone`, `matharg`, Datumskomponenten (`year`, `month` etc.) und die zu addierende/subtrahierende Zeit.
+   - `from-to`: Berechnet die Zeitspanne zwischen zwei Daten. Argumente: `fromyear` bis `fromsecond` (Start) und `toyear` bis `tosecond` (Ende).
 
- - `/timezone` - подфункции `gmtplus [timezone]` - Для GMT - GMT +14,  `gmtminus [timezone]`- для GMT - GMT -12,  `keyzones [timezone]` - для других поясов (PST, CET и т.д.). Выводит текущее время в выбранном часовом поясе
+- `/ping` - Überprüfung der Bot-Antwortzeit.
 
- - `/convert` - Конвертирует время
-    - `todate` - Конвертирует метку времени UNIX в читаемую человеческую дату/время. Аргументы: `unixtime` - Для вставки UNIX времени, `withms` - Для выбора формата UNIX времени, `true` - в миллисекундах от 1.1.1970, `false` - В секундах от 1.1.1970
-    - `tounix` - Конвертирует указанную вами дату в метку времени UNIX. Аргументы: `year` - Год конвертируемой даты, `month` - Месяц конвертируемой даты, `day` - День конвертируемой даты, `displayms` - Будет ли вывод результата `true` - В миллисекундах от 1.1.1970, `false` - в скунднах от 1.1.1970, `hour` - час конвертируемой даты, `minute` - минута конвертируемой даты, `second` - секунда конвертируемой даты, `millisecond` - Миллисекунда конвертируемой даты, `timezone` - Часовой пояс указанной вами даты
+- `/invite` - Bot auf Ihren Server einladen oder in Ihrem Konto installieren.
 
--  `/calc` - подфункции `fromnow`, `fromdate` и `from-to` - для рассчётов с произвольными датами
-   - `fromnow` создан чтобы прибавить или отнять определённое время от текущей даты и времени.
-      - `timezone` - выбор часового пояса для вывода
-      - `matharg` - Решает прибавить или отнять вписанное далее время
-      - `years`, `months`, `days`, `hours`, `minutes`, `seconds`, `milliseconds` - количество времени которое нужно прибавить или отнять
-   - `fromdate` создан чтобы прибавить или отнять определённое время от произвольной даты и времени.
-      - `timezone` - выбор часового пояса для вывода
-      - `matharg` - Решает прибавить или отнять вписанное далее время
-      - `year`, `month`, `day`, `hour`, `minute`, `second`, `millisecond` - дата от которой нужно будет отнять или прибавить время
-      - `years`, `months`, `days`, `hours`, `minutes`, `seconds`, `milliseconds` - количество времени которое нужно прибавить или отнять
-   - `from-to` создан чтобы вычислить какое количество времени прошло между двумя датами.
-      - `fromyear`, `frommonth`, `fromday`, `fromhour`, `fromminute`, `fromsecond` - Первая дата (От)
-      - `toyear`, `tomonth`, `today`, `tohour`, `tominute`, `tosecond` - Вторая дата (До)
+- `/about` - Detaillierte Informationen über die Anwendung.
 
-- `/ping` - Проверка отклика бота
+## Mögliche Fragen
+### Warum hat `/timestamp` eine Stunde mehr/weniger ausgegeben als angegeben?
+Dies liegt daran, wie Zeitstempel clientseitig umgewandelt werden. Discord berücksichtigt Betriebssystemdaten zu Sommer- und Winterzeitumstellungen. Wenn es in Ihrer Zeitzone zur angegebenen Zeit Änderungen gab, spiegelt der Zeitstempel dies wider. Lösung: Zeitzone oder Stunde um +/-1 anpassen.
 
-- `/invite` - Пригласить бота на свой сервер или установить к себе на аккаунт для использования в любом месте
+### Warum sind in `/calc` die Argumente `months` und `years` als ungenau markiert?
+Alle Berechnungen erfolgen im UNIX-Sekundenformat, nicht im Kalenderformat. Da Monate unterschiedlich lang sind, wird ein Durchschnittswert von 30 Tagen verwendet (**2.592.000.000 ms**). Bei `years` werden Schaltjahre nicht berücksichtigt (Jahr = 365 Tage = **31.536.000.000 ms**).
 
-- `/about` - Подробная информация о приложении
+# Sonstiges
+ - [Projektseite auf unserer Website](https://lunarcreators.ru/timestamp-hosa)
+ - [Timestamp 補佐 im Discord App Directory](https://discord.com/discovery/applications/1449839745910964254)
 
-[Демонстрация и скриншоты](https://lunarcreators.ru/timestamp-hosa)
-
-## Возможные вопросы
-### Почему `/timestamp` вывела на час меньше/больше чем я указал?
-Например: Вы использовали команду `/timestamp` `year: 2005` `month: Май` `day: 31` `hour: 0` `minute: 0` `second: 0` `timezone: GMT +3 (Moscow, Istanbul, Qatar)`
-Но в выводе в ваше время всё равно увидели `31 мая 2005 г. 1:00` вместо `0:00`.
-
-Дело в том, как временные метки преобразовываются на стороне клиента. Discord учитывает данные ОС о переходах с летнего на зимнее время и наоборот, 
-поэтому если в вашем часовом поясе были изменения в указанное вами время, то временная метка отразит эти изменения добавив или убавив час. 
-Решить можно изменением пояса на +/-1 или сделать час +/-1. Учтите, что люди, живущие в часовых поясах где не было переходов на летнее время - будут видеть корректную дату.
-
-### Почему в команде `/calc` аргументы `months` и `years` отмечены как неточные?
-Проблема в том, что все рассчёты проводятся не в календарном формате, а в секундном формате времени UNIX. Реализация не позволяет точно отсчитывать месяцы, так как в них разное количество дней, поэтому взято среднее значение: 30 дней `(2592000000 миллисекунд)`
-
-С `years` неточность сильно меньше чем с `month`. Тут проблема в високосных годах, которые тоже не учитываются в реализации. Так, каждые 4 года отклонения могут убавить лишние 24 часа, так как год считается как 365 дней `(31536000000 миллисекунд)`
-# Прочее
-
- - [Страница проекта на нашем сайте](https://lunarcreators.ru/timestamp-hosa)
- - [Бот Timestamp 補佐 в магазине приложений Discord](https://discord.com/discovery/applications/1449839745910964254)
-
-Буду рад любой поддержке, связаться со мной можно на [нашем сервере Discord](https://discord.gg/e2HcXrQ). `@shulkerplay`
+Ich freue mich über jede Unterstützung! Kontakt über [unseren Discord-Server](https://discord.gg/e2HcXrQ) `@shulkerplay`.
