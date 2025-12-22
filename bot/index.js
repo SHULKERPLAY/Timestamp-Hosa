@@ -45,10 +45,14 @@ const commands = [ping, about, invite, timenow, timezonenow, timestampint, conve
 const rl = createInterface({ input: process.stdin, output: process.stdout });
 
 client.on('interactionCreate', (interaction) => {
+    incrementStat(`interactionlang.${interaction.locale}`);
     //decide if reply be ephemeral (publicreply: false / true)
     if (interaction.options.getBoolean('publicreply') === undefined || interaction.options.getBoolean('publicreply') === null || interaction.options.getBoolean('publicreply') === false) {
         var isephemeral = true
-    } else { var isephemeral = false }
+    } else { 
+        incrementStat(`use.publicreply`);
+        var isephemeral = false
+    }
     //get commandName
     if (interaction.commandName === 'ping') {
         incrementStat('pingcmd');
@@ -150,7 +154,7 @@ client.on('interactionCreate', (interaction) => {
             ephemeral: isephemeral,
         });
     } else if (interaction.commandName === 'timezone') {
-        incrementStat('timezonecmd');
+        incrementStat(`timezonecmd.${interaction.options.getSubcommand()}`);
 //subcommand string: interaction.options.getSubcommand()
         var tztimestamp = Date.now()
         var tzdate = new Date(tztimestamp)
@@ -182,7 +186,7 @@ client.on('interactionCreate', (interaction) => {
             ephemeral: isephemeral,
         });
     } else if (interaction.commandName === 'timestamp') {
-        incrementStat('timestampcmd');
+        incrementStat(`timestampcmd.${interaction.options.getString('style')}`);
         var tsyear = interaction.options.getInteger('year');
         var tsmonth = interaction.options.getString('month');
         var tsday = interaction.options.getInteger('day');
@@ -264,7 +268,7 @@ client.on('interactionCreate', (interaction) => {
             ephemeral: isephemeral,
         });
     } else if (interaction.commandName === 'convert') {
-        incrementStat('convertcmd');
+        incrementStat(`convertcmd.${interaction.options.getSubcommand()}`);
         if (interaction.options.getSubcommand() === 'tounix') {
             var cvyear = interaction.options.getInteger('year');
             var cvmonth = interaction.options.getString('month');
@@ -400,7 +404,7 @@ client.on('interactionCreate', (interaction) => {
                 var msdigits = '3'
             } else {
                 var cvdate = new Date(cvtimestamp * 1000)
-                var msdigits = '0'
+                var msdigits = '1'
             }
             //Date output locale
             if (supportedtimelocale.includes(interaction.locale)) {
@@ -428,7 +432,7 @@ client.on('interactionCreate', (interaction) => {
             });
         }
     } else if (interaction.commandName === 'calc') {
-        incrementStat('calccmd');
+        incrementStat(`calccmd.${interaction.options.getSubcommand()}`);
         //get Add or Subtract for entire calc command
         var calcmatharg = interaction.options.getString('matharg');
         if (interaction.options.getSubcommand() === 'from-to') {
