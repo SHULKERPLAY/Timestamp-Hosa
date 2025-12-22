@@ -1,4 +1,4 @@
-const corever = 'v0.6';
+const corever = 'v1.0.0';
 const supportedtimelocale = ["en-US", "ru", "de", "pl", "fr", "ja", "pt-BR", "ko", "bg", "sv-SE", "uk"]; //and en-UK as default
 
 const fs = require('fs');
@@ -220,28 +220,28 @@ client.on('interactionCreate', (interaction) => {
 //This need for the date convertor to work. It length sensitive so if we use int '1' it needs to be '01'
         if (tsdayi < 10) {
             var tsday = `0${tsdayi}`
-        }
+        } else { var tsday = `${tsdayi}` }
 //Test if option is specified
         if (tshouri === undefined || tshouri === null) {
             var tshour = '00'
         } else {
             if (tshouri < 10) {
                 var tshour = `0${tshouri}`
-            }
+            } else { var tsday = `${tsdayi}` }
         }
         if (tsmini === undefined || tsmini === null) {
             var tsmin = '00'
         } else {
             if (tsmini < 10) {
                 var tsmin = `0${tsmini}`
-            }
+            } else { var tsmin = `${tsmini}` }
         }
         if (tsseci === undefined || tsseci === null) {
             var tssec = '00'
         } else {
             if (tsseci < 10) {
                 var tssec = `0${tsseci}`
-            }
+            } else { var tssec = `${tsseci}` }
         }
         var tsdateString = `${tsyear}-${tsmonth}-${tsday}T${tshour}:${tsmin}:${tssec}.000Z`;
         var calcDate = new Date(tsdateString).getTime();
@@ -282,37 +282,37 @@ client.on('interactionCreate', (interaction) => {
             //This need for the date convertor to work. It length sensitive so if we use int '1' it needs to be '01'
             if (cvdayi < 10) {
                 var cvday = `0${cvdayi}`
-            }
+            } else { var cvday = `${cvdayi}` } 
             //Test if option is specified
             if (cvhouri === undefined || cvhouri === null) {
                 var cvhour = '00'
             } else {
                 if (cvhouri < 10) {
-                var cvhour = `0${cvhouri}`
-                }
+                    var cvhour = `0${cvhouri}`
+                } else { var cvhour = `${cvhouri}` }
             }
             if (cvmini === undefined || cvmini === null) {
                 var cvmin = '00'
             } else {
                 if (cvmini < 10) {
-                var cvmin = `0${cvmini}`
-                }
+                    var cvmin = `0${cvmini}`
+                } else { var cvmin = `${cvmini}` }
             }
             if (cvseci === undefined || cvseci === null) {
                 var cvsec = '00'
             } else {
                 if (cvseci < 10) {
-                var cvsec = `0${cvseci}`
-                }
+                    var cvsec = `0${cvseci}`
+                } else { var cvsec = `${cvseci}` }
             }
             if (cvmsi === undefined || cvmsi === null) {
                 var cvms = '000'
             } else {
                 if (cvmsi < 10) {
-                var cvms = `00${cvmsi}`
+                    var cvms = `00${cvmsi}`
                 } else if (cvmsi < 100) {
                     var cvms = `0${cvmsi}`
-                }
+                } else { var cvms = `${cvmsi}` }
             }
             var cvdateString = `${cvyear}-${cvmonth}-${cvday}T${cvhour}:${cvmin}:${cvsec}.${cvms}Z`;
             var calctimestamp = new Date(cvdateString).getTime();
