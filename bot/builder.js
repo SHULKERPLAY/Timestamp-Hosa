@@ -17,6 +17,9 @@ try {
     locale = {};
 }
 
+//.setDefaultMemberPermissions(0) блокирует использование всем кроме администраторов. 
+//.setContexts(0, 1, 2) 0 - Can be used in server channels, 1 - Can be used in DM with app's bot user, 2 - Can be used in private channels without inviting the bot
+//.setIntegrationTypes(0, 1) - 0 - Can be used with bot installed on server, 1 - can be used with bot installed as User App
 //CommandBuilder
 const ping = new SlashCommandBuilder()
     .setName('ping')
@@ -35,7 +38,7 @@ const ping = new SlashCommandBuilder()
         "uk": `${locale.uk.checkping}`,
     })
     .setIntegrationTypes(0, 1)
-    .setContexts(0, 1)
+    .setContexts(0, 1, 2)
 
 const about = new SlashCommandBuilder()
     .setName('about')
@@ -54,7 +57,7 @@ const about = new SlashCommandBuilder()
         "uk": `${locale.uk.aboutapp}`,
     })
     .setIntegrationTypes(0, 1)
-    .setContexts(0, 1)
+    .setContexts(0, 1, 2)
 
 const invite = new SlashCommandBuilder()
     .setName('invite')
@@ -91,8 +94,6 @@ const timenow = new SlashCommandBuilder()
         "sv-SE": `${locale.sv_SE.descnow}`,
         "uk": `${locale.uk.descnow}`,
     })
-//.setDefaultMemberPermissions(0) блокирует использование всем кроме администраторов. Удалить после закрытого тестирования
-    .setDefaultMemberPermissions(0)
     .setIntegrationTypes(0, 1)
     .setContexts(0, 1, 2)
     .addStringOption(option =>
@@ -151,8 +152,6 @@ const timenow = new SlashCommandBuilder()
 const timezonenow = new SlashCommandBuilder()
     .setName('timezone')
     .setDescription('Display current time in selected timezone')
-//.setDefaultMemberPermissions(0) блокирует использование всем кроме администраторов. Удалить после закрытого тестирования
-    .setDefaultMemberPermissions(0)
     .setIntegrationTypes(0, 1)
     .setContexts(0, 1, 2)
     .addSubcommand(subcommand =>
@@ -380,8 +379,6 @@ const timestampint = new SlashCommandBuilder()
         "sv-SE": `${locale.sv_SE.desctimestamp}`,
         "uk": `${locale.uk.desctimestamp}`,
     })
-//.setDefaultMemberPermissions(0) блокирует использование всем кроме администраторов. Удалить после закрытого тестирования
-    .setDefaultMemberPermissions(0)
     .setIntegrationTypes(0, 1)
     .setContexts(0, 1, 2)
     .addIntegerOption(option =>
@@ -669,8 +666,6 @@ const timestampint = new SlashCommandBuilder()
 const convertint = new SlashCommandBuilder()
     .setName('convert')
     .setDescription('Convert UNIX string to Date and backwards')
-//.setDefaultMemberPermissions(0) блокирует использование всем кроме администраторов. Удалить после закрытого тестирования
-    .setDefaultMemberPermissions(0)
     .setIntegrationTypes(0, 1)
     .setContexts(0, 1, 2)
     .addSubcommand(subcommand =>
@@ -1100,8 +1095,6 @@ const convertint = new SlashCommandBuilder()
 const calcint = new SlashCommandBuilder()
     .setName('calc')
     .setDescription('Time and Date Calculator')
-//.setDefaultMemberPermissions(0) блокирует использование всем кроме администраторов. Удалить после закрытого тестирования
-    .setDefaultMemberPermissions(0)
     .setIntegrationTypes(0, 1)
     .setContexts(0, 1, 2)
     .addSubcommand(subcommand =>

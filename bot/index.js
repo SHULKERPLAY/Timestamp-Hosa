@@ -76,42 +76,43 @@ client.on('interactionCreate', (interaction) => {
     } else if (interaction.commandName === 'about') {
         incrementStat('aboutcmd');
         const aboutloc = {
-            "ru": `:blue_heart: ${locale.ru.aboutcmd}`,
-            "en-US": `:blue_heart: ${locale.en_us.aboutcmd}`,
-            "de": `:blue_heart: ${locale.de.aboutcmd}`,
-            "pl": `:blue_heart: ${locale.pl.aboutcmd}`,
-            "fr": `:blue_heart: ${locale.fr.aboutcmd}`,
-            "ja": `:blue_heart: ${locale.ja.aboutcmd}`,
-            "pt-BR": `:blue_heart: ${locale.pt_BR.aboutcmd}`,
-            "ko": `:blue_heart: ${locale.ko.aboutcmd}`,
-            "bg": `:blue_heart: ${locale.bg.aboutcmd}`,
-            "sv-SE": `:blue_heart: ${locale.sv_SE.aboutcmd}`,
-            "uk": `:blue_heart: ${locale.uk.aboutcmd}`,
+            "ru": `${locale.ru.aboutcmd} \n:sparkles: Версия ядра: ${corever}`,
+            "en-US": `${locale.en_us.aboutcmd} \n:sparkles: Core version: ${corever}`,
+            "de": `${locale.de.aboutcmd} \n:sparkles: Core-Version: ${corever}`,
+            "pl": `${locale.pl.aboutcmd} \n:sparkles: Wersja rdzenia: ${corever}`,
+            "fr": `${locale.fr.aboutcmd} \n:sparkles: Version du noyau : ${corever}`,
+            "ja": `${locale.ja.aboutcmd} \n:sparkles: コアバージョン: ${corever}`,
+            "pt-BR": `${locale.pt_BR.aboutcmd} \n:sparkles: Versão do núcleo: ${corever}`,
+            "ko": `${locale.ko.aboutcmd} \n:sparkles: 코어 버전: ${corever}`,
+            "bg": `${locale.bg.aboutcmd} \n:sparkles: Версия на ядрото: ${corever}`,
+            "sv-SE": `${locale.sv_SE.aboutcmd} \n:sparkles: Kärnversion: ${corever}`,
+            "uk": `${locale.uk.aboutcmd} \n:sparkles: Версія ядра: ${corever}`,
         };
         interaction.reply({
-            content: aboutloc[interaction.locale] ?? `:blue_heart: We are still in early access. Additional info available on developer server`,
+            content: aboutloc[interaction.locale] ?? `:alarm_clock: Create timestamps for your messages with `/timestamp`, calculate dates with `/calc`! Check the full command list for more features! \n:knot: Noticed a localization error or a bug? Have a feature request? [Visit our GitHub](https://github.com/SHULKERPLAY/Timestamp-Hosa)! \n :gift_heart: [Support Server](https://discord.gg/e2HcXrQ) - <@459657842895486977> \n\n[Terms of Service](https://lunarcreators.ru/timestamp-hosa/tos/) and [Privacy Policy](https://lunarcreators.ru/timestamp-hosa/privacy/) \n:sparkles: Core version: ${corever}`,
             ephemeral: true,
         });
     } else if (interaction.commandName === 'invite') {
         incrementStat('invitecmd');
         const inviteloc = {
-            "ru": `:gift_heart: ${locale.ru.invitecmd}`,
-            "en-US": `:gift_heart: ${locale.en_us.invitecmd}`,
-            "de": `:gift_heart: ${locale.de.invitecmd}`,
-            "pl": `:gift_heart: ${locale.pl.invitecmd}`,
-            "fr": `:gift_heart: ${locale.fr.invitecmd}`,
-            "ja": `:gift_heart: ${locale.ja.invitecmd}`,
-            "pt-BR": `:gift_heart: ${locale.pt_BR.invitecmd}`,
-            "ko": `:gift_heart: ${locale.ko.invitecmd}`,
-            "bg": `:gift_heart: ${locale.bg.invitecmd}`,
-            "sv-SE": `:gift_heart: ${locale.sv_SE.invitecmd}`,
-            "uk": `:gift_heart: ${locale.uk.invitecmd}`,
+            "ru": `${locale.ru.invitecmd}`,
+            "en-US": `${locale.en_us.invitecmd}`,
+            "de": `${locale.de.invitecmd}`,
+            "pl": `${locale.pl.invitecmd}`,
+            "fr": `${locale.fr.invitecmd}`,
+            "ja": `${locale.ja.invitecmd}`,
+            "pt-BR": `${locale.pt_BR.invitecmd}`,
+            "ko": `${locale.ko.invitecmd}`,
+            "bg": `${locale.bg.invitecmd}`,
+            "sv-SE": `${locale.sv_SE.invitecmd}`,
+            "uk": `${locale.uk.invitecmd}`,
         };
         interaction.reply({
-            content: inviteloc[interaction.locale] ?? `:gift_heart: Invites not work in Early Access`,
+            content: inviteloc[interaction.locale] ?? `:gift_heart: Add the app to your profile or server through the [Discord App Directory](https://discord.com/discovery/applications/1449839745910964254)! \n*By installing it to your profile, you can use the app's commands in any of your chats* \n\n[Or invite the bot to your server directly](https://discord.com/oauth2/authorize?client_id=1449839745910964254&permissions=277025410048&integration_type=0&scope=bot)`,
             ephemeral: true,
         });
     } else if (interaction.commandName === 'now') {
+        //Reply with current timestamp
         incrementStat('nowcmd');
         var nowtimestamp = Math.floor(Date.now() / 1000)
         var style = interaction.options.getString('style');
@@ -136,6 +137,7 @@ client.on('interactionCreate', (interaction) => {
         } else if (style === 'Relative') {
             var nowstyle = ':R'
         }
+        console.log(`Tstamp created (/now)`)
         const nowloc = {
             "ru": `${locale.ru.now}: <t:${nowtimestamp}${nowstyle}> \n${locale.ru.timestamp}: \`<t:${nowtimestamp}${nowstyle}>\``,
             "en-US": `${locale.en_us.now}: <t:${nowtimestamp}${nowstyle}> \n${locale.en_us.timestamp}: \`<t:${nowtimestamp}${nowstyle}>\``,
@@ -158,6 +160,7 @@ client.on('interactionCreate', (interaction) => {
 //subcommand string: interaction.options.getSubcommand()
         var tztimestamp = Date.now()
         var tzdate = new Date(tztimestamp)
+        //get timezone string from options and reply with user locale
         var timezonesel = interaction.options.getString('timezone');
         if (timezonesel === undefined || style === null) {
             var timezonesel = 'GMT'
@@ -167,6 +170,7 @@ client.on('interactionCreate', (interaction) => {
         } else { 
             var timelocale = 'en-UK'
         }
+        console.log(`Tzone checked Etc/${timezonesel}`)
         var tzreply = tzdate.toLocaleString(`${timelocale}`, { timeZone: `Etc/${timezonesel}`, day: 'numeric', month: 'long', year: 'numeric', hour: 'numeric', minute: 'numeric', second: 'numeric', weekday: "long" })
         const timezoneloc = {
             "ru": `:alarm_clock: ${locale.ru.nowintz}: **__${tzreply}__** \n*${locale.ru.localtime}: <t:${Math.floor(tztimestamp / 1000)}:F>*`,
@@ -250,6 +254,7 @@ client.on('interactionCreate', (interaction) => {
         var tsdateString = `${tsyear}-${tsmonth}-${tsday}T${tshour}:${tsmin}:${tssec}.000Z`;
         var calcDate = new Date(tsdateString).getTime();
         var gettimestamp = calcDate / 1000 - tzoffset
+        console.log(`Tstamp created ${gettimestamp}`)
         const timestamploc = {
             "ru": `:white_check_mark: ${locale.ru.preview}: <t:${gettimestamp}${tsstyle}> \n:arrow_right: **${locale.ru.timestamp}:** \`<t:${gettimestamp}${tsstyle}>\``,
             "en-US": `:white_check_mark: ${locale.en_us.preview}: <t:${gettimestamp}${tsstyle}> \n:arrow_right: **${locale.en_us.timestamp}:** \`<t:${gettimestamp}${tsstyle}>\``,
@@ -374,6 +379,7 @@ client.on('interactionCreate', (interaction) => {
                     var cvreplystyle = locale.uk.seconds
                 } else { var cvreplystyle = 'seconds' }
             }
+            console.log(`Converted date to ${gettimestamp}`)
             const cvunixloc = {
                 "ru": `:abacus: **${locale.ru.result}:** \`${gettimestamp}\` *${cvreplystyle} ${locale.ru.since1970} (UNIX)*`,
                 "en-US": `:abacus: **${locale.en_us.result}:** \`${gettimestamp}\` *${cvreplystyle} ${locale.en_us.since1970} (UNIX)*`,
@@ -404,6 +410,7 @@ client.on('interactionCreate', (interaction) => {
                 var msdigits = '3'
             } else {
                 var cvdate = new Date(cvtimestamp * 1000)
+                //never set it to 0
                 var msdigits = '1'
             }
             //Date output locale
@@ -412,6 +419,7 @@ client.on('interactionCreate', (interaction) => {
             } else { 
                 var timelocale = 'en-UK'
             }
+            console.log(`Converted ${cvtimestamp} to date`)
             var cvreply = cvdate.toLocaleString(`${timelocale}`, { timeZone: `Etc/${timezonesel}`, timeZoneName: 'longOffset', day: 'numeric', month: 'long', year: 'numeric', hour: 'numeric', minute: 'numeric', second: 'numeric', fractionalSecondDigits: `${msdigits}`, weekday: "long" })
             const cvdateloc = { 
                 "ru": `:date: ${locale.ru.result}: **__${cvreply}__**`,
@@ -489,10 +497,12 @@ client.on('interactionCreate', (interaction) => {
             var calcfromtimestamp = new Date(calcfromdateString).getTime();
             var calctotimestamp = new Date(calctodateString).getTime();
             var calcdiff = Math.floor(Math.abs(calctotimestamp - calcfromtimestamp) / 1000)
+            //now we get days, hours, mins and secs from seconds
             var daysdiff = Math.floor(calcdiff / 86400)
             var hoursdiff = Math.floor((calcdiff - (daysdiff * 86400)) / 3600)
             var minsdiff = Math.floor(((calcdiff - ((daysdiff * 86400) + (hoursdiff * 3600))) / 60))
             var secsdiff = Math.floor(calcdiff - ((daysdiff * 86400) + (hoursdiff * 3600) + (minsdiff * 60)))
+            console.log(`Diff calculated ${calcdiff}`)
             const calcfromtoloc = {
                 "ru": `:white_check_mark: ${locale.ru.datesdiff}: **__${daysdiff} ${locale.ru.days} ${hoursdiff} ${locale.ru.hours} ${minsdiff} ${locale.ru.minutes} ${secsdiff} ${locale.ru.seconds}__** \n:hourglass_flowing_sand: \`${calcdiff}\` *${locale.ru.seconds}*`,
                 "en-US": `:white_check_mark: ${locale.en_us.datesdiff}: **__${daysdiff} ${locale.en_us.days} ${hoursdiff} ${locale.en_us.hours} ${minsdiff} ${locale.en_us.minutes} ${secsdiff} ${locale.en_us.seconds}__** \n:hourglass_flowing_sand: \`${calcdiff}\` *${locale.en_us.seconds}*`,
@@ -511,8 +521,10 @@ client.on('interactionCreate', (interaction) => {
                 ephemeral: isephemeral,
             });           
         } else if (interaction.options.getSubcommand() === 'fromnow') {
+            //get current time
             var calcarg1 = Date.now()
         } else if (interaction.options.getSubcommand() === 'fromdate') {
+            //else set 1st arg from user input
             var calcyear = interaction.options.getInteger('year');
             var calcmonth = interaction.options.getString('month');
             var calcday = interaction.options.getInteger('day');
@@ -541,6 +553,7 @@ client.on('interactionCreate', (interaction) => {
             var calcarg1 = new Date(calcdateString).getTime();
         }
         if (interaction.options.getSubcommand() === 'fromnow' || interaction.options.getSubcommand() === 'fromdate') {
+            //if calculating with 1st arg then we setting 2nd arg
             var timezonesel = interaction.options.getString('timezone');
             var calcarg2y = interaction.options.getInteger('years') * 31536000000;
             var calcarg2m = interaction.options.getInteger('months') * 2592000000;
@@ -551,6 +564,7 @@ client.on('interactionCreate', (interaction) => {
             var calcarg2s = interaction.options.getInteger('seconds') * 1000;
             var calcarg2ms = interaction.options.getInteger('milliseconds');
             var calcarg2 = calcarg2ms + calcarg2s + calcarg2min + calcarg2h + calcarg2d + calcarg2w + calcarg2m + calcarg2y
+            //If subtract then reverting sign of value
             if (calcmatharg === 'Subtract') { var calcarg2 = -calcarg2 }
             if (timezonesel === undefined || timezonesel === null) {
                 var timezonesel = 'GMT'
@@ -562,6 +576,7 @@ client.on('interactionCreate', (interaction) => {
                 var timelocale = 'en-UK'
             }
             var calcresult = calcarg1 + calcarg2
+            console.log(`Calculated ${calcarg1} + ${calcarg2}`)
             var calcresdate = new Date(calcresult)
             var calcreply = calcresdate.toLocaleString(`${timelocale}`, { timeZone: `Etc/${timezonesel}`, timeZoneName: 'longOffset', day: 'numeric', month: 'long', year: 'numeric', hour: 'numeric', minute: 'numeric', second: 'numeric', fractionalSecondDigits: `3`, weekday: "long" })
             const calcdateloc = {
@@ -595,7 +610,7 @@ client.on('interactionCreate', (interaction) => {
     await client.rest.put(Routes.applicationCommands(client.user.id), { body: commands });
 
     client.user.setPresence({
-    activities: [{ name: `Early Access`, type: ActivityType.Listening }],
-    status: 'idle',
+    activities: [{ name: `/about • ${corever}`, type: ActivityType.Streaming }],
+    status: 'online',
     });
 })();
