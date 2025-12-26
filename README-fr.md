@@ -22,7 +22,11 @@ Timestamp 補佐 est un Bot Discord / Application de profil qui permet de créer
  
  - `/timestamp` - Crée un horodatage à insérer basé sur la date que vous indiquez. Arguments : `year`, `month`, `day`, `hour`, `minute`, `second`, `timezone`, `style`, `publicreply`.
  
+ ![timestamp](https://lunarcreators.ru/wp-content/uploads/2025/12/timestampcmd.gif)
+ 
  - `/timezone` - sous-fonctions `gmtplus [timezone]` (pour GMT +1 à GMT +14), `gmtminus [timezone]` (pour GMT -1 à GMT -12), `keyzones [timezone]` (pour d'autres fuseaux comme PST, CET, etc.). Affiche l'heure actuelle dans le fuseau horaire choisi.
+ 
+ ![timezone](https://lunarcreators.ru/wp-content/uploads/2025/12/timezonecmd.gif)
  
  - `/convert` - Convertit le temps :
     - `todate` - Convertit un horodatage UNIX en une date/heure lisible. Arguments : `unixtime` (pour insérer le temps UNIX), `withms` (pour choisir le format UNIX, `true` en millisecondes depuis le 01.01.1970, `false` en secondes).
@@ -30,8 +34,13 @@ Timestamp 補佐 est un Bot Discord / Application de profil qui permet de créer
 
 -  `/calc` - sous-fonctions `fromnow`, `fromdate` et `from-to` pour les calculs avec des dates arbitraires :
    - `fromnow` est conçu pour ajouter ou soustraire un certain temps à la date et l'heure actuelles. Arguments : `timezone`, `matharg` (ajouter ou soustraire), `years`, `months`, `days`, `hours`, `minutes`, `seconds`, `milliseconds`.
+   
+   ![fromnow](https://lunarcreators.ru/wp-content/uploads/2025/12/calcfrnowcmd.gif)
+   
    - `fromdate` est conçu pour ajouter ou soustraire un certain temps à une date et heure arbitraires. Arguments : `timezone`, `matharg`, les composants de la date initiale (`year`, `month`, etc.) et le temps à ajouter/soustraire (`years`, `months`, etc.).
    - `from-to` est conçu pour calculer la quantité de temps écoulée entre deux dates. Arguments : `fromyear`, `frommonth`, `fromday`, `fromhour`, `fromminute`, `fromsecond` (Date de début) et `toyear`, `tomonth`, `today`, `tohour`, `tominute`, `tosecond` (Date de fin).
+   
+       ![fromto](https://lunarcreators.ru/wp-content/uploads/2025/12/calcfrtocmd.gif)
 
 - `/ping` - Vérification de la latence du bot.
 

@@ -20,10 +20,13 @@ Timestamp 補佐 ist ein Discord Bot / eine Profil-App, mit der Sie beliebige Ze
 
  - `/now` - Gibt das aktuelle Datum und den Zeitstempel zum Einfügen aus. Argumente: `style`, `publicreply`.
  
-
  - `/timestamp` - Erstellt einen Zeitstempel zum Einfügen basierend auf dem von Ihnen angegebenen Datum. Argumente: `year`, `month`, `day`, `hour`, `minute`, `second`, `timezone`, `style`, `publicreply`.
  
+ ![timestamp](https://lunarcreators.ru/wp-content/uploads/2025/12/timestampcmd.gif)
+ 
  - `/timezone` - Unterfunktionen `gmtplus [timezone]` (für GMT +1 bis +14), `gmtminus [timezone]` (für GMT -1 bis -12), `keyzones [timezone]` (für andere Zonen wie PST, CET usw.). Zeigt die aktuelle Zeit in der gewählten Zeitzone an.
+
+![timezone](https://lunarcreators.ru/wp-content/uploads/2025/12/timezonecmd.gif)
 
  - `/convert` - Konvertiert Zeit:
     - `todate` - Konvertiert einen UNIX-Zeitstempel in ein lesbares Datum/Zeit. Argumente: `unixtime`, `withms` (`true` für Millisekunden seit 1.1.1970, `false` für Sekunden).
@@ -31,8 +34,13 @@ Timestamp 補佐 ist ein Discord Bot / eine Profil-App, mit der Sie beliebige Ze
 
 -  `/calc` - Unterfunktionen `fromnow`, `fromdate` und `from-to` für Berechnungen mit beliebigen Daten:
    - `fromnow`: Addiert oder subtrahiert Zeit vom aktuellen Datum. Argumente: `timezone`, `matharg`, `years`, `months`, `days`, `hours`, `minutes`, `seconds`, `milliseconds`.
+   
+   ![fromnow](https://lunarcreators.ru/wp-content/uploads/2025/12/calcfrnowcmd.gif)
+   
    - `fromdate`: Addiert oder subtrahiert Zeit von einem beliebigen Datum. Argumente: `timezone`, `matharg`, Datumskomponenten (`year`, `month` etc.) und die zu addierende/subtrahierende Zeit.
    - `from-to`: Berechnet die Zeitspanne zwischen zwei Daten. Argumente: `fromyear` bis `fromsecond` (Start) und `toyear` bis `tosecond` (Ende).
+   
+       ![fromto](https://lunarcreators.ru/wp-content/uploads/2025/12/calcfrtocmd.gif)
 
 - `/ping` - Überprüfung der Bot-Antwortzeit.
 

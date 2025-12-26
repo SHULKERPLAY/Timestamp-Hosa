@@ -18,11 +18,15 @@ Timestamp 補佐は、メッセージ埋め込み用のタイムスタンプ作�
 
 - `timezone` 引数を使用すると、選択したタイムゾーンに応じてボットの回答が調整されます。
 
+![timezone](https://lunarcreators.ru/wp-content/uploads/2025/12/timezonecmd.gif)
+
 - `style` 引数を使用すると、タイムスタンプに表示される日時形式を選択できます。
 
  - `/now` - 現在の日時とコピー用タイムスタンプを表示。引数: `style`, `publicreply`
  
  - `/timestamp` - 指定した日時に基づいてタイムスタンプを作成。引数: `year`, `month`, `day`, `hour`, `minute`, `second`, `timezone`, `style`, `publicreply`
+ 
+ ![timestamp](https://lunarcreators.ru/wp-content/uploads/2025/12/timestampcmd.gif)
  
  - `/timezone` - サブ機能 `gmtplus`, `gmtminus`, `keyzones` (PST, CETなど)。選択した地域の現在時刻を表示。
  
@@ -31,6 +35,10 @@ Timestamp 補佐は、メッセージ埋め込み用のタイムスタンプ作�
     - `tounix` - 指定した日時をUNIXタイムスタンプに変換。
     
 - `/calc` - `fromnow`（現在から）、`fromdate`（指定日から）、`from-to`（期間計算）のサブコマンド。
+
+    ![fromnow](https://lunarcreators.ru/wp-content/uploads/2025/12/calcfrnowcmd.gif)
+
+    ![fromto](https://lunarcreators.ru/wp-content/uploads/2025/12/calcfrtocmd.gif)
 
 - `/ping` - ボットの応答速度を確認。
 

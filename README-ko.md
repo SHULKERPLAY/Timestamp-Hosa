@@ -22,7 +22,11 @@ Timestamp 補佐는 메시지에 삽입할 타임스탬프 생성, 날짜 계산
 
  - `/timestamp` - 지정한 날짜를 바탕으로 삽입용 타임스탬프를 생성합니다. 인수: `year`, `month`, `day`, `hour`, `minute`, `second`, `timezone`, `style`, `publicreply`.
  
+ ![timestamp](https://lunarcreators.ru/wp-content/uploads/2025/12/timestampcmd.gif)
+ 
  - `/timezone` - 하위 기능: `gmtplus [timezone]` (GMT +1 ~ +14), `gmtminus [timezone]` (GMT -1 ~ -12), `keyzones [timezone]` (PST, CET 등 기타 시간대). 선택한 시간대의 현재 시간을 출력합니다.
+ 
+ ![timezone](https://lunarcreators.ru/wp-content/uploads/2025/12/timezonecmd.gif)
 
  - `/convert` - 시간 변환:
     - `todate` - UNIX 타임스탬프를 읽기 쉬운 날짜/시간으로 변환합니다. 인수: `unixtime`, `withms` (`true`는 1970.1.1부터 밀리초 단위, `false`는 초 단위).
@@ -30,8 +34,13 @@ Timestamp 補佐는 메시지에 삽입할 타임스탬프 생성, 날짜 계산
 
 -  `/calc` - 임의의 날짜 계산을 위한 하위 기능 `fromnow`, `fromdate`, `from-to`:
    - `fromnow`: 현재 날짜/시간에서 특정 시간을 더하거나 뺍니다. 인수: `timezone`, `matharg`, `years`, `months`, `days`, `hours`, `minutes`, `seconds`, `milliseconds`.
+   
+   ![fromnow](https://lunarcreators.ru/wp-content/uploads/2025/12/calcfrnowcmd.gif)
+   
    - `fromdate`: 임의의 날짜/시간에서 특정 시간을 더하거나 뺍니다. 인수: `timezone`, `matharg`, 기준 날짜(`year`, `month` 등) 및 더하거나 뺄 시간.
    - `from-to`: 두 날짜 사이에 경과한 시간의 양을 계산합니다. 인수: `fromyear`~`fromsecond` (시작 날짜) 및 `toyear`~`tosecond` (종료 날짜).
+   
+       ![fromto](https://lunarcreators.ru/wp-content/uploads/2025/12/calcfrtocmd.gif)
 
 - `/ping` - 봇 응답 속도 확인.
 

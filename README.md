@@ -24,7 +24,11 @@ Timestamp 補佐 is a Discord Bot / Profile App that allows you to create any ti
  
  - `/timestamp` - Creates a timestamp based on a date you specify. Arguments: `year`, `month`, `day`, `hour`, `minute`, `second`, `timezone`, `style`, `publicreply`.
  
+ ![timestamp](https://lunarcreators.ru/wp-content/uploads/2025/12/timestampcmd.gif)
+ 
  - `/timezone` - sub-functions `gmtplus [timezone]` (for GMT +1 to +14), `gmtminus [timezone]` (for GMT -1 to -12), `keyzones [timezone]` (for other zones like PST, CET, etc.). Displays current time in the selected time zone.
+ 
+ ![timezone](https://lunarcreators.ru/wp-content/uploads/2025/12/timezonecmd.gif)
  
  - `/convert` - Time conversion:
     - `todate` - Converts a UNIX timestamp to a readable date/time. Arguments: `unixtime`, `withms` (choose format: `true` for ms, `false` for seconds from 1.1.1970).
@@ -32,8 +36,13 @@ Timestamp 補佐 is a Discord Bot / Profile App that allows you to create any ti
 
 - `/calc` - sub-functions `fromnow`, `fromdate`, and `from-to` for calculations with arbitrary dates:
    - `fromnow`: add/subtract time from the current date.
+   
+   ![fromnow](https://lunarcreators.ru/wp-content/uploads/2025/12/calcfrnowcmd.gif)
+   
    - `fromdate`: add/subtract time from a specific date.
    - `from-to`: calculate the time elapsed between two dates.
+   
+    ![fromto](https://lunarcreators.ru/wp-content/uploads/2025/12/calcfrtocmd.gif)
 
 - `/ping` - Check bot latency.
 
