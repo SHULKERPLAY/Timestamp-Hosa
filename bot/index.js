@@ -1,4 +1,4 @@
-const corever = 'v1.0.0';
+const corever = 'v1.0.1';
 const supportedtimelocale = ["en-US", "ru", "de", "pl", "fr", "ja", "pt-BR", "ko", "bg", "sv-SE", "uk"]; //and en-UK as default
 
 const fs = require('fs');
@@ -49,8 +49,10 @@ client.on('interactionCreate', (interaction) => {
     //decide if reply be ephemeral (publicreply: false / true)
     if (interaction.options.getBoolean('publicreply') === undefined || interaction.options.getBoolean('publicreply') === null || interaction.options.getBoolean('publicreply') === false) {
         var isephemeral = true
+        var publicreplylog = ''
     } else { 
         incrementStat(`use.publicreply`);
+        var publicreplylog = 'public'
         var isephemeral = false
     }
     //get commandName
@@ -137,7 +139,7 @@ client.on('interactionCreate', (interaction) => {
         } else if (style === 'Relative') {
             var nowstyle = ':R'
         }
-        console.log(`Tstamp created (/now)`)
+        console.log(`Tstamp created (/now) ${publicreplylog}`)
         const nowloc = {
             "ru": `${locale.ru.now}: <t:${nowtimestamp}${nowstyle}> \n${locale.ru.timestamp}: \`<t:${nowtimestamp}${nowstyle}>\``,
             "en-US": `${locale.en_us.now}: <t:${nowtimestamp}${nowstyle}> \n${locale.en_us.timestamp}: \`<t:${nowtimestamp}${nowstyle}>\``,
@@ -170,7 +172,7 @@ client.on('interactionCreate', (interaction) => {
         } else { 
             var timelocale = 'en-UK'
         }
-        console.log(`Tzone checked Etc/${timezonesel}`)
+        console.log(`Tzone checked Etc/${timezonesel} ${publicreplylog}`)
         var tzreply = tzdate.toLocaleString(`${timelocale}`, { timeZone: `Etc/${timezonesel}`, day: 'numeric', month: 'long', year: 'numeric', hour: 'numeric', minute: 'numeric', second: 'numeric', weekday: "long" })
         const timezoneloc = {
             "ru": `:alarm_clock: ${locale.ru.nowintz}: **__${tzreply}__** \n*${locale.ru.localtime}: <t:${Math.floor(tztimestamp / 1000)}:F>*`,
@@ -254,7 +256,7 @@ client.on('interactionCreate', (interaction) => {
         var tsdateString = `${tsyear}-${tsmonth}-${tsday}T${tshour}:${tsmin}:${tssec}.000Z`;
         var calcDate = new Date(tsdateString).getTime();
         var gettimestamp = calcDate / 1000 - tzoffset
-        console.log(`Tstamp created ${gettimestamp}`)
+        console.log(`Tstamp created ${gettimestamp} ${publicreplylog}`)
         const timestamploc = {
             "ru": `:white_check_mark: ${locale.ru.preview}: <t:${gettimestamp}${tsstyle}> \n:arrow_right: **${locale.ru.timestamp}:** \`<t:${gettimestamp}${tsstyle}>\``,
             "en-US": `:white_check_mark: ${locale.en_us.preview}: <t:${gettimestamp}${tsstyle}> \n:arrow_right: **${locale.en_us.timestamp}:** \`<t:${gettimestamp}${tsstyle}>\``,
@@ -379,7 +381,7 @@ client.on('interactionCreate', (interaction) => {
                     var cvreplystyle = locale.uk.seconds
                 } else { var cvreplystyle = 'seconds' }
             }
-            console.log(`Converted date to ${gettimestamp}`)
+            console.log(`Converted date to ${gettimestamp} ${publicreplylog}`)
             const cvunixloc = {
                 "ru": `:abacus: **${locale.ru.result}:** \`${gettimestamp}\` *${cvreplystyle} ${locale.ru.since1970} (UNIX)*`,
                 "en-US": `:abacus: **${locale.en_us.result}:** \`${gettimestamp}\` *${cvreplystyle} ${locale.en_us.since1970} (UNIX)*`,
@@ -419,7 +421,7 @@ client.on('interactionCreate', (interaction) => {
             } else { 
                 var timelocale = 'en-UK'
             }
-            console.log(`Converted ${cvtimestamp} to date`)
+            console.log(`Converted ${cvtimestamp} to date ${publicreplylog}`)
             var cvreply = cvdate.toLocaleString(`${timelocale}`, { timeZone: `Etc/${timezonesel}`, timeZoneName: 'longOffset', day: 'numeric', month: 'long', year: 'numeric', hour: 'numeric', minute: 'numeric', second: 'numeric', fractionalSecondDigits: `${msdigits}`, weekday: "long" })
             const cvdateloc = { 
                 "ru": `:date: ${locale.ru.result}: **__${cvreply}__**`,
@@ -502,7 +504,7 @@ client.on('interactionCreate', (interaction) => {
             var hoursdiff = Math.floor((calcdiff - (daysdiff * 86400)) / 3600)
             var minsdiff = Math.floor(((calcdiff - ((daysdiff * 86400) + (hoursdiff * 3600))) / 60))
             var secsdiff = Math.floor(calcdiff - ((daysdiff * 86400) + (hoursdiff * 3600) + (minsdiff * 60)))
-            console.log(`Diff calculated ${calcdiff}`)
+            console.log(`Diff calculated ${calcdiff} ${publicreplylog}`)
             const calcfromtoloc = {
                 "ru": `:white_check_mark: ${locale.ru.datesdiff}: **__${daysdiff} ${locale.ru.days} ${hoursdiff} ${locale.ru.hours} ${minsdiff} ${locale.ru.minutes} ${secsdiff} ${locale.ru.seconds}__** \n:hourglass_flowing_sand: \`${calcdiff}\` *${locale.ru.seconds}*`,
                 "en-US": `:white_check_mark: ${locale.en_us.datesdiff}: **__${daysdiff} ${locale.en_us.days} ${hoursdiff} ${locale.en_us.hours} ${minsdiff} ${locale.en_us.minutes} ${secsdiff} ${locale.en_us.seconds}__** \n:hourglass_flowing_sand: \`${calcdiff}\` *${locale.en_us.seconds}*`,
@@ -576,7 +578,7 @@ client.on('interactionCreate', (interaction) => {
                 var timelocale = 'en-UK'
             }
             var calcresult = calcarg1 + calcarg2
-            console.log(`Calculated ${calcarg1} + ${calcarg2}`)
+            console.log(`Calculated ${calcarg1} + ${calcarg2} ${publicreplylog}`)
             var calcresdate = new Date(calcresult)
             var calcreply = calcresdate.toLocaleString(`${timelocale}`, { timeZone: `Etc/${timezonesel}`, timeZoneName: 'longOffset', day: 'numeric', month: 'long', year: 'numeric', hour: 'numeric', minute: 'numeric', second: 'numeric', fractionalSecondDigits: `3`, weekday: "long" })
             const calcdateloc = {
