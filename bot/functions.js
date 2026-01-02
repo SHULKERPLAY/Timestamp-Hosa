@@ -99,6 +99,14 @@ function convertGmtToSeconds(gmtString) {
         return gmtoffset;
     }
 }
+
+//value randomizer
+//effective range: getRandomInt(-999999999999999, 999999999999999));
+//for date: getRandomInt(-62135596800000, 62135596800000)
+function getRandomInt(min, max) {
+  return Math.floor(Math.random() * (max - min + 1)) + min;
+}
+
 //Here constants
 //Reusable timestamp options
 const timestampstyles = [
@@ -461,5 +469,6 @@ module.exports = {
     timezoneskey,
     monthsoption,
     alltimezones,
-    convertGmtToSeconds
+    convertGmtToSeconds,
+    getRandomInt
 };

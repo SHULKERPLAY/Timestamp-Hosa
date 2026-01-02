@@ -1,9 +1,9 @@
-const corever = 'v1.0.1';
+const corever = 'v1.1a';
 const supportedtimelocale = ["en-US", "ru", "de", "pl", "fr", "ja", "pt-BR", "ko", "bg", "sv-SE", "uk"]; //and en-UK as default
 
 const fs = require('fs');
 const path = require('path');
-const { timestampstyles, timezonesgmtminus, timezonesgmtplus, timezoneskey, monthsoption, alltimezones, convertGmtToSeconds } = require('./functions.js');
+const { timestampstyles, timezonesgmtminus, timezonesgmtplus, timezoneskey, monthsoption, alltimezones, convertGmtToSeconds, getRandomInt } = require('./functions.js');
 const { ping, about, invite, timenow, timezonenow, timestampint, convertint, calcint } = require('./builder.js');
 
 //Statistics
@@ -25,7 +25,6 @@ try {
     console.error('Error while loading locale:', error);
     locale = {};
 }
-
 // Require the necessary discord.js classes
 const { Client, Routes, Events, GatewayIntentBits, ActivityType, setPresence, SlashCommandBuilder } = require('discord.js');
 const { createInterface } = require('node:readline');
@@ -33,14 +32,10 @@ const fetch = require('node-fetch');
 const { token } = require('./config.json');
 
 // Create a new client instance
-const client = new Client({ intents: [GatewayIntentBits.Guilds] });
+const client = new Client({ intents: [GatewayIntentBits.Guilds], rest: { timeout: 60000 } });
 
-client.once(Events.ClientReady, readyClient => {
-    console.log(`Ready! Logged in as ${readyClient.user.tag}`);
-    incrementStat('botlogin');
-});
-
-const commands = [ping, about, invite, timenow, timezonenow, timestampint, convertint, calcint]; // Add your commands with commas to add them to the bot!
+//Define commands
+const commands = [ping, about, invite, timenow, timezonenow, timestampint, convertint, calcint];
 
 const rl = createInterface({ input: process.stdin, output: process.stdout });
 
@@ -601,18 +596,55 @@ client.on('interactionCreate', (interaction) => {
         }
     }
 });
-(async ()=>{
+
+//actions as client ready
+client.once(Events.ClientReady, async(readyClient) => {
+    //fetch application data
+    await readyClient.application.fetch();
+    //Installation Counter
+    const installCount = readyClient.application.approximateUserInstallCount
+    //Login output
+    console.log(`Logged in as ${readyClient.user.tag}. Approx installs: ${installCount}`);
+    incrementStat('botlogin');
+    
+    //Bot Presence List
+    const presencelist = [
+        { name: `/about • ${corever}`, type: ActivityType.Streaming },
+        { name: `/now • With ${installCount}+ installs!`, type: ActivityType.Streaming },
+        { name: `/random • Coming Soon!`, type: ActivityType.Streaming }
+    ];
+    
+    //index init
+    let currentIndex = 0;
+    
+    function presenceupdate() {
+        //check if client ready
+        if (!client.user) return;
+        //Set Presence
+        client.user.setPresence({
+            activities: [presencelist[currentIndex]],
+            status: 'online',
+        });
+        //next index (0 in the end)
+        currentIndex = (currentIndex + 1) % presencelist.length;
+    };
+    
+    //Update presence on Login
+    presenceupdate()
+    //Update presence every (x, ms)
+    setInterval(presenceupdate, 1800000);
+});
+
+//prelogin
+(async() => {
+    //auth
     const question = (q) => new Promise((resolve) => rl.question(q, resolve));
 
     // Log in to Discord with your client's token
     await client.login(token).catch((err) => {
       throw err
     });
-
+    
+    //app commands registration
     await client.rest.put(Routes.applicationCommands(client.user.id), { body: commands });
-
-    client.user.setPresence({
-    activities: [{ name: `/about • ${corever}`, type: ActivityType.Streaming }],
-    status: 'online',
-    });
 })();
