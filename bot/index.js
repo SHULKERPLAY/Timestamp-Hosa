@@ -1,9 +1,9 @@
-const corever = 'v1.1a';
+const corever = 'v1.1b';
 const supportedtimelocale = ["en-US", "ru", "de", "pl", "fr", "ja", "pt-BR", "ko", "bg", "sv-SE", "uk"]; //and en-UK as default
 
 const fs = require('fs');
 const path = require('path');
-const { timestampstyles, timezonesgmtminus, timezonesgmtplus, timezoneskey, monthsoption, alltimezones, convertGmtToSeconds, getRandomInt } = require('./functions.js');
+const { timestampstyles, timezonesgmtminus, timezonesgmtplus, timezoneskey, monthsoption, alltimezones, convertGmtToSeconds, getRandomInt, getDateInt } = require('./functions.js');
 const { ping, about, invite, timenow, timezonenow, timestampint, convertint, calcint } = require('./builder.js');
 
 //Statistics
@@ -193,14 +193,14 @@ client.on('interactionCreate', (interaction) => {
         var tsday = interaction.options.getInteger('day');
         var tshour = interaction.options.getInteger('hour');
         var tsmin = interaction.options.getInteger('minute');
-        var tsseci = interaction.options.getInteger('second');
+        var tssec = interaction.options.getInteger('second');
         var style = interaction.options.getString('style');
-//Offset value to selected timezone
+        //Offset value to selected timezone
         var timezonesel = interaction.options.getString('timezone');
         if (timezonesel === undefined || timezonesel === null) {
             var tzoffset = 0
         } else { var tzoffset = convertGmtToSeconds(timezonesel) }
-//Test if option is specified and set postfix to timestamp
+        //Test if option is specified and set postfix to timestamp
         if (style === undefined || style === null) {
             var tsstyle = ''
         } else if (style === 'ShortT') {
@@ -222,35 +222,8 @@ client.on('interactionCreate', (interaction) => {
         } else if (style === 'Relative') {
             var tsstyle = ':R'
         }
-//This need for the date convertor to work. It length sensitive so if we use int '1' it needs to be '01'
-        if (tsday < 10) {
-            var tsday = `0${tsday}`
-        }
-//Test if option is specified
-        if (tshour === undefined || tshour === null) {
-            var tshour = '00'
-        } else {
-            if (tshour < 10) {
-                var tshour = `0${tshour}`
-            }
-        }
-        if (tsmin === undefined || tsmin === null) {
-            var tsmin = '00'
-        } else {
-            if (tsmin < 10) {
-                var tsmin = `0${tsmin}`
-            }
-        }
-        if (tssec === undefined || tssec === null) {
-            var tssec = '00'
-        } else {
-            if (tssec < 10) {
-                var tssec = `0${tssec}`
-            }
-        }
-        var tsdateString = `${tsyear}-${tsmonth}-${tsday}T${tshour}:${tsmin}:${tssec}.000Z`;
-        var calcDate = new Date(tsdateString).getTime();
-        var gettimestamp = calcDate / 1000 - tzoffset
+        //getDateInt(year, 'month', day, hour, min, sec, ms). Month is required to be 'string'
+        var gettimestamp = getDateInt(tsyear, tsmonth, tsday, tshour, tsmin, tssec, 0) / 1000 - tzoffset;
         console.log(`Tstamp created ${gettimestamp} ${publicreplylog}`)
         const timestamploc = {
             "ru": `:white_check_mark: ${locale.ru.preview}: <t:${gettimestamp}${tsstyle}> \n:arrow_right: **${locale.ru.timestamp}:** \`<t:${gettimestamp}${tsstyle}>\``,
@@ -285,43 +258,8 @@ client.on('interactionCreate', (interaction) => {
             if (timezonesel === undefined || timezonesel === null) {
                 var tzoffset = 0
             } else { var tzoffset = convertGmtToSeconds(timezonesel) }
-            //This need for the date convertor to work. It length sensitive so if we use int '1' it needs to be '01'
-            if (cvday < 10) {
-                var cvday = `0${cvday}`
-            }
-            //Test if option is specified
-            if (cvhour === undefined || cvhour === null) {
-                var cvhour = '00'
-            } else {
-                if (cvhour < 10) {
-                    var cvhour = `0${cvhour}`
-                }
-            }
-            if (cvmin === undefined || cvmin === null) {
-                var cvmin = '00'
-            } else {
-                if (cvmin < 10) {
-                    var cvmin = `0${cvmin}`
-                }
-            }
-            if (cvsec === undefined || cvsec === null) {
-                var cvsec = '00'
-            } else {
-                if (cvsec < 10) {
-                    var cvsec = `0${cvsec}`
-                }
-            }
-            if (cvms === undefined || cvms === null) {
-                var cvms = '000'
-            } else {
-                if (cvms < 10) {
-                    var cvms = `00${cvms}`
-                } else if (cvms < 100) {
-                    var cvms = `0${cvms}`
-                }
-            }
-            var cvdateString = `${cvyear}-${cvmonth}-${cvday}T${cvhour}:${cvmin}:${cvsec}.${cvms}Z`;
-            var calctimestamp = new Date(cvdateString).getTime();
+            //getDateInt(year, 'month', day, hour, min, sec, ms). Month is required to be 'string'
+            var calctimestamp = getDateInt(cvyear, cvmonth, cvday, cvhour, cvmin, cvsec, cvms);
             //Calculate value in seconds or in ms
             if ( cvmsdisplay === true ) {
                 var gettimestamp = calctimestamp - tzoffset * 1000
@@ -447,52 +385,15 @@ client.on('interactionCreate', (interaction) => {
             var calcfromhour = interaction.options.getInteger('fromhour');
             var calcfrommin = interaction.options.getInteger('fromminute');
             var calcfromsec = interaction.options.getInteger('fromsecond');
-            if (calcfromday < 10) {
-                var calcfromday = `0${calcfromday}`
-            }
-            if (calcfromhour === undefined || calcfromhour === null) {
-                var calcfromhour = '00'
-            } else if (calcfromhour < 10) {
-                var calcfromhour = `0${calcfromhour}`
-            }
-            if (calcfrommin === undefined || calcfrommin === null) {
-                var calcfrommin = '00'
-            } else if (calcfrommin < 10) {
-                var calcfrommin = `0${calcfrommin}`
-            }
-            if (calcfromsec === undefined || calcfromsec === null) {
-                var calcfromsec = '00'
-            } else if (calcfromsec < 10) {
-                var calcfromsec = `0${calcfromsec}`
-            }
             var calctoyear = interaction.options.getInteger('toyear');
             var calctomonth = interaction.options.getString('tomonth');
             var calctoday = interaction.options.getInteger('today');
             var calctohour = interaction.options.getInteger('tohour');
             var calctomin = interaction.options.getInteger('tominute');
             var calctosec = interaction.options.getInteger('tosecond');
-            if (calctoday < 10) {
-                var calctoday = `0${calctoday}`
-            }
-            if (calctohour === undefined || calctohour === null) {
-                var calctohour = '00'
-            } else if (calctohour < 10) {
-                var calctohour = `0${calctohour}`
-            }
-            if (calctomin === undefined || calctomin === null) {
-                var calctomin = '00'
-            } else if (calctomin < 10) {
-                var calctomin = `0${calctomin}`
-            }
-            if (calctosec === undefined || calctosec === null) {
-                var calctosec = '00'
-            } else if (calctosec < 10) {
-                var calctosec = `0${calctosec}`
-            }
-            var calcfromdateString = `${calcfromyear}-${calcfrommonth}-${calcfromday}T${calcfromhour}:${calcfrommin}:${calcfromsec}.000Z`;
-            var calctodateString = `${calctoyear}-${calctomonth}-${calctoday}T${calctohour}:${calctomin}:${calctosec}.000Z`;
-            var calcfromtimestamp = new Date(calcfromdateString).getTime();
-            var calctotimestamp = new Date(calctodateString).getTime();
+            //getDateInt(year, 'month', day, hour, min, sec, ms). Month is required to be 'string'
+            var calcfromtimestamp = getDateInt(calcfromyear, calcfrommonth, calcfromday, calcfromhour, calcfrommin, calcfromsec, 0);
+            var calctotimestamp = getDateInt(calctoyear, calctomonth, calctoday, calctohour, calctomin, calctosec, 0);        
             var calcdiff = Math.floor(Math.abs(calctotimestamp - calcfromtimestamp) / 1000)
             //now we get days, hours, mins and secs from seconds
             var daysdiff = Math.floor(calcdiff / 86400)
@@ -528,26 +429,9 @@ client.on('interactionCreate', (interaction) => {
             var calchour = interaction.options.getInteger('hour');
             var calcmin = interaction.options.getInteger('minute');
             var calcsec = interaction.options.getInteger('second');
-            var calcms = interaction.options.getInteger('millisecond');
-            if (calcday < 10) {
-                var calcday = `0${calcday}`
-            }
-            if (calchour < 10) {
-                var calchour = `0${calchour}`
-            }
-            if (calcmin < 10) {
-                var calcmin = `0${calcmin}`
-            }
-            if (calcsec < 10) {
-                var calcsec = `0${calcsec}`
-            }
-            if (calcms < 10) {
-                var calcms = `00${calcms}`
-            } else if (calcms < 100) {
-                var calcms = `0${calcms}`
-            }
-            var calcdateString = `${calcyear}-${calcmonth}-${calcday}T${calchour}:${calcmin}:${calcsec}.${calcms}Z`;
-            var calcarg1 = new Date(calcdateString).getTime();
+            var calcms = interaction.options.getInteger('millisecond');          
+            //getDateInt(year, 'month', day, hour, min, sec, ms). Month is required to be 'string'
+            var calcarg1 = getDateInt(calcyear, calcmonth, calcday, calchour, calcmin, calcsec, calcms);
         }
         if (interaction.options.getSubcommand() === 'fromnow' || interaction.options.getSubcommand() === 'fromdate') {
             //if calculating with 1st arg then we setting 2nd arg

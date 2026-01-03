@@ -107,6 +107,65 @@ function getRandomInt(min, max) {
   return Math.floor(Math.random() * (max - min + 1)) + min;
 }
 
+//getDateInt(year, 'month', day, hour, min, sec, ms). Month is required to be 'string'
+function getDateInt(year, month, day, hour, min, sec, ms) {
+    //Test if option is specified
+    //this also convert integers to strings
+    //This need for the date convertor to work. It length sensitive so if we use int '1' it needs to be '01'
+    if (year === undefined || year === null) {
+        var year = '0001'
+    } else if (year < 10) {
+        var year = `000${year}`
+    } else if (year < 100) {
+        var year = `00${year}`
+    } else if (year < 1000) {
+        var year = `0${year}`
+    }
+    if (month === undefined || month === null) {
+        var month = '01'
+    } else if (month.length === 1) {
+        var month = `0${month}`
+    }
+    if (day === undefined || day === null) {
+        var day = '01'
+    } else if (day < 10) {
+        var day = `0${day}`
+    }
+    if (hour === undefined || hour === null) {
+        var hour = '00'
+    } else {
+        if (hour < 10) {
+            var hour = `0${hour}`
+        }
+    }
+    if (min === undefined || min === null) {
+        var min = '00'
+    } else {
+        if (min < 10) {
+            var min = `0${min}`
+        }
+    }
+    if (sec === undefined || sec === null) {
+        var sec = '00'
+    } else {
+        if (sec < 10) {
+            var sec = `0${sec}`
+        }
+    }
+    if (ms === undefined || ms === null) {
+        var ms = '000'
+    } else {
+        if (ms < 10) {
+            var ms = `00${ms}`
+        } else if (ms < 100) {
+            var ms = `0${ms}`
+        }
+    }
+    //datestring vars need to be filled with strings
+    var DateString = `${year}-${month}-${day}T${hour}:${min}:${sec}.${ms}Z`;
+    return new Date(DateString).getTime();
+}
+
 //Here constants
 //Reusable timestamp options
 const timestampstyles = [
@@ -470,5 +529,6 @@ module.exports = {
     monthsoption,
     alltimezones,
     convertGmtToSeconds,
-    getRandomInt
+    getRandomInt, 
+    getDateInt
 };
