@@ -104,7 +104,13 @@ function convertGmtToSeconds(gmtString) {
 //effective range: getRandomInt(-999999999999999, 999999999999999));
 //for date: getRandomInt(-62135596800000, 62135596800000)
 function getRandomInt(min, max) {
-  return Math.floor(Math.random() * (max - min + 1)) + min;
+    if (min === undefined || min === null) {
+        var min = -999999999999999
+    }
+    if (max === undefined || max === null) {
+        var max = 999999999999999
+    }
+    return Math.floor(Math.random() * (max - min + 1)) + min;
 }
 
 //getDateInt(year, 'month', day, hour, min, sec, ms). Month is required to be 'string'

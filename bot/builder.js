@@ -2084,7 +2084,7 @@ const calcint = new SlashCommandBuilder()
         )
         //end of publicreply
     )
-    //calculate time betweed dates
+    //calculate time between dates
     .addSubcommand(subcommand =>
         subcommand.setName('from-to')
         .setDescription('Calculate time between two dates')
@@ -2520,7 +2520,604 @@ const calcint = new SlashCommandBuilder()
         )
         //end of publicreply
     )
+
+const randomint = new SlashCommandBuilder()
+    .setName('random')
+    .setDescription('Get fully or custom range random Date and Time or Integer')
+    .setIntegrationTypes(0, 1)
+    .setContexts(0, 1, 2)
+    .addSubcommand(subcommand =>
+        subcommand.setName('date')
+        .setDescription('🎲 Get random Date and Time with custom range support. First date: Min, Second date: Max')
+        .setDescriptionLocalizations({
+            "ru": `🎲 ${locale.ru.descranddate}`,
+            "en-US": `🎲 ${locale.en_us.descranddate}`,
+            "de": `🎲 ${locale.de.descranddate}`,
+            "pl": `🎲 ${locale.pl.descranddate}`,
+            "fr": `🎲 ${locale.fr.descranddate}`,
+            "ja": `🎲 ${locale.ja.descranddate}`,
+            "pt-BR": `🎲 ${locale.pt_BR.descranddate}`,
+            "ko": `🎲 ${locale.ko.descranddate}`,
+            "bg": `🎲 ${locale.bg.descranddate}`,
+            "sv-SE": `🎲 ${locale.sv_SE.descranddate}`,
+            "uk": `🎲 ${locale.uk.descranddate}`,
+        })
+        //first date
+        .addIntegerOption(option =>
+            option.setName('fromyear')
+            .setNameLocalizations({
+                "ru": `${locale.ru.arg.fromyear}`,
+                "en-US": `${locale.en_us.arg.fromyear}`,
+                "de": `${locale.de.arg.fromyear}`,
+                "pl": `${locale.pl.arg.fromyear}`,
+                "fr": `${locale.fr.arg.fromyear}`,
+                "ja": `${locale.ja.arg.fromyear}`,
+                "pt-BR": `${locale.pt_BR.arg.fromyear}`,
+                "ko": `${locale.ko.arg.fromyear}`,
+                "bg": `${locale.bg.arg.fromyear}`,
+                "sv-SE": `${locale.sv_SE.arg.fromyear}`,
+                "uk": `${locale.uk.arg.fromyear}`,
+            })
+            .setDescription('Type first date Year')
+            .setDescriptionLocalizations({
+                "ru": `${locale.ru.typefirstyear}`,
+                "en-US": `${locale.en_us.typefirstyear}`,
+                "de": `${locale.de.typefirstyear}`,
+                "pl": `${locale.pl.typefirstyear}`,
+                "fr": `${locale.fr.typefirstyear}`,
+                "ja": `${locale.ja.typefirstyear}`,
+                "pt-BR": `${locale.pt_BR.typefirstyear}`,
+                "ko": `${locale.ko.typefirstyear}`,
+                "bg": `${locale.bg.typefirstyear}`,
+                "sv-SE": `${locale.sv_SE.typefirstyear}`,
+                "uk": `${locale.uk.typefirstyear}`,
+            })
+            .setMinValue(1)
+            .setMaxValue(3939)
+            .setRequired(true)
+        )
+        //second date
+        .addIntegerOption(option =>
+            option.setName('toyear')
+            .setNameLocalizations({
+                "ru": `${locale.ru.arg.toyear}`,
+                "en-US": `${locale.en_us.arg.toyear}`,
+                "de": `${locale.de.arg.toyear}`,
+                "pl": `${locale.pl.arg.toyear}`,
+                "fr": `${locale.fr.arg.toyear}`,
+                "ja": `${locale.ja.arg.toyear}`,
+                "pt-BR": `${locale.pt_BR.arg.toyear}`,
+                "ko": `${locale.ko.arg.toyear}`,
+                "bg": `${locale.bg.arg.toyear}`,
+                "sv-SE": `${locale.sv_SE.arg.toyear}`,
+                "uk": `${locale.uk.arg.toyear}`,
+            })
+            .setDescription('Type second date Year')
+            .setDescriptionLocalizations({
+                "ru": `${locale.ru.typesecondyear}`,
+                "en-US": `${locale.en_us.typesecondyear}`,
+                "de": `${locale.de.typesecondyear}`,
+                "pl": `${locale.pl.typesecondyear}`,
+                "fr": `${locale.fr.typesecondyear}`,
+                "ja": `${locale.ja.typesecondyear}`,
+                "pt-BR": `${locale.pt_BR.typesecondyear}`,
+                "ko": `${locale.ko.typesecondyear}`,
+                "bg": `${locale.bg.typesecondyear}`,
+                "sv-SE": `${locale.sv_SE.typesecondyear}`,
+                "uk": `${locale.uk.typesecondyear}`,
+            })
+            .setMinValue(1)
+            .setMaxValue(3939)
+            .setRequired(true)
+        )
+        //first date
+        .addStringOption(option =>
+            option.setName('frommonth')
+            .setNameLocalizations({
+                "ru": `${locale.ru.arg.frommonth}`,
+                "en-US": `${locale.en_us.arg.frommonth}`,
+                "de": `${locale.de.arg.frommonth}`,
+                "pl": `${locale.pl.arg.frommonth}`,
+                "fr": `${locale.fr.arg.frommonth}`,
+                "ja": `${locale.ja.arg.frommonth}`,
+                "pt-BR": `${locale.pt_BR.arg.frommonth}`,
+                "ko": `${locale.ko.arg.frommonth}`,
+                "bg": `${locale.bg.arg.frommonth}`,
+                "sv-SE": `${locale.sv_SE.arg.frommonth}`,
+                "uk": `${locale.uk.arg.frommonth}`,
+            })
+            .setDescription('Select first date Month')
+            .setDescriptionLocalizations({
+                "ru": `${locale.ru.selfirstmonth}`,
+                "en-US": `${locale.en_us.selfirstmonth}`,
+                "de": `${locale.de.selfirstmonth}`,
+                "pl": `${locale.pl.selfirstmonth}`,
+                "fr": `${locale.fr.selfirstmonth}`,
+                "ja": `${locale.ja.selfirstmonth}`,
+                "pt-BR": `${locale.pt_BR.selfirstmonth}`,
+                "ko": `${locale.ko.selfirstmonth}`,
+                "bg": `${locale.bg.selfirstmonth}`,
+                "sv-SE": `${locale.sv_SE.selfirstmonth}`,
+                "uk": `${locale.uk.selfirstmonth}`,
+            })
+            .setRequired(false)
+            .addChoices(monthsoption)
+        )
+        .addIntegerOption(option =>
+            option.setName('fromday')
+            .setNameLocalizations({
+                "ru": `${locale.ru.arg.fromday}`,
+                "en-US": `${locale.en_us.arg.fromday}`,
+                "de": `${locale.de.arg.fromday}`,
+                "pl": `${locale.pl.arg.fromday}`,
+                "fr": `${locale.fr.arg.fromday}`,
+                "ja": `${locale.ja.arg.fromday}`,
+                "pt-BR": `${locale.pt_BR.arg.fromday}`,
+                "ko": `${locale.ko.arg.fromday}`,
+                "bg": `${locale.bg.arg.fromday}`,
+                "sv-SE": `${locale.sv_SE.arg.fromday}`,
+                "uk": `${locale.uk.arg.fromday}`,
+            })
+            .setDescription('Type first date Day')
+            .setDescriptionLocalizations({
+                "ru": `${locale.ru.typefirstday}`,
+                "en-US": `${locale.en_us.typefirstday}`,
+                "de": `${locale.de.typefirstday}`,
+                "pl": `${locale.pl.typefirstday}`,
+                "fr": `${locale.fr.typefirstday}`,
+                "ja": `${locale.ja.typefirstday}`,
+                "pt-BR": `${locale.pt_BR.typefirstday}`,
+                "ko": `${locale.ko.typefirstday}`,
+                "bg": `${locale.bg.typefirstday}`,
+                "sv-SE": `${locale.sv_SE.typefirstday}`,
+                "uk": `${locale.uk.typefirstday}`,
+            })
+            .setMinValue(1)
+            .setMaxValue(31)
+            .setRequired(false)
+        )
+        .addIntegerOption(option =>
+            option.setName('fromhour')
+            .setNameLocalizations({
+                "ru": `${locale.ru.arg.fromhour}`,
+                "en-US": `${locale.en_us.arg.fromhour}`,
+                "de": `${locale.de.arg.fromhour}`,
+                "pl": `${locale.pl.arg.fromhour}`,
+                "fr": `${locale.fr.arg.fromhour}`,
+                "ja": `${locale.ja.arg.fromhour}`,
+                "pt-BR": `${locale.pt_BR.arg.fromhour}`,
+                "ko": `${locale.ko.arg.fromhour}`,
+                "bg": `${locale.bg.arg.fromhour}`,
+                "sv-SE": `${locale.sv_SE.arg.fromhour}`,
+                "uk": `${locale.uk.arg.fromhour}`,
+            })
+            .setDescription('Type first date Hour')
+            .setDescriptionLocalizations({
+                "ru": `${locale.ru.typefirsthour}`,
+                "en-US": `${locale.en_us.typefirsthour}`,
+                "de": `${locale.de.typefirsthour}`,
+                "pl": `${locale.pl.typefirsthour}`,
+                "fr": `${locale.fr.typefirsthour}`,
+                "ja": `${locale.ja.typefirsthour}`,
+                "pt-BR": `${locale.pt_BR.typefirsthour}`,
+                "ko": `${locale.ko.typefirsthour}`,
+                "bg": `${locale.bg.typefirsthour}`,
+                "sv-SE": `${locale.sv_SE.typefirsthour}`,
+                "uk": `${locale.uk.typefirsthour}`,
+            })
+            .setMinValue(0)
+            .setMaxValue(23)
+            .setRequired(false)
+        )
+        .addIntegerOption(option =>
+            option.setName('fromminute')
+            .setNameLocalizations({
+                "ru": `${locale.ru.arg.fromminute}`,
+                "en-US": `${locale.en_us.arg.fromminute}`,
+                "de": `${locale.de.arg.fromminute}`,
+                "pl": `${locale.pl.arg.fromminute}`,
+                "fr": `${locale.fr.arg.fromminute}`,
+                "ja": `${locale.ja.arg.fromminute}`,
+                "pt-BR": `${locale.pt_BR.arg.fromminute}`,
+                "ko": `${locale.ko.arg.fromminute}`,
+                "bg": `${locale.bg.arg.fromminute}`,
+                "sv-SE": `${locale.sv_SE.arg.fromminute}`,
+                "uk": `${locale.uk.arg.fromminute}`,
+            })
+            .setDescription('Type first date Minute')
+            .setDescriptionLocalizations({
+                "ru": `${locale.ru.typefirstminute}`,
+                "en-US": `${locale.en_us.typefirstminute}`,
+                "de": `${locale.de.typefirstminute}`,
+                "pl": `${locale.pl.typefirstminute}`,
+                "fr": `${locale.fr.typefirstminute}`,
+                "ja": `${locale.ja.typefirstminute}`,
+                "pt-BR": `${locale.pt_BR.typefirstminute}`,
+                "ko": `${locale.ko.typefirstminute}`,
+                "bg": `${locale.bg.typefirstminute}`,
+                "sv-SE": `${locale.sv_SE.typefirstminute}`,
+                "uk": `${locale.uk.typefirstminute}`,
+            })
+            .setMinValue(0)
+            .setMaxValue(59)
+            .setRequired(false)
+        )
+        .addIntegerOption(option =>
+            option.setName('fromsecond')
+            .setNameLocalizations({
+                "ru": `${locale.ru.arg.fromsecond}`,
+                "en-US": `${locale.en_us.arg.fromsecond}`,
+                "de": `${locale.de.arg.fromsecond}`,
+                "pl": `${locale.pl.arg.fromsecond}`,
+                "fr": `${locale.fr.arg.fromsecond}`,
+                "ja": `${locale.ja.arg.fromsecond}`,
+                "pt-BR": `${locale.pt_BR.arg.fromsecond}`,
+                "ko": `${locale.ko.arg.fromsecond}`,
+                "bg": `${locale.bg.arg.fromsecond}`,
+                "sv-SE": `${locale.sv_SE.arg.fromsecond}`,
+                "uk": `${locale.uk.arg.fromsecond}`,
+            })
+            .setDescription('Type first date Second')
+            .setDescriptionLocalizations({
+                "ru": `${locale.ru.typefirstsecond}`,
+                "en-US": `${locale.en_us.typefirstsecond}`,
+                "de": `${locale.de.typefirstsecond}`,
+                "pl": `${locale.pl.typefirstsecond}`,
+                "fr": `${locale.fr.typefirstsecond}`,
+                "ja": `${locale.ja.typefirstsecond}`,
+                "pt-BR": `${locale.pt_BR.typefirstsecond}`,
+                "ko": `${locale.ko.typefirstsecond}`,
+                "bg": `${locale.bg.typefirstsecond}`,
+                "sv-SE": `${locale.sv_SE.typefirstsecond}`,
+                "uk": `${locale.uk.typefirstsecond}`,
+            })
+            .setMinValue(0)
+            .setMaxValue(59)
+            .setRequired(false)
+        )
+        //second date
+        .addStringOption(option =>
+            option.setName('tomonth')
+            .setNameLocalizations({
+                "ru": `${locale.ru.arg.tomonth}`,
+                "en-US": `${locale.en_us.arg.tomonth}`,
+                "de": `${locale.de.arg.tomonth}`,
+                "pl": `${locale.pl.arg.tomonth}`,
+                "fr": `${locale.fr.arg.tomonth}`,
+                "ja": `${locale.ja.arg.tomonth}`,
+                "pt-BR": `${locale.pt_BR.arg.tomonth}`,
+                "ko": `${locale.ko.arg.tomonth}`,
+                "bg": `${locale.bg.arg.tomonth}`,
+                "sv-SE": `${locale.sv_SE.arg.tomonth}`,
+                "uk": `${locale.uk.arg.tomonth}`,
+            })
+            .setDescription('Select second date Month')
+            .setDescriptionLocalizations({
+                "ru": `${locale.ru.selsecondmonth}`,
+                "en-US": `${locale.en_us.selsecondmonth}`,
+                "de": `${locale.de.selsecondmonth}`,
+                "pl": `${locale.pl.selsecondmonth}`,
+                "fr": `${locale.fr.selsecondmonth}`,
+                "ja": `${locale.ja.selsecondmonth}`,
+                "pt-BR": `${locale.pt_BR.selsecondmonth}`,
+                "ko": `${locale.ko.selsecondmonth}`,
+                "bg": `${locale.bg.selsecondmonth}`,
+                "sv-SE": `${locale.sv_SE.selsecondmonth}`,
+                "uk": `${locale.uk.selsecondmonth}`,
+            })
+            .setRequired(false)
+            .addChoices(monthsoption)
+        )
+        .addIntegerOption(option =>
+            option.setName('today')
+            .setNameLocalizations({
+                "ru": `${locale.ru.arg.today}`,
+                "en-US": `${locale.en_us.arg.today}`,
+                "de": `${locale.de.arg.today}`,
+                "pl": `${locale.pl.arg.today}`,
+                "fr": `${locale.fr.arg.today}`,
+                "ja": `${locale.ja.arg.today}`,
+                "pt-BR": `${locale.pt_BR.arg.today}`,
+                "ko": `${locale.ko.arg.today}`,
+                "bg": `${locale.bg.arg.today}`,
+                "sv-SE": `${locale.sv_SE.arg.today}`,
+                "uk": `${locale.uk.arg.today}`,
+            })
+            .setDescription('Type second date Day')
+            .setDescriptionLocalizations({
+                "ru": `${locale.ru.typesecondday}`,
+                "en-US": `${locale.en_us.typesecondday}`,
+                "de": `${locale.de.typesecondday}`,
+                "pl": `${locale.pl.typesecondday}`,
+                "fr": `${locale.fr.typesecondday}`,
+                "ja": `${locale.ja.typesecondday}`,
+                "pt-BR": `${locale.pt_BR.typesecondday}`,
+                "ko": `${locale.ko.typesecondday}`,
+                "bg": `${locale.bg.typesecondday}`,
+                "sv-SE": `${locale.sv_SE.typesecondday}`,
+                "uk": `${locale.uk.typesecondday}`,
+            })
+            .setMinValue(1)
+            .setMaxValue(31)
+            .setRequired(false)
+        )
+        .addIntegerOption(option =>
+            option.setName('tohour')
+            .setNameLocalizations({
+                "ru": `${locale.ru.arg.tohour}`,
+                "en-US": `${locale.en_us.arg.tohour}`,
+                "de": `${locale.de.arg.tohour}`,
+                "pl": `${locale.pl.arg.tohour}`,
+                "fr": `${locale.fr.arg.tohour}`,
+                "ja": `${locale.ja.arg.tohour}`,
+                "pt-BR": `${locale.pt_BR.arg.tohour}`,
+                "ko": `${locale.ko.arg.tohour}`,
+                "bg": `${locale.bg.arg.tohour}`,
+                "sv-SE": `${locale.sv_SE.arg.tohour}`,
+                "uk": `${locale.uk.arg.tohour}`,
+            })
+            .setDescription('Type second date Hour')
+            .setDescriptionLocalizations({
+                "ru": `${locale.ru.typesecondhour}`,
+                "en-US": `${locale.en_us.typesecondhour}`,
+                "de": `${locale.de.typesecondhour}`,
+                "pl": `${locale.pl.typesecondhour}`,
+                "fr": `${locale.fr.typesecondhour}`,
+                "ja": `${locale.ja.typesecondhour}`,
+                "pt-BR": `${locale.pt_BR.typesecondhour}`,
+                "ko": `${locale.ko.typesecondhour}`,
+                "bg": `${locale.bg.typesecondhour}`,
+                "sv-SE": `${locale.sv_SE.typesecondhour}`,
+                "uk": `${locale.uk.typesecondhour}`,
+            })
+            .setMinValue(0)
+            .setMaxValue(23)
+            .setRequired(false)
+        )
+        .addIntegerOption(option =>
+            option.setName('tominute')
+            .setNameLocalizations({
+                "ru": `${locale.ru.arg.tominute}`,
+                "en-US": `${locale.en_us.arg.tominute}`,
+                "de": `${locale.de.arg.tominute}`,
+                "pl": `${locale.pl.arg.tominute}`,
+                "fr": `${locale.fr.arg.tominute}`,
+                "ja": `${locale.ja.arg.tominute}`,
+                "pt-BR": `${locale.pt_BR.arg.tominute}`,
+                "ko": `${locale.ko.arg.tominute}`,
+                "bg": `${locale.bg.arg.tominute}`,
+                "sv-SE": `${locale.sv_SE.arg.tominute}`,
+                "uk": `${locale.uk.arg.tominute}`,
+            })
+            .setDescription('Type second date Minute')
+            .setDescriptionLocalizations({
+                "ru": `${locale.ru.typesecondminute}`,
+                "en-US": `${locale.en_us.typesecondminute}`,
+                "de": `${locale.de.typesecondminute}`,
+                "pl": `${locale.pl.typesecondminute}`,
+                "fr": `${locale.fr.typesecondminute}`,
+                "ja": `${locale.ja.typesecondminute}`,
+                "pt-BR": `${locale.pt_BR.typesecondminute}`,
+                "ko": `${locale.ko.typesecondminute}`,
+                "bg": `${locale.bg.typesecondminute}`,
+                "sv-SE": `${locale.sv_SE.typesecondminute}`,
+                "uk": `${locale.uk.typesecondminute}`,
+            })
+            .setMinValue(0)
+            .setMaxValue(59)
+            .setRequired(false)
+        )
+        .addIntegerOption(option =>
+            option.setName('tosecond')
+            .setNameLocalizations({
+                "ru": `${locale.ru.arg.tosecond}`,
+                "en-US": `${locale.en_us.arg.tosecond}`,
+                "de": `${locale.de.arg.tosecond}`,
+                "pl": `${locale.pl.arg.tosecond}`,
+                "fr": `${locale.fr.arg.tosecond}`,
+                "ja": `${locale.ja.arg.tosecond}`,
+                "pt-BR": `${locale.pt_BR.arg.tosecond}`,
+                "ko": `${locale.ko.arg.tosecond}`,
+                "bg": `${locale.bg.arg.tosecond}`,
+                "sv-SE": `${locale.sv_SE.arg.tosecond}`,
+                "uk": `${locale.uk.arg.tosecond}`,
+            })
+            .setDescription('Type second date Second')
+            .setDescriptionLocalizations({
+                "ru": `${locale.ru.typesecondsecond}`,
+                "en-US": `${locale.en_us.typesecondsecond}`,
+                "de": `${locale.de.typesecondsecond}`,
+                "pl": `${locale.pl.typesecondsecond}`,
+                "fr": `${locale.fr.typesecondsecond}`,
+                "ja": `${locale.ja.typesecondsecond}`,
+                "pt-BR": `${locale.pt_BR.typesecondsecond}`,
+                "ko": `${locale.ko.typesecondsecond}`,
+                "bg": `${locale.bg.typesecondsecond}`,
+                "sv-SE": `${locale.sv_SE.typesecondsecond}`,
+                "uk": `${locale.uk.typesecondsecond}`,
+            })
+            .setMinValue(0)
+            .setMaxValue(59)
+            .setRequired(false)
+        )
+        //decide if reply be ephemeral (publicreply: false / true)
+        .addBooleanOption(option =>
+            option.setName('publicreply')
+            .setDescription('Make the result visible to everyone in the chat')
+            .setDescriptionLocalizations({
+                "ru": `${locale.ru.publicreply}`,
+                "en-US": `${locale.en_us.publicreply}`,
+                "de": `${locale.de.publicreply}`,
+                "pl": `${locale.pl.publicreply}`,
+                "fr": `${locale.fr.publicreply}`,
+                "ja": `${locale.ja.publicreply}`,
+                "pt-BR": `${locale.pt_BR.publicreply}`,
+                "ko": `${locale.ko.publicreply}`,
+                "bg": `${locale.bg.publicreply}`,
+                "sv-SE": `${locale.sv_SE.publicreply}`,
+                "uk": `${locale.uk.publicreply}`,
+            })
+            .setRequired(false)
+        )
+        //end of publicreply
+    )
+    .addSubcommand(subcommand =>
+        subcommand.setName('integer')
+        .setDescription('🎲 Get random integer with custom range support')
+        .setDescriptionLocalizations({
+            "ru": `🎲 ${locale.ru.descrandinteger}`,
+            "en-US": `🎲 ${locale.en_us.descrandinteger}`,
+            "de": `🎲 ${locale.de.descrandinteger}`,
+            "pl": `🎲 ${locale.pl.descrandinteger}`,
+            "fr": `🎲 ${locale.fr.descrandinteger}`,
+            "ja": `🎲 ${locale.ja.descrandinteger}`,
+            "pt-BR": `🎲 ${locale.pt_BR.descrandinteger}`,
+            "ko": `🎲 ${locale.ko.descrandinteger}`,
+            "bg": `🎲 ${locale.bg.descrandinteger}`,
+            "sv-SE": `🎲 ${locale.sv_SE.descrandinteger}`,
+            "uk": `🎲 ${locale.uk.descrandinteger}`,
+        })
+        .addIntegerOption(option =>
+            option.setName('min')
+            .setDescription('Type minimum possible integer')
+            .setDescriptionLocalizations({
+                "ru": `${locale.ru.typemininteger}`,
+                "en-US": `${locale.en_us.typemininteger}`,
+                "de": `${locale.de.typemininteger}`,
+                "pl": `${locale.pl.typemininteger}`,
+                "fr": `${locale.fr.typemininteger}`,
+                "ja": `${locale.ja.typemininteger}`,
+                "pt-BR": `${locale.pt_BR.typemininteger}`,
+                "ko": `${locale.ko.typemininteger}`,
+                "bg": `${locale.bg.typemininteger}`,
+                "sv-SE": `${locale.sv_SE.typemininteger}`,
+                "uk": `${locale.uk.typemininteger}`,
+            })
+            .setMinValue(-999999999999999)
+            .setMaxValue(999999999999999)
+            .setRequired(false)
+        )
+        .addIntegerOption(option =>
+            option.setName('max')
+            .setDescription('Type maximum possible integer')
+            .setDescriptionLocalizations({
+                "ru": `${locale.ru.typemaxinteger}`,
+                "en-US": `${locale.en_us.typemaxinteger}`,
+                "de": `${locale.de.typemaxinteger}`,
+                "pl": `${locale.pl.typemaxinteger}`,
+                "fr": `${locale.fr.typemaxinteger}`,
+                "ja": `${locale.ja.typemaxinteger}`,
+                "pt-BR": `${locale.pt_BR.typemaxinteger}`,
+                "ko": `${locale.ko.typemaxinteger}`,
+                "bg": `${locale.bg.typemaxinteger}`,
+                "sv-SE": `${locale.sv_SE.typemaxinteger}`,
+                "uk": `${locale.uk.typemaxinteger}`,
+            })
+            .setMinValue(-999999999999999)
+            .setMaxValue(999999999999999)
+            .setRequired(false)
+        )
+        //decide if reply be ephemeral (publicreply: false / true)
+        .addBooleanOption(option =>
+            option.setName('publicreply')
+            .setDescription('Make the result visible to everyone in the chat')
+            .setDescriptionLocalizations({
+                "ru": `${locale.ru.publicreply}`,
+                "en-US": `${locale.en_us.publicreply}`,
+                "de": `${locale.de.publicreply}`,
+                "pl": `${locale.pl.publicreply}`,
+                "fr": `${locale.fr.publicreply}`,
+                "ja": `${locale.ja.publicreply}`,
+                "pt-BR": `${locale.pt_BR.publicreply}`,
+                "ko": `${locale.ko.publicreply}`,
+                "bg": `${locale.bg.publicreply}`,
+                "sv-SE": `${locale.sv_SE.publicreply}`,
+                "uk": `${locale.uk.publicreply}`,
+            })
+            .setRequired(false)
+        )
+        //end of publicreply
+    )
+    .addSubcommand(subcommand =>
+        subcommand.setName('dice')
+        .setDescription('🎲 Throw a Dice! Also you can choose the dice! (Default: 1 ... 6)')
+        .setDescriptionLocalizations({
+            "ru": `🎲 ${locale.ru.descranddice}`,
+            "en-US": `🎲 ${locale.en_us.descranddice}`,
+            "de": `🎲 ${locale.de.descranddice}`,
+            "pl": `🎲 ${locale.pl.descranddice}`,
+            "fr": `🎲 ${locale.fr.descranddice}`,
+            "ja": `🎲 ${locale.ja.descranddice}`,
+            "pt-BR": `🎲 ${locale.pt_BR.descranddice}`,
+            "ko": `🎲 ${locale.ko.descranddice}`,
+            "bg": `🎲 ${locale.bg.descranddice}`,
+            "sv-SE": `🎲 ${locale.sv_SE.descranddice}`,
+            "uk": `🎲 ${locale.uk.descranddice}`,
+        })
+        .addStringOption(option =>
+            option.setName('dicetype')
+            .setDescription('Select type of dice')
+            .setDescriptionLocalizations({
+                "ru": `${locale.ru.seldicetype}`,
+                "en-US": `${locale.en_us.seldicetype}`,
+                "de": `${locale.de.seldicetype}`,
+                "pl": `${locale.pl.seldicetype}`,
+                "fr": `${locale.fr.seldicetype}`,
+                "ja": `${locale.ja.seldicetype}`,
+                "pt-BR": `${locale.pt_BR.seldicetype}`,
+                "ko": `${locale.ko.seldicetype}`,
+                "bg": `${locale.bg.seldicetype}`,
+                "sv-SE": `${locale.sv_SE.seldicetype}`,
+                "uk": `${locale.uk.seldicetype}`,
+            })
+            .setRequired(false)
+            .addChoices(
+                { name: '🎲 D4 (1 ... 4)',
+                  value: 'D4'
+                },
+                { name: '🎲 D6 (1 ... 6)',
+                  value: 'D6'
+                },
+                { name: '🎲 D8 (1 ... 8)',
+                  value: 'D8'
+                },
+                { name: '🎲 D10 (1 ... 10)',
+                  value: 'D10'
+                },
+                { name: '🎲 D12 (1 ... 12)',
+                  value: 'D12'
+                },
+                { name: '🎲 D20 (1 ... 20)',
+                  value: 'D20'
+                },
+                { name: '🎲 D100 (1 ... 100)',
+                  value: 'D100'
+                }
+            )
+        )
+        //decide if reply be ephemeral (publicreply: false / true)
+        .addBooleanOption(option =>
+            option.setName('publicreply')
+            .setDescription('Make the result visible to everyone in the chat')
+            .setDescriptionLocalizations({
+                "ru": `${locale.ru.publicreply}`,
+                "en-US": `${locale.en_us.publicreply}`,
+                "de": `${locale.de.publicreply}`,
+                "pl": `${locale.pl.publicreply}`,
+                "fr": `${locale.fr.publicreply}`,
+                "ja": `${locale.ja.publicreply}`,
+                "pt-BR": `${locale.pt_BR.publicreply}`,
+                "ko": `${locale.ko.publicreply}`,
+                "bg": `${locale.bg.publicreply}`,
+                "sv-SE": `${locale.sv_SE.publicreply}`,
+                "uk": `${locale.uk.publicreply}`,
+            })
+            .setRequired(false)
+        )
+        //end of publicreply
+    )
     
+
 module.exports = {
     ping,
     about,
@@ -2529,5 +3126,6 @@ module.exports = {
     timezonenow,
     timestampint,
     convertint,
-    calcint
+    calcint,
+    randomint
 };

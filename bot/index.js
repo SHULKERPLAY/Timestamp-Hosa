@@ -1,10 +1,10 @@
-const corever = 'v1.1b';
+const corever = 'v1.1d';
 const supportedtimelocale = ["en-US", "ru", "de", "pl", "fr", "ja", "pt-BR", "ko", "bg", "sv-SE", "uk"]; //and en-UK as default
 
 const fs = require('fs');
 const path = require('path');
 const { timestampstyles, timezonesgmtminus, timezonesgmtplus, timezoneskey, monthsoption, alltimezones, convertGmtToSeconds, getRandomInt, getDateInt } = require('./functions.js');
-const { ping, about, invite, timenow, timezonenow, timestampint, convertint, calcint } = require('./builder.js');
+const { ping, about, invite, timenow, timezonenow, timestampint, convertint, calcint, randomint } = require('./builder.js');
 
 //Statistics
 const { loadStats, incrementStat, statsAutoSave } = require('./botstats.js');
@@ -35,7 +35,7 @@ const { token } = require('./config.json');
 const client = new Client({ intents: [GatewayIntentBits.Guilds], rest: { timeout: 60000 } });
 
 //Define commands
-const commands = [ping, about, invite, timenow, timezonenow, timestampint, convertint, calcint];
+const commands = [ping, about, invite, timenow, timezonenow, timestampint, convertint, calcint, randomint];
 
 const rl = createInterface({ input: process.stdin, output: process.stdout });
 
@@ -73,20 +73,20 @@ client.on('interactionCreate', (interaction) => {
     } else if (interaction.commandName === 'about') {
         incrementStat('aboutcmd');
         const aboutloc = {
-            "ru": `${locale.ru.aboutcmd} \n:sparkles: Версия ядра: ${corever}`,
-            "en-US": `${locale.en_us.aboutcmd} \n:sparkles: Core version: ${corever}`,
-            "de": `${locale.de.aboutcmd} \n:sparkles: Core-Version: ${corever}`,
-            "pl": `${locale.pl.aboutcmd} \n:sparkles: Wersja rdzenia: ${corever}`,
-            "fr": `${locale.fr.aboutcmd} \n:sparkles: Version du noyau : ${corever}`,
-            "ja": `${locale.ja.aboutcmd} \n:sparkles: コアバージョン: ${corever}`,
-            "pt-BR": `${locale.pt_BR.aboutcmd} \n:sparkles: Versão do núcleo: ${corever}`,
-            "ko": `${locale.ko.aboutcmd} \n:sparkles: 코어 버전: ${corever}`,
-            "bg": `${locale.bg.aboutcmd} \n:sparkles: Версия на ядрото: ${corever}`,
-            "sv-SE": `${locale.sv_SE.aboutcmd} \n:sparkles: Kärnversion: ${corever}`,
-            "uk": `${locale.uk.aboutcmd} \n:sparkles: Версія ядра: ${corever}`,
+            "ru": `${locale.ru.aboutcmd} \n:sparkles: Версия ядра: ${corever} \n\n ${locale.ru.aboutanounce}`,
+            "en-US": `${locale.en_us.aboutcmd} \n:sparkles: Core version: ${corever} \n\n${locale.en_us.aboutanounce}`,
+            "de": `${locale.de.aboutcmd} \n:sparkles: Core-Version: ${corever} \n\n${locale.de.aboutanounce}}`,
+            "pl": `${locale.pl.aboutcmd} \n:sparkles: Wersja rdzenia: ${corever} \n\n${locale.pl.aboutanounce}`,
+            "fr": `${locale.fr.aboutcmd} \n:sparkles: Version du noyau : ${corever} \n\n${locale.fr.aboutanounce}`,
+            "ja": `${locale.ja.aboutcmd} \n:sparkles: コアバージョン: ${corever} \n\n${locale.ja.aboutanounce}`,
+            "pt-BR": `${locale.pt_BR.aboutcmd} \n:sparkles: Versão do núcleo: ${corever} \n\n${locale.pt_BR.aboutanounce}`,
+            "ko": `${locale.ko.aboutcmd} \n:sparkles: 코어 버전: ${corever} \n\n${locale.ko.aboutanounce}`,
+            "bg": `${locale.bg.aboutcmd} \n:sparkles: Версия на ядрото: ${corever} \n\n${locale.bg.aboutanounce}`,
+            "sv-SE": `${locale.sv_SE.aboutcmd} \n:sparkles: Kärnversion: ${corever} \n\n${locale.sv_SE.aboutanounce}`,
+            "uk": `${locale.uk.aboutcmd} \n:sparkles: Версія ядра: ${corever} \n\n${locale.uk.aboutanounce}`,
         };
         interaction.reply({
-            content: aboutloc[interaction.locale] ?? `:alarm_clock: Create timestamps for your messages with `/timestamp`, calculate dates with `/calc`! Check the full command list for more features! \n:knot: Noticed a localization error or a bug? Have a feature request? [Visit our GitHub](https://github.com/SHULKERPLAY/Timestamp-Hosa)! \n :gift_heart: [Support Server](https://discord.gg/e2HcXrQ) - <@459657842895486977> \n\n[Terms of Service](https://lunarcreators.ru/timestamp-hosa/tos/) and [Privacy Policy](https://lunarcreators.ru/timestamp-hosa/privacy/) \n:sparkles: Core version: ${corever}`,
+            content: aboutloc[interaction.locale] ?? `:alarm_clock: Create timestamps for your messages with `/timestamp`, calculate dates with `/calc`! Check the full command list for more features! \n:knot: Noticed a localization error or a bug? Have a feature request? [Visit our GitHub](https://github.com/SHULKERPLAY/Timestamp-Hosa)! \n :gift_heart: [Support Server](https://discord.gg/e2HcXrQ) - <@459657842895486977> \n\n[Terms of Service](https://lunarcreators.ru/timestamp-hosa/tos/) and [Privacy Policy](https://lunarcreators.ru/timestamp-hosa/privacy/) \n:sparkles: Core version: ${corever} \n\n${locale.en_us.aboutanounce}`,
             ephemeral: true,
         });
     } else if (interaction.commandName === 'invite') {
@@ -168,7 +168,7 @@ client.on('interactionCreate', (interaction) => {
             var timelocale = 'en-UK'
         }
         console.log(`Tzone checked Etc/${timezonesel} ${publicreplylog}`)
-        var tzreply = tzdate.toLocaleString(`${timelocale}`, { timeZone: `Etc/${timezonesel}`, day: 'numeric', month: 'long', year: 'numeric', hour: 'numeric', minute: 'numeric', second: 'numeric', weekday: "long" })
+        var tzreply = tzdate.toLocaleString(`${timelocale}`, { timeZone: `Etc/${timezonesel}`, day: 'numeric', month: 'long', year: 'numeric', hour: 'numeric', minute: 'numeric', second: 'numeric', weekday: 'long' })
         const timezoneloc = {
             "ru": `:alarm_clock: ${locale.ru.nowintz}: **__${tzreply}__** \n*${locale.ru.localtime}: <t:${Math.floor(tztimestamp / 1000)}:F>*`,
             "en-US": `:alarm_clock: ${locale.en_us.nowintz}: **__${tzreply}__** \n*${locale.en_us.localtime}: <t:${Math.floor(tztimestamp / 1000)}:F>*`,
@@ -183,7 +183,7 @@ client.on('interactionCreate', (interaction) => {
             "uk": `:alarm_clock: ${locale.uk.nowintz}: **__${tzreply}__** \n*${locale.uk.localtime}: <t:${Math.floor(tztimestamp / 1000)}:F>*`,
         };;
         interaction.reply({
-        content: timezoneloc[interaction.locale] ?? `:alarm_clock: Now in this timezone: **__${tzreply}__** \n*Local Time: <t:${Math.floor(tztimestamp / 1000)}:F>*`,
+            content: timezoneloc[interaction.locale] ?? `:alarm_clock: Now in this timezone: **__${tzreply}__** \n*Local Time: <t:${Math.floor(tztimestamp / 1000)}:F>*`,
             ephemeral: isephemeral,
         });
     } else if (interaction.commandName === 'timestamp') {
@@ -239,9 +239,119 @@ client.on('interactionCreate', (interaction) => {
             "uk": `:white_check_mark: ${locale.uk.preview}: <t:${gettimestamp}${tsstyle}> \n:arrow_right: **${locale.uk.timestamp}:** \`<t:${gettimestamp}${tsstyle}>\``,
         };;
         interaction.reply({
-        content: timestamploc[interaction.locale] ?? `:white_check_mark: Preview: <t:${gettimestamp}${tsstyle}> \n:arrow_right: **Timestamp to Paste:** \`<t:${gettimestamp}${tsstyle}>\``,
+            content: timestamploc[interaction.locale] ?? `:white_check_mark: Preview: <t:${gettimestamp}${tsstyle}> \n:arrow_right: **Timestamp to Paste:** \`<t:${gettimestamp}${tsstyle}>\``,
             ephemeral: isephemeral,
         });
+    } else if (interaction.commandName === 'random') {
+        incrementStat(`randomcmd.${interaction.options.getSubcommand()}`);
+        if (interaction.options.getSubcommand() === 'date') {
+            //Date output locale
+            if (supportedtimelocale.includes(interaction.locale)) {
+                var timelocale = interaction.locale
+            } else { 
+                var timelocale = 'en-UK'
+            }
+            var randfromyear = interaction.options.getInteger('fromyear');
+            var randfrommonth = interaction.options.getString('frommonth');
+            var randfromday = interaction.options.getInteger('fromday');
+            var randfromhour = interaction.options.getInteger('fromhour');
+            var randfrommin = interaction.options.getInteger('fromminute');
+            var randfromsec = interaction.options.getInteger('fromsecond');
+            var randtoyear = interaction.options.getInteger('toyear');
+            var randtomonth = interaction.options.getString('tomonth');
+            var randtoday = interaction.options.getInteger('today');
+            var randtohour = interaction.options.getInteger('tohour');
+            var randtomin = interaction.options.getInteger('tominute');
+            var randtosec = interaction.options.getInteger('tosecond');
+            //mindate default: -62135596800000
+            var mindateint = getDateInt(randfromyear, randfrommonth, randfromday, randfromhour, randfrommin, randfromsec, 0);
+            //maxdateint get maximum permitted value when some vars are undefined
+            var maxdateint = getDateInt(randtoyear ?? 3333, randtomonth ?? '12', randtoday ?? 31, randtohour ?? 23, randtomin ?? 59, randtosec ?? 59, 0);
+            //get random date int
+            var randomdateint = getRandomInt(mindateint, maxdateint)
+            //convert to date
+            var newdate = new Date(randomdateint)
+            var randdate = newdate.toLocaleString(`${timelocale}`, { timeZone: `Etc/GMT`, timeZoneName: 'longOffset', day: 'numeric', month: 'long', year: 'numeric', hour: 'numeric', minute: 'numeric', second: 'numeric', weekday: 'long' })
+            console.log(`Date randomised ${randomdateint} ${publicreplylog}`)
+            const randdateloc = {
+                "ru": `:game_die: ${locale.ru.result}: **__${randdate}__** \n:hourglass_flowing_sand: UNIX: \`${Math.floor(randomdateint / 1000)}\``,
+                "en-US": `:game_die: ${locale.en_us.result}: **__${randdate}__** \n:hourglass_flowing_sand: UNIX: \`${Math.floor(randomdateint / 1000)}\``,
+                "de": `:game_die: ${locale.de.result}: **__${randdate}__** \n:hourglass_flowing_sand: UNIX: \`${Math.floor(randomdateint / 1000)}\``,
+                "pl": `:game_die: ${locale.pl.result}: **__${randdate}__** \n:hourglass_flowing_sand: UNIX: \`${Math.floor(randomdateint / 1000)}\``,
+                "fr": `:game_die: ${locale.fr.result}: **__${randdate}__** \n:hourglass_flowing_sand: UNIX: \`${Math.floor(randomdateint / 1000)}\``,
+                "ja": `:game_die: ${locale.ja.result}: **__${randdate}__** \n:hourglass_flowing_sand: UNIX: \`${Math.floor(randomdateint / 1000)}\``,
+                "pt-BR": `:game_die: ${locale.pt_BR.result}: **__${randdate}__** \n:hourglass_flowing_sand: UNIX: \`${Math.floor(randomdateint / 1000)}\``,
+                "ko": `:game_die: ${locale.ko.result}: **__${randdate}__** \n:hourglass_flowing_sand: UNIX: \`${Math.floor(randomdateint / 1000)}\``,
+                "bg": `:game_die: ${locale.bg.result}: **__${randdate}__** \n:hourglass_flowing_sand: UNIX: \`${Math.floor(randomdateint / 1000)}\``,
+                "sv-SE": `:game_die: ${locale.sv_SE.result}: **__${randdate}__** \n:hourglass_flowing_sand: UNIX: \`${Math.floor(randomdateint / 1000)}\``,
+                "uk": `:game_die: ${locale.uk.result}: **__${randdate}__** \n:hourglass_flowing_sand: UNIX: \`${Math.floor(randomdateint / 1000)}\``,
+            };;
+            interaction.reply({
+                content: randdateloc[interaction.locale] ?? `:game_die: Result: **__${randdate}__** \n:hourglass_flowing_sand: UNIX: \`${Math.floor(randomdateint / 1000)}\``,
+                ephemeral: isephemeral,
+            });
+        } else if (interaction.options.getSubcommand() === 'integer') {
+            var randintmin = interaction.options.getInteger('min');
+            var randintmax = interaction.options.getInteger('max');
+            var randominteger = getRandomInt(randintmin, randintmax)
+            console.log(`Int randomised ${randominteger} ${publicreplylog}`)
+            const randintloc = {
+                "ru": `:game_die: **${locale.ru.randintreply}** \`${randominteger}\``,
+                "en-US": `:game_die: **${locale.en_us.randintreply}** \`${randominteger}\``,
+                "de": `:game_die: **${locale.de.randintreply}** \`${randominteger}\``,
+                "pl": `:game_die: **${locale.pl.randintreply}** \`${randominteger}\``,
+                "fr": `:game_die: **${locale.fr.randintreply}** \`${randominteger}\``,
+                "ja": `:game_die: **${locale.ja.randintreply}** \`${randominteger}\``,
+                "pt-BR": `:game_die: **${locale.pt_BR.randintreply}** \`${randominteger}\``,
+                "ko": `:game_die: **${locale.ko.randintreply}** \`${randominteger}\``,
+                "bg": `:game_die: **${locale.bg.randintreply}** \`${randominteger}\``,
+                "sv-SE": `:game_die: **${locale.sv_SE.randintreply}** \`${randominteger}\``,
+                "uk": `:game_die: **${locale.uk.randintreply}** \`${randominteger}\``,
+            };;
+            interaction.reply({
+                content: randintloc[interaction.locale] ?? `:game_die: **Your Random Integer is** \`${randominteger}\``,
+                ephemeral: isephemeral,
+            });
+        } else if (interaction.options.getSubcommand() === 'dice') {
+            incrementStat(`randomdice.${interaction.options.getString('dicetype')}`);
+            var dicetype = interaction.options.getString('dicetype');
+            if (dicetype === undefined || dicetype === null) {
+                var dicetype = 'D6'
+                randomdice = getRandomInt(1, 6)
+            } else if (dicetype === 'D4') {
+                randomdice = getRandomInt(1, 4)
+            } else if (dicetype === 'D6') {
+                randomdice = getRandomInt(1, 6)
+            } else if (dicetype === 'D8') {
+                randomdice = getRandomInt(1, 8)
+            } else if (dicetype === 'D10') {
+                randomdice = getRandomInt(1, 10)
+            } else if (dicetype === 'D12') {
+                randomdice = getRandomInt(1, 12)
+            } else if (dicetype === 'D20') {
+                randomdice = getRandomInt(1, 20)
+            } else if (dicetype === 'D100') {
+                randomdice = getRandomInt(1, 100)
+            }
+            console.log(`Dice thrown (${dicetype}) ${publicreplylog}`)
+            const randdiceloc = {
+                "ru": `:game_die: *(${dicetype}) ${locale.ru.dicethrown}!* **${locale.ru.result}:** __\`${randomdice}\`__`,
+                "en-US": `:game_die: *(${dicetype}) ${locale.en_us.dicethrown}!* **${locale.en_us.result}:** __\`${randomdice}\`__`,
+                "de": `:game_die: *(${dicetype}) ${locale.de.dicethrown}!* **${locale.de.result}:** __\`${randomdice}\`__`,
+                "pl": `:game_die: *(${dicetype}) ${locale.pl.dicethrown}!* **${locale.pl.result}:** __\`${randomdice}\`__`,
+                "fr": `:game_die: *(${dicetype}) ${locale.fr.dicethrown}!* **${locale.fr.result}:** __\`${randomdice}\`__`,
+                "ja": `:game_die: *(${dicetype}) ${locale.ja.dicethrown}!* **${locale.ja.result}:** __\`${randomdice}\`__`,
+                "pt-BR": `:game_die: *(${dicetype}) ${locale.pt_BR.dicethrown}!* **${locale.pt_BR.result}:** __\`${randomdice}\`__`,
+                "ko": `:game_die: *(${dicetype}) ${locale.ko.dicethrown}!* **${locale.ko.result}:** __\`${randomdice}\`__`,
+                "bg": `:game_die: *(${dicetype}) ${locale.bg.dicethrown}!* **${locale.bg.result}:** __\`${randomdice}\`__`,
+                "sv-SE": `:game_die: *(${dicetype}) ${locale.sv_SE.dicethrown}!* **${locale.sv_SE.result}:** __\`${randomdice}\`__`,
+                "uk": `:game_die: *(${dicetype}) ${locale.uk.dicethrown}!* **${locale.uk.result}:** __\`${randomdice}\`__`,
+            };;
+            interaction.reply({
+                content: randdiceloc[interaction.locale] ?? `:game_die: *(${dicetype}) Dice Thrown!* **Result:** __\`${randomdice}\`__`,
+                ephemeral: isephemeral,
+            });
+        }
     } else if (interaction.commandName === 'convert') {
         incrementStat(`convertcmd.${interaction.options.getSubcommand()}`);
         if (interaction.options.getSubcommand() === 'tounix') {
@@ -329,7 +439,7 @@ client.on('interactionCreate', (interaction) => {
                 "uk": `:abacus: **${locale.uk.result}:** \`${gettimestamp}\` *${cvreplystyle} ${locale.uk.since1970} (UNIX)*`,
             };;
             interaction.reply({
-            content: cvunixloc[interaction.locale] ?? `:abacus: **Result:** \`${gettimestamp}\` *${cvreplystyle} since Jan 1, 1970 (UNIX)*`,
+                content: cvunixloc[interaction.locale] ?? `:abacus: **Result:** \`${gettimestamp}\` *${cvreplystyle} since Jan 1, 1970 (UNIX)*`,
                 ephemeral: true,
             });
         } else if (interaction.options.getSubcommand() === 'todate') {
@@ -355,7 +465,7 @@ client.on('interactionCreate', (interaction) => {
                 var timelocale = 'en-UK'
             }
             console.log(`Converted ${cvtimestamp} to date ${publicreplylog}`)
-            var cvreply = cvdate.toLocaleString(`${timelocale}`, { timeZone: `Etc/${timezonesel}`, timeZoneName: 'longOffset', day: 'numeric', month: 'long', year: 'numeric', hour: 'numeric', minute: 'numeric', second: 'numeric', fractionalSecondDigits: `${msdigits}`, weekday: "long" })
+            var cvreply = cvdate.toLocaleString(`${timelocale}`, { timeZone: `Etc/${timezonesel}`, timeZoneName: 'longOffset', day: 'numeric', month: 'long', year: 'numeric', hour: 'numeric', minute: 'numeric', second: 'numeric', fractionalSecondDigits: `${msdigits}`, weekday: 'long' })
             const cvdateloc = { 
                 "ru": `:date: ${locale.ru.result}: **__${cvreply}__**`,
                 "en-US": `:date: ${locale.en_us.result}: **__${cvreply}__**`,
@@ -370,7 +480,7 @@ client.on('interactionCreate', (interaction) => {
                 "uk": `:date: ${locale.uk.result}: **__${cvreply}__**`,
             };;
             interaction.reply({
-            content: cvdateloc[interaction.locale] ?? `:date: Result: **__${cvreply}__**`,
+                content: cvdateloc[interaction.locale] ?? `:date: Result: **__${cvreply}__**`,
                 ephemeral: true,
             });
         }
@@ -415,7 +525,7 @@ client.on('interactionCreate', (interaction) => {
                 "uk": `:white_check_mark: ${locale.uk.datesdiff}: **__${daysdiff} ${locale.uk.days} ${hoursdiff} ${locale.uk.hours} ${minsdiff} ${locale.uk.minutes} ${secsdiff} ${locale.uk.seconds}__** \n:hourglass_flowing_sand: \`${calcdiff}\` *${locale.uk.seconds}*`,
             };;
             interaction.reply({
-            content: calcfromtoloc[interaction.locale] ?? `:white_check_mark: Difference between dates is: **__${daysdiff} Days ${hoursdiff} Hours ${minsdiff} Minutes ${secsdiff} Seconds__** \n:hourglass_flowing_sand: \`${calcdiff}\` *Seconds*`,
+                content: calcfromtoloc[interaction.locale] ?? `:white_check_mark: Difference between dates is: **__${daysdiff} Days ${hoursdiff} Hours ${minsdiff} Minutes ${secsdiff} Seconds__** \n:hourglass_flowing_sand: \`${calcdiff}\` *Seconds*`,
                 ephemeral: isephemeral,
             });           
         } else if (interaction.options.getSubcommand() === 'fromnow') {
@@ -459,7 +569,7 @@ client.on('interactionCreate', (interaction) => {
             var calcresult = calcarg1 + calcarg2
             console.log(`Calculated ${calcarg1} + ${calcarg2} ${publicreplylog}`)
             var calcresdate = new Date(calcresult)
-            var calcreply = calcresdate.toLocaleString(`${timelocale}`, { timeZone: `Etc/${timezonesel}`, timeZoneName: 'longOffset', day: 'numeric', month: 'long', year: 'numeric', hour: 'numeric', minute: 'numeric', second: 'numeric', fractionalSecondDigits: `3`, weekday: "long" })
+            var calcreply = calcresdate.toLocaleString(`${timelocale}`, { timeZone: `Etc/${timezonesel}`, timeZoneName: 'longOffset', day: 'numeric', month: 'long', year: 'numeric', hour: 'numeric', minute: 'numeric', second: 'numeric', fractionalSecondDigits: `3`, weekday: 'long' })
             const calcdateloc = {
                 "ru": `:white_check_mark: ${locale.ru.result}: **__${calcreply}__** \n:hourglass_flowing_sand: *UNIX: \`${calcresult}\` ${locale.ru.timestamp}: \`<t:${Math.floor(calcresult / 1000)}>\` ${locale.ru.localtime}: <t:${Math.floor(calcresult / 1000)}>*`,
                 "en-US": `:white_check_mark: ${locale.en_us.result}: **__${calcreply}__** \n:hourglass_flowing_sand: *UNIX: \`${calcresult}\` ${locale.en_us.timestamp}: \`<t:${Math.floor(calcresult / 1000)}>\` ${locale.en_us.localtime}: <t:${Math.floor(calcresult / 1000)}>*`,
@@ -474,7 +584,7 @@ client.on('interactionCreate', (interaction) => {
                 "uk": `:white_check_mark: ${locale.uk.result}: **__${calcreply}__** \n:hourglass_flowing_sand: *UNIX: \`${calcresult}\` ${locale.uk.timestamp}: \`<t:${Math.floor(calcresult / 1000)}>\` ${locale.uk.localtime}: <t:${Math.floor(calcresult / 1000)}>*`,
             };;
             interaction.reply({
-            content: calcdateloc[interaction.locale] ?? `:white_check_mark: Result: **__${calcreply}__** \n:hourglass_flowing_sand: *UNIX: \`${calcresult}\` Timestamp to Paste: \`<t:${Math.floor(calcresult / 1000)}>\` Local Time: <t:${Math.floor(calcresult / 1000)}>*`,
+                content: calcdateloc[interaction.locale] ?? `:white_check_mark: Result: **__${calcreply}__** \n:hourglass_flowing_sand: *UNIX: \`${calcresult}\` Timestamp to Paste: \`<t:${Math.floor(calcresult / 1000)}>\` Local Time: <t:${Math.floor(calcresult / 1000)}>*`,
                 ephemeral: isephemeral,
             });
         }
@@ -495,7 +605,7 @@ client.once(Events.ClientReady, async(readyClient) => {
     const presencelist = [
         { name: `/about • ${corever}`, type: ActivityType.Streaming },
         { name: `/now • With ${installCount}+ installs!`, type: ActivityType.Streaming },
-        { name: `/random • Coming Soon!`, type: ActivityType.Streaming }
+        { name: `/random • Throw a Dice!`, type: ActivityType.Streaming }
     ];
     
     //index init
