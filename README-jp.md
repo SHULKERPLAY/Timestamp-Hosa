@@ -11,7 +11,7 @@
 
 **メッセージ埋め込み用のタイムスタンプ作成、日付計算機などをDiscord内で完結させましょう！**
 
-Timestamp 補佐は、メッセージ埋め込み用のタイムスタンプ作成、日付計算、2つの日付間の時間経過の算出、UNIX形式と読みやすい形式の相互変換ができるDiscordボット/ユーザーアプリです。現在11言語をサポートしています：ドイツ語、ポーランド語、フランス語、日本語、ポルトガル語（ブラジル）、韓国語、ブルガリア語、スウェーデン語、ウクライナ語。
+**Timestamp 補佐** は、メッセージに埋め込むためのタイムスタンプの作成、日付計算機の使用、ある日付から別の日付までの経過時間の計算、日付、ゲームダイス、または整数のランダム化、およびUNIX形式から読み取り可能な形式への日付の変換（またはその逆）ができるDiscordボット/ユーザーアプリです。現在、11の言語をサポートしています：Русский, Українська, English, Français, Polski, Svenska, Deutsch, 日本語, Português (Brazilian), 한국어, Български。
 
 ## コマンド
 - 一部のコマンドでは `publicreply: true / false` 引数が利用可能です。`True` にすると、回答が自分だけでなくチャットの全員に表示されます。
@@ -29,6 +29,15 @@ Timestamp 補佐は、メッセージ埋め込み用のタイムスタンプ作�
  ![timestamp](https://lunarcreators.ru/wp-content/uploads/2025/12/timestampcmd.gif)
  
  - `/timezone` - サブ機能 `gmtplus`, `gmtminus`, `keyzones` (PST, CETなど)。選択した地域の現在時刻を表示。
+ 
+ - `/random` - サブ機能 `integer`、`date`、`dice` - ランダムな値を生成します
+   - `integer` - 範囲内から任意のランダムな数値を生成します
+      - `min`, `max` - 最小値と最大値を定義します
+   - `date` - 範囲内から任意のランダムな日付を生成します
+      - `fromyear`, `frommonth`, `fromday`, `fromhour`, `fromminute`, `fromsecond` - 設定可能な最小の日付
+      - `toyear`, `tomonth`, `today`, `tohour`, `tominute`, `tosecond` - 設定可能な最大の日付
+   - `dice` - ゲームダイスのロールをシミュレートします（デフォルト：D6）
+      - `dicetype` - 標準的なダイスの種類（D4、D6、D8、D10、D12、D20、D100）から選択できます
  
  - `/convert` - 時間変換:
     - `todate` - UNIXタイムスタンプを読みやすい日時に変換。

@@ -11,7 +11,7 @@
 
 **Create timestamps for embedding in messages, use a date calculator, and more without leaving Discord!**
 
-Timestamp 補佐 is a Discord Bot / Profile App that allows you to create any timestamps for embedding in your messages, use a date calculator, calculate the time elapsed from one date to another, and convert dates from UNIX format to a readable format and vice versa! Currently supports 11 languages: German `de`, Polish `pl`, French `fr`, Japanese `ja`, Portuguese (Brazilian) `pt-BR`, Korean `ko`, Bulgarian `bg`, Swedish `sv-SE`, Ukrainian `uk`.
+**Timestamp 補佐** is a Discord Bot / User App that allows you to create any timestamps for embedding in your messages, use a date calculator, calculate the time elapsed from one date to another, randomize date, game dice or integer, and convert dates from UNIX format to a readable format and vice versa! Currently supports 11 languages: Русский, Українська, English, Français, Polski, Svenska, Deutsch, 日本語, Português (Brazilian), 한국어, Български.
 
 ## Commands
 - For some commands, the `publicreply: true / false` argument is available. If `True`, the bot's response will be seen by everyone in the chat, not just you.
@@ -33,6 +33,15 @@ Timestamp 補佐 is a Discord Bot / Profile App that allows you to create any ti
  - `/convert` - Time conversion:
     - `todate` - Converts a UNIX timestamp to a readable date/time. Arguments: `unixtime`, `withms` (choose format: `true` for ms, `false` for seconds from 1.1.1970).
     - `tounix` - Converts a date into a UNIX timestamp. Arguments: `year`, `month`, `day`, `displayms`, `hour`, `minute`, `second`, `millisecond`, `timezone`.
+
+- `/random` - sub-functions `integer`, `date`, and `dice` - for generating random values
+   - `integer` - designed to generate any random number from a range
+      - `min`, `max` - defines the minimum and maximum possible value
+   - `date` - designed to generate any random date from a range
+      - `fromyear`, `frommonth`, `fromday`, `fromhour`, `fromminute`, `fromsecond` - Minimum possible date
+      - `toyear`, `tomonth`, `today`, `tohour`, `tominute`, `tosecond` - Maximum possible date
+   - `dice` - designed to simulate a roll of game dice (Default: D6)
+      - `dicetype` - allows you to choose the dice type from standard ones - D4, D6, D8, D10, D12, D20, D100
 
 - `/calc` - sub-functions `fromnow`, `fromdate`, and `from-to` for calculations with arbitrary dates:
    - `fromnow`: add/subtract time from the current date.

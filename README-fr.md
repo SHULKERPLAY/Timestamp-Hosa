@@ -11,7 +11,7 @@
 
 **Créez des horodatages à intégrer dans vos messages, utilisez un calculateur de dates et bien plus encore sans quitter Discord !**.
 
-Timestamp 補佐 est un Bot Discord / Application de profil qui permet de créer n'importe quel horodatage pour l'intégrer dans votre message, d'utiliser un calculateur de dates, de compter le temps écoulé d'une date à une autre, ainsi qu'un convertisseur de dates du format UNIX vers un format lisible et vice versa ! Actuellement, il supporte 11 langues : Allemand `de`, Polonais `pl`, Français `fr`, Japonais `ja`, Portugais (Brésil) `pt-BR`, Coréen `ko`, Bulgare `bg`, Suédois `sv-SE`, Ukrainien `uk`.
+**Timestamp 補佐** est un bot Discord / une application utilisateur qui vous permet de créer n'importe quel horodatage pour l'intégrer dans vos messages, d'utiliser un calculateur de date, de calculer le temps écoulé d'une date à une autre, de randomiser une date, des dés de jeu ou un nombre entier, et de convertir des dates du format UNIX vers un format lisible et vice versa ! Prend actuellement en charge 11 langues : Русский, Українська, English, Français, Polski, Svenska, Deutsch, 日本語, Português (Brazilian), 한국어, Български.
 
 ## Commandes
 - Pour certaines commandes, l'argument `publicreply: true / false` est disponible. Si `True`, la réponse du bot sera vue par tout le monde dans le chat, pas seulement par vous.
@@ -31,6 +31,15 @@ Timestamp 補佐 est un Bot Discord / Application de profil qui permet de créer
  - `/convert` - Convertit le temps :
     - `todate` - Convertit un horodatage UNIX en une date/heure lisible. Arguments : `unixtime` (pour insérer le temps UNIX), `withms` (pour choisir le format UNIX, `true` en millisecondes depuis le 01.01.1970, `false` en secondes).
     - `tounix` - Convertit la date indiquée en horodatage UNIX. Arguments : `year`, `month`, `day`, `displayms` (`true` pour millisecondes, `false` pour secondes), `hour`, `minute`, `second`, `millisecond`, `timezone`.
+
+- `/random` - sous-fonctions `integer`, `date` et `dice` - pour générer des valeurs aléatoires
+   - `integer` - conçu pour générer n'importe quel nombre aléatoire à partir d'une plage
+      - `min`, `max` - définit la valeur minimale et maximale possible
+   - `date` - conçu pour générer n'importe quelle date aléatoire à partir d'une plage
+      - `fromyear`, `frommonth`, `fromday`, `fromhour`, `fromminute`, `fromsecond` - Date minimale possible
+      - `toyear`, `tomonth`, `today`, `tohour`, `tominute`, `tosecond` - Date maximale possible
+   - `dice` - conçu pour simuler un lancer de dés de jeu (Par défaut : D6)
+      - `dicetype` - permet de choisir le type de dé parmi les standards - D4, D6, D8, D10, D12, D20, D100
 
 -  `/calc` - sous-fonctions `fromnow`, `fromdate` et `from-to` pour les calculs avec des dates arbitraires :
    - `fromnow` est conçu pour ajouter ou soustraire un certain temps à la date et l'heure actuelles. Arguments : `timezone`, `matharg` (ajouter ou soustraire), `years`, `months`, `days`, `hours`, `minutes`, `seconds`, `milliseconds`.

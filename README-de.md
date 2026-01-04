@@ -11,7 +11,7 @@
 
 **Erstellen Sie Zeitstempel zum Einbetten in Nachrichten, nutzen Sie einen Datumsrechner und vieles mehr, ohne Discord zu verlassen!**.
 
-Timestamp 補佐 ist ein Discord Bot / eine Profil-App, mit der Sie beliebige Zeitstempel zum Einbetten in Ihre Nachrichten erstellen, einen Datumsrechner verwenden, die vergangene Zeit zwischen zwei Daten berechnen sowie Daten vom UNIX-Format in ein lesbares Format und umgekehrt konvertieren können! Derzeit werden 11 Sprachen unterstützt: Deutsch `de`, Polnisch `pl`, Französisch `fr`, Japanisch `ja`, Portugiesisch (Brasilien) `pt-BR`, Koreanisch `ko`, Bulgarisch `bg`, Schwedisch `sv-SE`, Ukrainisch `uk`.
+**Timestamp 補佐** ist ein Discord-Bot / eine Benutzer-App, mit der du Zeitstempel zum Einbetten in deine Nachrichten erstellen, einen Datumsrechner verwenden, die verstrichene Zeit von einem Datum zum anderen berechnen, Daten, Spielwürfel oder Ganzzahlen randomisieren und Daten vom UNIX-Format in ein lesbares Format und umgekehrt konvertieren kannst! Unterstützt derzeit 11 Sprachen: Русский, Українська, English, Français, Polski, Svenska, Deutsch, 日本語, Português (Brazilian), 한국어, Български.
 
 ## Befehle
 - Bei einigen Befehlen ist das Argument `publicreply: true / false` verfügbar. Wenn `True`, sehen alle im Chat die Antwort des Bots, nicht nur Sie.
@@ -27,6 +27,15 @@ Timestamp 補佐 ist ein Discord Bot / eine Profil-App, mit der Sie beliebige Ze
  - `/timezone` - Unterfunktionen `gmtplus [timezone]` (für GMT +1 bis +14), `gmtminus [timezone]` (für GMT -1 bis -12), `keyzones [timezone]` (für andere Zonen wie PST, CET usw.). Zeigt die aktuelle Zeit in der gewählten Zeitzone an.
 
 ![timezone](https://lunarcreators.ru/wp-content/uploads/2025/12/timezonecmd.gif)
+
+- `/random` - Unterfunktionen `integer`, `date` und `dice` - zum Generieren von Zufallswerten
+   - `integer` - entwickelt, um eine beliebige Zufallszahl aus einem Bereich zu generieren
+      - `min`, `max` - definiert den minimalen und maximalen möglichen Wert
+   - `date` - entwickelt, um ein beliebiges Zufallsdatum aus einem Bereich zu generieren
+      - `fromyear`, `frommonth`, `fromday`, `fromhour`, `fromminute`, `fromsecond` - Frühestmögliches Datum
+      - `toyear`, `tomonth`, `today`, `tohour`, `tominute`, `tosecond` - Spätestmögliches Datum
+   - `dice` - entwickelt, um das Werfen von Spielwürfeln zu simulieren (Standard: D6)
+      - `dicetype` - ermöglicht die Auswahl des Würfeltyps aus den Standardtypen - D4, D6, D8, D10, D12, D20, D100
 
  - `/convert` - Konvertiert Zeit:
     - `todate` - Konvertiert einen UNIX-Zeitstempel in ein lesbares Datum/Zeit. Argumente: `unixtime`, `withms` (`true` für Millisekunden seit 1.1.1970, `false` für Sekunden).

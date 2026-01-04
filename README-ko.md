@@ -11,7 +11,7 @@
 
 **디스코드를 떠나지 않고 메시지용 타임스탬프 생성, 날짜 계산기 등을 사용해 보세요!**.
 
-Timestamp 補佐는 메시지에 삽입할 타임스탬프 생성, 날짜 계산기 사용, 두 날짜 사이의 경과 시간 계산, UNIX 형식에서 읽기 쉬운 형식으로(또는 그 반대로) 날짜 변환 기능을 제공하는 디스코드 봇/프로필 앱입니다! 현재 11개 언어를 지원합니다: 독일어 `de`, 폴란드어 `pl`, 프랑스어 `fr`, 일본어 `ja`, 포르투갈어(브라질) `pt-BR`, 한국어 `ko`, 불가리아어 `bg`, 스웨덴어 `sv-SE`, 우크라이나어 `uk`.
+**Timestamp 補佐**는 메시지에 삽입할 타임스탬프 생성, 날짜 계산기 사용, 한 날짜에서 다른 날짜까지의 경과 시간 계산, 날짜, 게임 주사위 또는 정수 무작위 생성, UNIX 형식에서 읽기 쉬운 형식으로 날짜 변환(및 그 반대)이 가능한 Discord 봇 / 사용자 앱입니다! 현재 11개 언어를 지원합니다: Русский, Українська, English, Français, Polski, Svenska, Deutsch, 日本語, Português (Brazilian), 한국어, Български.
 
 ## 명령어
 - 일부 명령어에는 `publicreply: true / false` 인수를 사용할 수 있습니다. `True`인 경우 본인뿐만 아니라 채팅의 모든 사람이 봇의 응답을 볼 수 있습니다.
@@ -31,6 +31,15 @@ Timestamp 補佐는 메시지에 삽입할 타임스탬프 생성, 날짜 계산
  - `/convert` - 시간 변환:
     - `todate` - UNIX 타임스탬프를 읽기 쉬운 날짜/시간으로 변환합니다. 인수: `unixtime`, `withms` (`true`는 1970.1.1부터 밀리초 단위, `false`는 초 단위).
     - `tounix` - 지정한 날짜를 UNIX 타임스탬프로 변환합니다. 인수: `year`, `month`, `day`, `displayms`, `hour`, `minute`, `second`, `millisecond`, `timezone`.
+    
+- `/random` - 하위 기능 `integer`, `date`, `dice` - 무작위 값 생성을 위해 사용됩니다
+   - `integer` - 범위 내에서 임의의 숫자를 생성합니다
+      - `min`, `max` - 가능한 최솟값과 최댓값을 정의합니다
+   - `date` - 범위 내에서 임의의 날짜를 생성합니다
+      - `fromyear`, `frommonth`, `fromday`, `fromhour`, `fromminute`, `fromsecond` - 가능한 가장 이른 날짜
+      - `toyear`, `tomonth`, `today`, `tohour`, `tominute`, `tosecond` - 가능한 가장 늦은 날짜
+   - `dice` - 게임 주사위 굴리기를 시뮬레이션합니다 (기본값: D6)
+      - `dicetype` - 표준 주사위 유형(D4, D6, D8, D10, D12, D20, D100) 중에서 선택할 수 있습니다
 
 -  `/calc` - 임의의 날짜 계산을 위한 하위 기능 `fromnow`, `fromdate`, `from-to`:
    - `fromnow`: 현재 날짜/시간에서 특정 시간을 더하거나 뺍니다. 인수: `timezone`, `matharg`, `years`, `months`, `days`, `hours`, `minutes`, `seconds`, `milliseconds`.
