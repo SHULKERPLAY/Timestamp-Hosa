@@ -23,76 +23,76 @@ try {
 //CommandBuilder
 const ping = new SlashCommandBuilder()
     .setName('ping')
-    .setDescription('Check Application response time')
+    .setDescription('🏓 Check Application response time')
     .setDescriptionLocalizations({
-        "ru": `${locale.ru.checkping}`,
-        "en-US": `${locale.en_us.checkping}`,
-        "de": `${locale.de.checkping}`,
-        "pl": `${locale.pl.checkping}`,
-        "fr": `${locale.fr.checkping}`,
-        "ja": `${locale.ja.checkping}`,
-        "pt-BR": `${locale.pt_BR.checkping}`,
-        "ko": `${locale.ko.checkping}`,
-        "bg": `${locale.bg.checkping}`,
-        "sv-SE": `${locale.sv_SE.checkping}`,
-        "uk": `${locale.uk.checkping}`,
+        "ru": `🏓 ${locale.ru.checkping}`,
+        "en-US": `🏓 ${locale.en_us.checkping}`,
+        "de": `🏓 ${locale.de.checkping}`,
+        "pl": `🏓 ${locale.pl.checkping}`,
+        "fr": `🏓 ${locale.fr.checkping}`,
+        "ja": `🏓 ${locale.ja.checkping}`,
+        "pt-BR": `🏓 ${locale.pt_BR.checkping}`,
+        "ko": `🏓 ${locale.ko.checkping}`,
+        "bg": `🏓 ${locale.bg.checkping}`,
+        "sv-SE": `🏓 ${locale.sv_SE.checkping}`,
+        "uk": `🏓 ${locale.uk.checkping}`,
     })
     .setIntegrationTypes(0, 1)
     .setContexts(0, 1, 2)
 
 const about = new SlashCommandBuilder()
     .setName('about')
-    .setDescription('About this app')
+    .setDescription('📙 About this app')
     .setDescriptionLocalizations({
-        "ru": `${locale.ru.aboutapp}`,
-        "en-US": `${locale.en_us.aboutapp}`,
-        "de": `${locale.de.aboutapp}`,
-        "pl": `${locale.pl.aboutapp}`,
-        "fr": `${locale.fr.aboutapp}`,
-        "ja": `${locale.ja.aboutapp}`,
-        "pt-BR": `${locale.pt_BR.aboutapp}`,
-        "ko": `${locale.ko.aboutapp}`,
-        "bg": `${locale.bg.aboutapp}`,
-        "sv-SE": `${locale.sv_SE.aboutapp}`,
-        "uk": `${locale.uk.aboutapp}`,
+        "ru": `📙 ${locale.ru.aboutapp}`,
+        "en-US": `📙 ${locale.en_us.aboutapp}`,
+        "de": `📙 ${locale.de.aboutapp}`,
+        "pl": `📙 ${locale.pl.aboutapp}`,
+        "fr": `📙 ${locale.fr.aboutapp}`,
+        "ja": `📙 ${locale.ja.aboutapp}`,
+        "pt-BR": `📙 ${locale.pt_BR.aboutapp}`,
+        "ko": `📙 ${locale.ko.aboutapp}`,
+        "bg": `📙 ${locale.bg.aboutapp}`,
+        "sv-SE": `📙 ${locale.sv_SE.aboutapp}`,
+        "uk": `📙 ${locale.uk.aboutapp}`,
     })
     .setIntegrationTypes(0, 1)
     .setContexts(0, 1, 2)
 
 const invite = new SlashCommandBuilder()
     .setName('invite')
-    .setDescription('Install TimestampHosa app on Server or as personal app!')
+    .setDescription('🔗 Install TimestampHosa app on Server or as personal app!')
     .setDescriptionLocalizations({
-        "ru": `${locale.ru.installapp}`,
-        "en-US": `${locale.en_us.installapp}`,
-        "de": `${locale.de.installapp}`,
-        "pl": `${locale.pl.installapp}`,
-        "fr": `${locale.fr.installapp}`,
-        "ja": `${locale.ja.installapp}`,
-        "pt-BR": `${locale.pt_BR.installapp}`,
-        "ko": `${locale.ko.installapp}`,
-        "bg": `${locale.bg.installapp}`,
-        "sv-SE": `${locale.sv_SE.installapp}`,
-        "uk": `${locale.uk.installapp}`,
+        "ru": `🔗 ${locale.ru.installapp}`,
+        "en-US": `🔗 ${locale.en_us.installapp}`,
+        "de": `🔗 ${locale.de.installapp}`,
+        "pl": `🔗 ${locale.pl.installapp}`,
+        "fr": `🔗 ${locale.fr.installapp}`,
+        "ja": `🔗 ${locale.ja.installapp}`,
+        "pt-BR": `🔗 ${locale.pt_BR.installapp}`,
+        "ko": `🔗 ${locale.ko.installapp}`,
+        "bg": `🔗 ${locale.bg.installapp}`,
+        "sv-SE": `🔗 ${locale.sv_SE.installapp}`,
+        "uk": `🔗 ${locale.uk.installapp}`,
     })
     .setIntegrationTypes(0, 1)
     .setContexts(0, 1, 2)
 
 const timenow = new SlashCommandBuilder()
     .setName('now')
-    .setDescription('Display current time and timestamp')
+    .setDescription('⏱ Display current time and timestamp')
     .setDescriptionLocalizations({
-        "ru": `${locale.ru.descnow}`,
-        "en-US": `${locale.en_us.descnow}`,
-        "de": `${locale.de.descnow}`,
-        "pl": `${locale.pl.descnow}`,
-        "fr": `${locale.fr.descnow}`,
-        "ja": `${locale.ja.descnow}`,
-        "pt-BR": `${locale.pt_BR.descnow}`,
-        "ko": `${locale.ko.descnow}`,
-        "bg": `${locale.bg.descnow}`,
-        "sv-SE": `${locale.sv_SE.descnow}`,
-        "uk": `${locale.uk.descnow}`,
+        "ru": `⏱ ${locale.ru.descnow}`,
+        "en-US": `⏱ ${locale.en_us.descnow}`,
+        "de": `⏱ ${locale.de.descnow}`,
+        "pl": `⏱ ${locale.pl.descnow}`,
+        "fr": `⏱ ${locale.fr.descnow}`,
+        "ja": `⏱ ${locale.ja.descnow}`,
+        "pt-BR": `⏱ ${locale.pt_BR.descnow}`,
+        "ko": `⏱ ${locale.ko.descnow}`,
+        "bg": `⏱ ${locale.bg.descnow}`,
+        "sv-SE": `⏱ ${locale.sv_SE.descnow}`,
+        "uk": `⏱ ${locale.uk.descnow}`,
     })
     .setIntegrationTypes(0, 1)
     .setContexts(0, 1, 2)
@@ -151,24 +151,24 @@ const timenow = new SlashCommandBuilder()
         
 const timezonenow = new SlashCommandBuilder()
     .setName('timezone')
-    .setDescription('Display current time in selected timezone')
+    .setDescription('🕒 Display current time in selected timezone')
     .setIntegrationTypes(0, 1)
     .setContexts(0, 1, 2)
     .addSubcommand(subcommand =>
         subcommand.setName('gmtplus')
-        .setDescription('Select timezone from GMT to GMT +14')
+        .setDescription('🕒 Select timezone from GMT to GMT +14')
         .setDescriptionLocalizations({
-            "ru": `${locale.ru.desctimezoneplus}`,
-            "en-US": `${locale.en_us.desctimezoneplus}`,
-            "de": `${locale.de.desctimezoneplus}`,
-            "pl": `${locale.pl.desctimezoneplus}`,
-            "fr": `${locale.fr.desctimezoneplus}`,
-            "ja": `${locale.ja.desctimezoneplus}`,
-            "pt-BR": `${locale.pt_BR.desctimezoneplus}`,
-            "ko": `${locale.ko.desctimezoneplus}`,
-            "bg": `${locale.bg.desctimezoneplus}`,
-            "sv-SE": `${locale.sv_SE.desctimezoneplus}`,
-            "uk": `${locale.uk.desctimezoneplus}`,
+            "ru": `🕒 ${locale.ru.desctimezoneplus}`,
+            "en-US": `🕒 ${locale.en_us.desctimezoneplus}`,
+            "de": `🕒 ${locale.de.desctimezoneplus}`,
+            "pl": `🕒 ${locale.pl.desctimezoneplus}`,
+            "fr": `🕒 ${locale.fr.desctimezoneplus}`,
+            "ja": `🕒 ${locale.ja.desctimezoneplus}`,
+            "pt-BR": `🕒 ${locale.pt_BR.desctimezoneplus}`,
+            "ko": `🕒 ${locale.ko.desctimezoneplus}`,
+            "bg": `🕒 ${locale.bg.desctimezoneplus}`,
+            "sv-SE": `🕒 ${locale.sv_SE.desctimezoneplus}`,
+            "uk": `🕒 ${locale.uk.desctimezoneplus}`,
         })
         .addStringOption(option =>
             option.setName('timezone')
@@ -225,19 +225,19 @@ const timezonenow = new SlashCommandBuilder()
     )
     .addSubcommand(subcommand =>
         subcommand.setName('gmtminus')
-        .setDescription('Select timezone from GMT -12 to GMT')
+        .setDescription('🕒 Select timezone from GMT -12 to GMT')
         .setDescriptionLocalizations({
-            "ru": `${locale.ru.desctimezoneminus}`,
-            "en-US": `${locale.en_us.desctimezoneminus}`,
-            "de": `${locale.de.desctimezoneminus}`,
-            "pl": `${locale.pl.desctimezoneminus}`,
-            "fr": `${locale.fr.desctimezoneminus}`,
-            "ja": `${locale.ja.desctimezoneminus}`,
-            "pt-BR": `${locale.pt_BR.desctimezoneminus}`,
-            "ko": `${locale.ko.desctimezoneminus}`,
-            "bg": `${locale.bg.desctimezoneminus}`,
-            "sv-SE": `${locale.sv_SE.desctimezoneminus}`,
-            "uk": `${locale.uk.desctimezoneminus}`,
+            "ru": `🕒 ${locale.ru.desctimezoneminus}`,
+            "en-US": `🕒 ${locale.en_us.desctimezoneminus}`,
+            "de": `🕒 ${locale.de.desctimezoneminus}`,
+            "pl": `🕒 ${locale.pl.desctimezoneminus}`,
+            "fr": `🕒 ${locale.fr.desctimezoneminus}`,
+            "ja": `🕒 ${locale.ja.desctimezoneminus}`,
+            "pt-BR": `🕒 ${locale.pt_BR.desctimezoneminus}`,
+            "ko": `🕒 ${locale.ko.desctimezoneminus}`,
+            "bg": `🕒 ${locale.bg.desctimezoneminus}`,
+            "sv-SE": `🕒 ${locale.sv_SE.desctimezoneminus}`,
+            "uk": `🕒 ${locale.uk.desctimezoneminus}`,
         })
         .addStringOption(option =>
             option.setName('timezone')
@@ -295,19 +295,19 @@ const timezonenow = new SlashCommandBuilder()
     
     .addSubcommand(subcommand =>
         subcommand.setName('keyzones')
-        .setDescription('Check time in timezone different from GMT')
+        .setDescription('🕒 Check time in timezone different from GMT')
         .setDescriptionLocalizations({
-            "ru": `${locale.ru.desctimezonekey}`,
-            "en-US": `${locale.en_us.desctimezonekey}`,
-            "de": `${locale.de.desctimezonekey}`,
-            "pl": `${locale.pl.desctimezonekey}`,
-            "fr": `${locale.fr.desctimezonekey}`,
-            "ja": `${locale.ja.desctimezonekey}`,
-            "pt-BR": `${locale.pt_BR.desctimezonekey}`,
-            "ko": `${locale.ko.desctimezonekey}`,
-            "bg": `${locale.bg.desctimezonekey}`,
-            "sv-SE": `${locale.sv_SE.desctimezonekey}`,
-            "uk": `${locale.uk.desctimezonekey}`,
+            "ru": `🕒 ${locale.ru.desctimezonekey}`,
+            "en-US": `🕒 ${locale.en_us.desctimezonekey}`,
+            "de": `🕒 ${locale.de.desctimezonekey}`,
+            "pl": `🕒 ${locale.pl.desctimezonekey}`,
+            "fr": `🕒 ${locale.fr.desctimezonekey}`,
+            "ja": `🕒 ${locale.ja.desctimezonekey}`,
+            "pt-BR": `🕒 ${locale.pt_BR.desctimezonekey}`,
+            "ko": `🕒 ${locale.ko.desctimezonekey}`,
+            "bg": `🕒 ${locale.bg.desctimezonekey}`,
+            "sv-SE": `🕒 ${locale.sv_SE.desctimezonekey}`,
+            "uk": `🕒 ${locale.uk.desctimezonekey}`,
         })
         .addStringOption(option =>
             option.setName('timezone')
@@ -365,19 +365,19 @@ const timezonenow = new SlashCommandBuilder()
         
 const timestampint = new SlashCommandBuilder()
     .setName('timestamp')
-    .setDescription('Create timestamp to embed it in your message!')
+    .setDescription('⏳ Create timestamp to embed it in your message!')
     .setDescriptionLocalizations({
-        "ru": `${locale.ru.desctimestamp}`,
-        "en-US": `${locale.en_us.desctimestamp}`,
-        "de": `${locale.de.desctimestamp}`,
-        "pl": `${locale.pl.desctimestamp}`,
-        "fr": `${locale.fr.desctimestamp}`,
-        "ja": `${locale.ja.desctimestamp}`,
-        "pt-BR": `${locale.pt_BR.desctimestamp}`,
-        "ko": `${locale.ko.desctimestamp}`,
-        "bg": `${locale.bg.desctimestamp}`,
-        "sv-SE": `${locale.sv_SE.desctimestamp}`,
-        "uk": `${locale.uk.desctimestamp}`,
+        "ru": `⏳ ${locale.ru.desctimestamp}`,
+        "en-US": `⏳ ${locale.en_us.desctimestamp}`,
+        "de": `⏳ ${locale.de.desctimestamp}`,
+        "pl": `⏳ ${locale.pl.desctimestamp}`,
+        "fr": `⏳ ${locale.fr.desctimestamp}`,
+        "ja": `⏳ ${locale.ja.desctimestamp}`,
+        "pt-BR": `⏳ ${locale.pt_BR.desctimestamp}`,
+        "ko": `⏳ ${locale.ko.desctimestamp}`,
+        "bg": `⏳ ${locale.bg.desctimestamp}`,
+        "sv-SE": `⏳ ${locale.sv_SE.desctimestamp}`,
+        "uk": `⏳ ${locale.uk.desctimestamp}`,
     })
     .setIntegrationTypes(0, 1)
     .setContexts(0, 1, 2)
@@ -665,24 +665,24 @@ const timestampint = new SlashCommandBuilder()
     
 const convertint = new SlashCommandBuilder()
     .setName('convert')
-    .setDescription('Convert UNIX string to Date and backwards')
+    .setDescription('🔄 Convert UNIX string to Date and backwards')
     .setIntegrationTypes(0, 1)
     .setContexts(0, 1, 2)
     .addSubcommand(subcommand =>
         subcommand.setName('tounix')
-        .setDescription('Convert selected date to UNIX date integer')
+        .setDescription('🔄 Convert selected date to UNIX date integer')
         .setDescriptionLocalizations({
-            "ru": `${locale.ru.descconverttounix}`,
-            "en-US": `${locale.en_us.descconverttounix}`,
-            "de": `${locale.de.descconverttounix}`,
-            "pl": `${locale.pl.descconverttounix}`,
-            "fr": `${locale.fr.descconverttounix}`,
-            "ja": `${locale.ja.descconverttounix}`,
-            "pt-BR": `${locale.pt_BR.descconverttounix}`,
-            "ko": `${locale.ko.descconverttounix}`,
-            "bg": `${locale.bg.descconverttounix}`,
-            "sv-SE": `${locale.sv_SE.descconverttounix}`,
-            "uk": `${locale.uk.descconverttounix}`,
+            "ru": `🔄 ${locale.ru.descconverttounix}`,
+            "en-US": `🔄 ${locale.en_us.descconverttounix}`,
+            "de": `🔄 ${locale.de.descconverttounix}`,
+            "pl": `🔄 ${locale.pl.descconverttounix}`,
+            "fr": `🔄 ${locale.fr.descconverttounix}`,
+            "ja": `🔄 ${locale.ja.descconverttounix}`,
+            "pt-BR": `🔄 ${locale.pt_BR.descconverttounix}`,
+            "ko": `🔄 ${locale.ko.descconverttounix}`,
+            "bg": `🔄 ${locale.bg.descconverttounix}`,
+            "sv-SE": `🔄 ${locale.sv_SE.descconverttounix}`,
+            "uk": `🔄 ${locale.uk.descconverttounix}`,
         })
         .addIntegerOption(option =>
             option.setName('year')
@@ -980,19 +980,19 @@ const convertint = new SlashCommandBuilder()
     )
     .addSubcommand(subcommand =>
         subcommand.setName('todate')
-        .setDescription('Convert UNIX date integer to Human Date')
+        .setDescription('🔄 Convert UNIX date integer to Human Date')
         .setDescriptionLocalizations({
-            "ru": `${locale.ru.descconverttodate}`,
-            "en-US": `${locale.en_us.descconverttodate}`,
-            "de": `${locale.de.descconverttodate}`,
-            "pl": `${locale.pl.descconverttodate}`,
-            "fr": `${locale.fr.descconverttodate}`,
-            "ja": `${locale.ja.descconverttodate}`,
-            "pt-BR": `${locale.pt_BR.descconverttodate}`,
-            "ko": `${locale.ko.descconverttodate}`,
-            "bg": `${locale.bg.descconverttodate}`,
-            "sv-SE": `${locale.sv_SE.descconverttodate}`,
-            "uk": `${locale.uk.descconverttodate}`,
+            "ru": `🔄 ${locale.ru.descconverttodate}`,
+            "en-US": `🔄 ${locale.en_us.descconverttodate}`,
+            "de": `🔄 ${locale.de.descconverttodate}`,
+            "pl": `🔄 ${locale.pl.descconverttodate}`,
+            "fr": `🔄 ${locale.fr.descconverttodate}`,
+            "ja": `🔄 ${locale.ja.descconverttodate}`,
+            "pt-BR": `🔄 ${locale.pt_BR.descconverttodate}`,
+            "ko": `🔄 ${locale.ko.descconverttodate}`,
+            "bg": `🔄 ${locale.bg.descconverttodate}`,
+            "sv-SE": `🔄 ${locale.sv_SE.descconverttodate}`,
+            "uk": `🔄 ${locale.uk.descconverttodate}`,
         })
         .addIntegerOption(option =>
             option.setName('unixtime')
@@ -1094,24 +1094,24 @@ const convertint = new SlashCommandBuilder()
 
 const calcint = new SlashCommandBuilder()
     .setName('calc')
-    .setDescription('Time and Date Calculator')
+    .setDescription('🧮 Time and Date Calculator')
     .setIntegrationTypes(0, 1)
     .setContexts(0, 1, 2)
     .addSubcommand(subcommand =>
         subcommand.setName('fromnow')
-        .setDescription('Add or subtract time from the current time')
+        .setDescription('🧮 Add or subtract time from the current time')
         .setDescriptionLocalizations({
-            "ru": `${locale.ru.desccalcfromnow}`,
-            "en-US": `${locale.en_us.desccalcfromnow}`,
-            "de": `${locale.de.desccalcfromnow}`,
-            "pl": `${locale.pl.desccalcfromnow}`,
-            "fr": `${locale.fr.desccalcfromnow}`,
-            "ja": `${locale.ja.desccalcfromnow}`,
-            "pt-BR": `${locale.pt_BR.desccalcfromnow}`,
-            "ko": `${locale.ko.desccalcfromnow}`,
-            "bg": `${locale.bg.desccalcfromnow}`,
-            "sv-SE": `${locale.sv_SE.desccalcfromnow}`,
-            "uk": `${locale.uk.desccalcfromnow}`,
+            "ru": `🧮 ${locale.ru.desccalcfromnow}`,
+            "en-US": `🧮 ${locale.en_us.desccalcfromnow}`,
+            "de": `🧮 ${locale.de.desccalcfromnow}`,
+            "pl": `🧮 ${locale.pl.desccalcfromnow}`,
+            "fr": `🧮 ${locale.fr.desccalcfromnow}`,
+            "ja": `🧮 ${locale.ja.desccalcfromnow}`,
+            "pt-BR": `🧮 ${locale.pt_BR.desccalcfromnow}`,
+            "ko": `🧮 ${locale.ko.desccalcfromnow}`,
+            "bg": `🧮 ${locale.bg.desccalcfromnow}`,
+            "sv-SE": `🧮 ${locale.sv_SE.desccalcfromnow}`,
+            "uk": `🧮 ${locale.uk.desccalcfromnow}`,
         })
         //Add or subtract
         .addStringOption(option =>
@@ -1477,19 +1477,19 @@ const calcint = new SlashCommandBuilder()
     //Calc with custom first arg
     .addSubcommand(subcommand =>
         subcommand.setName('fromdate')
-        .setDescription('Add or subtract time from the specified date')
+        .setDescription('🧮 Add or subtract time from the specified date')
         .setDescriptionLocalizations({
-            "ru": `${locale.ru.desccalcfromdate}`,
-            "en-US": `${locale.en_us.desccalcfromdate}`,
-            "de": `${locale.de.desccalcfromdate}`,
-            "pl": `${locale.pl.desccalcfromdate}`,
-            "fr": `${locale.fr.desccalcfromdate}`,
-            "ja": `${locale.ja.desccalcfromdate}`,
-            "pt-BR": `${locale.pt_BR.desccalcfromdate}`,
-            "ko": `${locale.ko.desccalcfromdate}`,
-            "bg": `${locale.bg.desccalcfromdate}`,
-            "sv-SE": `${locale.sv_SE.desccalcfromdate}`,
-            "uk": `${locale.uk.desccalcfromdate}`,
+            "ru": `🧮 ${locale.ru.desccalcfromdate}`,
+            "en-US": `🧮 ${locale.en_us.desccalcfromdate}`,
+            "de": `🧮 ${locale.de.desccalcfromdate}`,
+            "pl": `🧮 ${locale.pl.desccalcfromdate}`,
+            "fr": `🧮 ${locale.fr.desccalcfromdate}`,
+            "ja": `🧮 ${locale.ja.desccalcfromdate}`,
+            "pt-BR": `🧮 ${locale.pt_BR.desccalcfromdate}`,
+            "ko": `🧮 ${locale.ko.desccalcfromdate}`,
+            "bg": `🧮 ${locale.bg.desccalcfromdate}`,
+            "sv-SE": `🧮 ${locale.sv_SE.desccalcfromdate}`,
+            "uk": `🧮 ${locale.uk.desccalcfromdate}`,
         })
         //arg1
         .addIntegerOption(option =>
@@ -2087,19 +2087,19 @@ const calcint = new SlashCommandBuilder()
     //calculate time between dates
     .addSubcommand(subcommand =>
         subcommand.setName('from-to')
-        .setDescription('Calculate time between two dates')
+        .setDescription('🧮 Calculate time between two dates')
         .setDescriptionLocalizations({
-            "ru": `${locale.ru.desccalcfromto}`,
-            "en-US": `${locale.en_us.desccalcfromto}`,
-            "de": `${locale.de.desccalcfromto}`,
-            "pl": `${locale.pl.desccalcfromto}`,
-            "fr": `${locale.fr.desccalcfromto}`,
-            "ja": `${locale.ja.desccalcfromto}`,
-            "pt-BR": `${locale.pt_BR.desccalcfromto}`,
-            "ko": `${locale.ko.desccalcfromto}`,
-            "bg": `${locale.bg.desccalcfromto}`,
-            "sv-SE": `${locale.sv_SE.desccalcfromto}`,
-            "uk": `${locale.uk.desccalcfromto}`,
+            "ru": `🧮 ${locale.ru.desccalcfromto}`,
+            "en-US": `🧮 ${locale.en_us.desccalcfromto}`,
+            "de": `🧮 ${locale.de.desccalcfromto}`,
+            "pl": `🧮 ${locale.pl.desccalcfromto}`,
+            "fr": `🧮 ${locale.fr.desccalcfromto}`,
+            "ja": `🧮 ${locale.ja.desccalcfromto}`,
+            "pt-BR": `🧮 ${locale.pt_BR.desccalcfromto}`,
+            "ko": `🧮 ${locale.ko.desccalcfromto}`,
+            "bg": `🧮 ${locale.bg.desccalcfromto}`,
+            "sv-SE": `🧮 ${locale.sv_SE.desccalcfromto}`,
+            "uk": `🧮 ${locale.uk.desccalcfromto}`,
         })
         //first date
         .addIntegerOption(option =>

@@ -1,4 +1,4 @@
-const corever = 'v1.1d';
+const corever = 'v1.1.0';
 const supportedtimelocale = ["en-US", "ru", "de", "pl", "fr", "ja", "pt-BR", "ko", "bg", "sv-SE", "uk"]; //and en-UK as default
 
 const fs = require('fs');
@@ -603,9 +603,14 @@ client.once(Events.ClientReady, async(readyClient) => {
     
     //Bot Presence List
     const presencelist = [
-        { name: `/about • ${corever}`, type: ActivityType.Streaming },
-        { name: `/now • With ${installCount}+ installs!`, type: ActivityType.Streaming },
-        { name: `/random • Throw a Dice!`, type: ActivityType.Streaming }
+        { name: `📙 /about • ${corever}`, type: ActivityType.Streaming },
+        { name: `🎲 /random • Throw a Dice!`, type: ActivityType.Streaming },
+        { name: `⏱ /now • ${installCount}+ installs!`, type: ActivityType.Streaming },
+        { name: `⌛ /timestamp • Try it!`, type: ActivityType.Streaming },
+        { name: `🔗 /invite • Join Us!`, type: ActivityType.Streaming },
+        { name: `🧮 /calc • The Date calc!`, type: ActivityType.Streaming },
+        { name: `🔄 /convert • UNIX Time!`, type: ActivityType.Streaming },
+        { name: `🕒 /timezone • What time is it?`, type: ActivityType.Streaming }
     ];
     
     //index init
