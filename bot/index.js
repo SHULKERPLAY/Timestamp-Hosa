@@ -1,34 +1,24 @@
-const corever = 'v1.1.0';
+const corever = 'v1.1.1';
 const supportedtimelocale = ["en-US", "ru", "de", "pl", "fr", "ja", "pt-BR", "ko", "bg", "sv-SE", "uk"]; //and en-UK as default
 
-const fs = require('fs');
-const path = require('path');
-const { timestampstyles, timezonesgmtminus, timezonesgmtplus, timezoneskey, monthsoption, alltimezones, convertGmtToSeconds, getRandomInt, getDateInt } = require('./functions.js');
+const {  convertGmtToSeconds, getRandomInt, getDateInt, loadlocale, getLoc } = require('./functions.js');
 const { ping, about, invite, timenow, timezonenow, timestampint, convertint, calcint, randomint } = require('./builder.js');
 
 //Statistics
 const { loadStats, incrementStat, statsAutoSave } = require('./botstats.js');
-loadStats();
-statsAutoSave(60); //Autosave stats every (mins)
 
-//loading bot localization
-const localepath = path.join(__dirname, 'locales.json');
-let locale = {};
-try {
-    if (fs.existsSync(localepath)) {
-        const locdata = fs.readFileSync(localepath);
-        locale = JSON.parse(locdata.toString());
-    } else {
-        locale = {};
-    }
-} catch (error) {
-    console.error('Error while loading locale:', error);
-    locale = {};
+let locale; //Initialize localization
+async function preinit() {
+    loadStats();
+    statsAutoSave(60); //Autosave stats every (mins)
+    //loading bot localization
+    locale = loadlocale();
 }
+preinit();
+
 // Require the necessary discord.js classes
-const { Client, Routes, Events, GatewayIntentBits, ActivityType, setPresence, SlashCommandBuilder } = require('discord.js');
+const { Client, Routes, Events, GatewayIntentBits, ActivityType } = require('discord.js');
 const { createInterface } = require('node:readline');
-const fetch = require('node-fetch');
 const { token } = require('./config.json');
 
 // Create a new client instance

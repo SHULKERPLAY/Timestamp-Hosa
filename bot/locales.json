@@ -1,5 +1,5 @@
 {
-    "en_us": {
+    "en-US": {
         "arg": {
             "_comment": "arguments_must_be_lowercase_and_max_16_chars",
             "day": "day",
@@ -1145,7 +1145,7 @@
         "dicethrown": "サイコロを振りました",
         "years": "年"
     },
-    "pt_BR": {
+    "pt-BR": {
         "arg": {
             "_comment": "minusculas_e_max_16_caracteres",
             "day": "dia",
@@ -1718,7 +1718,7 @@
         "dicethrown": "Зарчето е хвърлено",
         "years": "Години"
     },
-    "sv_SE": {
+    "sv-SE": {
         "arg": {
             "_comment": "gemener_och_max_16_tecken",
             "day": "dag",

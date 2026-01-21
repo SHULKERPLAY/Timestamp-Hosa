@@ -1,5 +1,5 @@
 const { SlashCommandBuilder } = require('discord.js');
-const { timestampstyles, timezonesgmtminus, timezonesgmtplus, timezoneskey, monthsoption, alltimezones } = require('./functions.js');
+const { timestampstyles, timezonesgmtminus, timezonesgmtplus, timezoneskey, monthsoption, alltimezones } = require('./constants.js');
 const fs = require('fs');
 const path = require('path');
 //loading bot localization
@@ -17,9 +17,10 @@ try {
     locale = {};
 }
 
-//.setDefaultMemberPermissions(0) блокирует использование всем кроме администраторов. 
+//.setDefaultMemberPermissions(0) restricts usage to admins only. 
 //.setContexts(0, 1, 2) 0 - Can be used in server channels, 1 - Can be used in DM with app's bot user, 2 - Can be used in private channels without inviting the bot
 //.setIntegrationTypes(0, 1) - 0 - Can be used with bot installed on server, 1 - can be used with bot installed as User App
+
 //CommandBuilder
 const ping = new SlashCommandBuilder()
     .setName('ping')
