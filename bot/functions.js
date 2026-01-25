@@ -31,6 +31,43 @@ function getLoc(pathStr, prefix = '') {
     return result;
 };
 
+function lunar() {};
+lunar.isephemeral = function(interaction) {
+    const isPublic = interaction.options.getBoolean('публично') ?? false;
+    if (isPublic) {
+        incrementStat(`use.publicreply`);
+        return { publicreplylog: 'public', isephemeral: false };
+    }
+    return { publicreplylog: '', isephemeral: true };
+};
+lunar.reply = async function(interaction, replycontent, isephemeral, embedcontent, hideembeds) {
+    try {
+        //djs v14.15+ now using flags instead of 'ephemeral: true'
+        const replyflag = [];
+        const replydata = (replycontent || '').length > 1900 ? replycontent.substring(0, 1900) + "...\n```\nОтображаемый контент превышает 1900 символов!" : replycontent;
+        if (isephemeral) replyflag.push(MessageFlags.Ephemeral);
+        if (hideembeds) replyflag.push(MessageFlags.SuppressEmbeds);
+        await interaction.reply({
+            content: replydata || '',
+            embeds: embedcontent || [],
+            flags: replyflag,
+        });
+    } catch (error) {
+        console.error('Ошибка отправки сообщения:', error.message)
+    }
+};
+lunar.editReply = async function(interaction, replycontent, embedcontent) {
+    const replydata = (replycontent || '').length > 1900 ? replycontent.substring(0, 1900) + "...\n```\nОтображаемый контент превышает 1900 символов!" : replycontent;
+    try {
+        await interaction.editReply({
+            content: replydata || '',
+            embeds: embedcontent || [],
+        });
+    } catch (error) {
+        console.error('Ошибка именения ответа:', error.message)
+    }
+};
+
 //Use: var offset = convertGmtToSeconds("GMT+1");
 function convertGmtToSeconds(gmtString) {
     if ( gmtString === 'GMT' ) {
@@ -187,4 +224,4 @@ function getDateInt(year, month, day, hour, min, sec, ms) {
 }
 
 //export
-module.exports = { convertGmtToSeconds, getRandomInt, getDateInt, loadlocale, getLoc };
+module.exports = { convertGmtToSeconds, getRandomInt, getDateInt, loadlocale, getLoc, lunar };

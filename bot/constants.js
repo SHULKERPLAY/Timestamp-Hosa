@@ -353,5 +353,41 @@ const alltimezones = [
       name_localizations:(getLoc('gmtm11'))
     }
 ];
+const mathargs = [
+    {
+        name: 'Add (+)',
+        value: 'Add',
+        name_localizations:(getLoc('add'))
+    },
+    { 
+        name: 'Subtract (-)',
+        value: 'Subtract',
+        name_localizations:(getLoc('subtract'))
+    }
+];
 
-module.exports = { timestampstyles, timezonesgmtminus, timezonesgmtplus, timezoneskey, monthsoption, alltimezones };
+const dicetypes = [
+    { name: '🎲 D4 (1 ... 4)',
+        value: 'D4'
+    },
+    { name: '🎲 D6 (1 ... 6)',
+        value: 'D6'
+    },
+    { name: '🎲 D8 (1 ... 8)',
+        value: 'D8'
+    },
+    { name: '🎲 D10 (1 ... 10)',
+        value: 'D10'
+    },
+    { name: '🎲 D12 (1 ... 12)',
+        value: 'D12'
+    },
+    { name: '🎲 D20 (1 ... 20)',
+        value: 'D20'
+    },
+    { name: '🎲 D100 (1 ... 100)',
+        value: 'D100'
+    }
+];
+
+module.exports = { timestampstyles, timezonesgmtminus, timezonesgmtplus, timezoneskey, monthsoption, alltimezones, mathargs, dicetypes };

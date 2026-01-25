@@ -1,8 +1,8 @@
 const corever = 'v1.1.1';
 const supportedtimelocale = ["en-US", "ru", "de", "pl", "fr", "ja", "pt-BR", "ko", "bg", "sv-SE", "uk"]; //and en-UK as default
 
-const {  convertGmtToSeconds, getRandomInt, getDateInt, loadlocale, getLoc } = require('./functions.js');
-const { ping, about, invite, timenow, timezonenow, timestampint, convertint, calcint, randomint } = require('./builder.js');
+const { convertGmtToSeconds, getRandomInt, getDateInt, loadlocale, getLoc } = require('./functions.js');
+const { hosa } = require('./builder.js');
 
 //Statistics
 const { loadStats, incrementStat, statsAutoSave } = require('./botstats.js');
@@ -24,22 +24,19 @@ const { token } = require('./config.json');
 // Create a new client instance
 const client = new Client({ intents: [GatewayIntentBits.Guilds], rest: { timeout: 60000 } });
 
+//Convert builder objects to JSON
+const hosajson = Object.values(hosa).map(command => command.toJSON());
 //Define commands
-const commands = [ping, about, invite, timenow, timezonenow, timestampint, convertint, calcint, randomint];
+const commands = [ hosajson ];
 
 const rl = createInterface({ input: process.stdin, output: process.stdout });
 
-client.on('interactionCreate', (interaction) => {
+client.on('interactionCreate', async (interaction) => {
+    if (!interaction.isChatInputCommand()) return;
     incrementStat(`interactionlang.${interaction.locale}`);
     //decide if reply be ephemeral (publicreply: false / true)
-    if (interaction.options.getBoolean('publicreply') === undefined || interaction.options.getBoolean('publicreply') === null || interaction.options.getBoolean('publicreply') === false) {
-        var isephemeral = true
-        var publicreplylog = ''
-    } else { 
-        incrementStat(`use.publicreply`);
-        var publicreplylog = 'public'
-        var isephemeral = false
-    }
+    let { publicreplylog, isephemeral } = await lunar.isephemeral(interaction);
+    if (isephemeral = false) incrementStat(`use.publicreply`);
     //get commandName
     if (interaction.commandName === 'ping') {
         incrementStat('pingcmd');
