@@ -39,24 +39,21 @@ client.on('interactionCreate', async (interaction) => {
     if (isephemeral = false) incrementStat(`use.publicreply`);
     //get commandName
     if (interaction.commandName === 'ping') {
-        incrementStat('pingcmd');
-        const pingloc = {
-            "ru": `:ping_pong: *${locale.ru.pong}!* ${locale.ru.latency} ${Date.now() - interaction.createdTimestamp} ${locale.ru.milliseconds}! ${locale.ru.apilatency} ${Math.round(client.ws.ping)} ${locale.ru.milliseconds}.`,
-            "en-US": `:ping_pong: *${locale.en_us.pong}!* ${locale.en_us.latency} ${Date.now() - interaction.createdTimestamp} ${locale.en_us.milliseconds}! ${locale.en_us.apilatency} ${Math.round(client.ws.ping)} ${locale.en_us.milliseconds}.`,
-            "de": `:ping_pong: *${locale.de.pong}!* ${locale.de.latency} ${Date.now() - interaction.createdTimestamp} ${locale.de.milliseconds}! ${locale.de.apilatency} ${Math.round(client.ws.ping)} ${locale.de.milliseconds}.`,
-            "pl": `:ping_pong: *${locale.pl.pong}!* ${locale.pl.latency} ${Date.now() - interaction.createdTimestamp} ${locale.pl.milliseconds}! ${locale.pl.apilatency} ${Math.round(client.ws.ping)} ${locale.pl.milliseconds}.`,
-            "fr": `:ping_pong: *${locale.fr.pong}!* ${locale.fr.latency} ${Date.now() - interaction.createdTimestamp} ${locale.fr.milliseconds}! ${locale.fr.apilatency} ${Math.round(client.ws.ping)} ${locale.fr.milliseconds}.`,
-            "ja": `:ping_pong: *${locale.ja.pong}!* ${locale.ja.latency} ${Date.now() - interaction.createdTimestamp} ${locale.ja.milliseconds}! ${locale.ja.apilatency} ${Math.round(client.ws.ping)} ${locale.ja.milliseconds}.`,
-            "pt-BR": `:ping_pong: *${locale.pt_BR.pong}!* ${locale.pt_BR.latency} ${Date.now() - interaction.createdTimestamp} ${locale.pt_BR.milliseconds}! ${locale.pt_BR.apilatency} ${Math.round(client.ws.ping)} ${locale.pt_BR.milliseconds}.`,
-            "ko": `:ping_pong: *${locale.ko.pong}!* ${locale.ko.latency} ${Date.now() - interaction.createdTimestamp} ${locale.ko.milliseconds}! ${locale.ko.apilatency} ${Math.round(client.ws.ping)} ${locale.ko.milliseconds}.`,
-            "bg": `:ping_pong: *${locale.bg.pong}!* ${locale.bg.latency} ${Date.now() - interaction.createdTimestamp} ${locale.bg.milliseconds}! ${locale.bg.apilatency} ${Math.round(client.ws.ping)} ${locale.bg.milliseconds}.`,
-            "sv-SE": `:ping_pong: *${locale.sv_SE.pong}!* ${locale.sv_SE.latency} ${Date.now() - interaction.createdTimestamp} ${locale.sv_SE.milliseconds}! ${locale.sv_SE.apilatency} ${Math.round(client.ws.ping)} ${locale.sv_SE.milliseconds}.`,
-            "uk": `:ping_pong: *${locale.uk.pong}!* ${locale.uk.latency} ${Date.now() - interaction.createdTimestamp} ${locale.uk.milliseconds}! ${locale.uk.apilatency} ${Math.round(client.ws.ping)} ${locale.uk.milliseconds}.`,
+        //Counting latency
+        const latency = Date.now() - interaction.createdTimestamp;
+        const apiLatency = Math.round(client.ws.ping);
+        //Get locale obj and null if not found
+        const lang = locale[interaction.locale] || null;
+        let replycontent;
+        if (lang) {
+            //Building response
+            replycontent = `:ping_pong: *${lang.pong}!* ${lang.latency} ${latency} ${lang.milliseconds}! ${lang.apilatency} ${apiLatency} ${lang.milliseconds}.`;
+        } else {
+            //if locale not supported
+            replycontent = `:ping_pong: *Pong!* Latency ${latency} ms! API Latency ${apiLatency} ms.`;
         }
-        interaction.reply({
-            content: pingloc[interaction.locale] ?? `:ping_pong: *Pong!* Latency ${Date.now() - interaction.createdTimestamp} ms! API Latency ${Math.round(client.ws.ping)} ms.`,
-            ephemeral: true,
-        });
+        await lunar.reply(interaction, replycontent, true);
+        incrementStat('pingcmd');
     } else if (interaction.commandName === 'about') {
         incrementStat('aboutcmd');
         const aboutloc = {
