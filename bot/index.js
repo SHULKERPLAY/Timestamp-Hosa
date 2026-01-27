@@ -9,7 +9,6 @@ const { loadStats, incrementStat, statsAutoSave } = require('./botstats.js');
 
 // Require the necessary discord.js classes
 const { Client, Routes, Events, GatewayIntentBits, ActivityType } = require('discord.js');
-const { createInterface } = require('node:readline');
 const { token } = require('./config.json');
 
 //initialize statistics
@@ -25,8 +24,6 @@ const client = new Client({ intents: [GatewayIntentBits.Guilds], rest: { timeout
 const hosajson = Object.values(hosa).map(command => command.toJSON());
 //Define commands
 const commands = [ hosajson ];
-
-const rl = createInterface({ input: process.stdin, output: process.stdout });
 
 client.on('interactionCreate', async (interaction) => {
     if (!interaction.isChatInputCommand()) return;
@@ -122,9 +119,6 @@ client.once(Events.ClientReady, async(readyClient) => {
 
 //prelogin
 (async() => {
-    //auth
-    const question = (q) => new Promise((resolve) => rl.question(q, resolve));
-
     // Log in to Discord with your client's token
     await client.login(token).catch((err) => {
       throw err

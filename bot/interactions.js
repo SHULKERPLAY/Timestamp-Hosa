@@ -32,17 +32,6 @@ tshosa.about = async function(interaction, lang) {
     await lunar.reply(interaction, replycontent, true);
 };
 
-tshosa.about = async function(interaction, lang) {
-    //Building response
-    let replycontent;
-    if (lang) {
-        replycontent = `${lang.aboutcmd} \n:sparkles: ${lang.coreversion} ${corever} \n\n ${lang.aboutanounce}`;
-    } else {
-        replycontent = `:alarm_clock: Create timestamps for your messages with `/timestamp`, calculate dates with `/calc`! Check the full command list for more features! \n:knot: Noticed a localization error or a bug? Have a feature request? [Visit our GitHub](https://github.com/SHULKERPLAY/Timestamp-Hosa)! \n :gift_heart: [Support Server](https://discord.gg/e2HcXrQ) - <@459657842895486977> \n\n[Terms of Service](https://lunarcreators.ru/timestamp-hosa/tos/) and [Privacy Policy](https://lunarcreators.ru/timestamp-hosa/privacy/) \n:sparkles: Core version: ${corever} \n\n${locale.en_us.aboutanounce}`;
-    }
-    await lunar.reply(interaction, replycontent, true);
-};
-
 tshosa.invite = async function(interaction, lang) {
     //Building response
     let replycontent;
@@ -290,8 +279,6 @@ tshosa.convert = async function(interaction, lang, publicreplylog) {
 };
 
 tshosa.calc = async function(interaction, lang, publicreplylog) {
-    //get Add or Subtract for entire calc command
-    var calcmatharg = interaction.options.getString('matharg');
     if (interaction.options.getSubcommand() === 'from-to') {
         const calcfromyear = interaction.options.getInteger('fromyear');
         const calcfrommonth = interaction.options.getString('frommonth');
@@ -325,6 +312,8 @@ tshosa.calc = async function(interaction, lang, publicreplylog) {
         }
         await lunar.editReply(interaction, replycontent);
     } else if (interaction.options.getSubcommand() === 'fromnow' || interaction.options.getSubcommand() === 'fromdate') {
+        //get Add or Subtract
+        const calcmatharg = interaction.options.getString('matharg');
         let calcarg1;
         if (interaction.options.getSubcommand() === 'fromnow') {
             //get current time

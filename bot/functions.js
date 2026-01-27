@@ -13,7 +13,7 @@ function loadlocale() {
         if (fs.existsSync(locpath)) locale = JSON.parse(fs.readFileSync(locpath));
     } catch (e) { console.error('Locale load error:', e); }
     return locale;
-}
+};
 const locale = loadlocale();
 
 //Get all locales on keyword
@@ -33,7 +33,7 @@ function getLoc(pathStr, prefix = '') {
 
 function lunar() {};
 lunar.isephemeral = function(interaction) {
-    const isPublic = interaction.options.getBoolean('публично') ?? false;
+    const isPublic = interaction.options.getBoolean('publicreply') ?? false;
     if (isPublic) {
         incrementStat(`use.publicreply`);
         return { publicreplylog: 'public', isephemeral: false };
@@ -53,7 +53,7 @@ lunar.reply = async function(interaction, replycontent, isephemeral, embedconten
             flags: replyflag,
         });
     } catch (error) {
-        console.error('Ошибка отправки сообщения:', error.message)
+        console.error('Error while sending message:', error.message)
     }
 };
 lunar.editReply = async function(interaction, replycontent, embedcontent) {
@@ -64,164 +64,78 @@ lunar.editReply = async function(interaction, replycontent, embedcontent) {
             embeds: embedcontent || [],
         });
     } catch (error) {
-        console.error('Ошибка именения ответа:', error.message)
+        console.error('Error while editing message:', error.message)
     }
 };
 
-//Use: var offset = convertGmtToSeconds("GMT+1");
+//Use: const offset = convertGmtToSeconds("GMT+1");
+//In .toLocaleString() 'Etc/GMT+1' means GMT -1 and 'Etc/GMT-1' means GMT +1 so offset integer reverted
 function convertGmtToSeconds(gmtString) {
-    if ( gmtString === 'GMT' ) {
-        gmtoffset = 0;
-        return gmtoffset;
-    } else if ( gmtString === 'GMT-1' ) {
-        gmtoffset = 3600;
-        return gmtoffset;
-    } else if ( gmtString === 'GMT-2' ) {
-        gmtoffset = 3600 * 2;
-        return gmtoffset;
-    } else if ( gmtString === 'GMT-3' ) {
-        gmtoffset = 3600 * 3;
-        return gmtoffset;
-    } else if ( gmtString === 'GMT-4' ) {
-        gmtoffset = 3600 * 4;
-        return gmtoffset;
-    } else if ( gmtString === 'GMT-5' ) {
-        gmtoffset = 3600 * 5;
-        return gmtoffset;
-    } else if ( gmtString === 'GMT-6' ) {
-        gmtoffset = 3600 * 6;
-        return gmtoffset;
-    } else if ( gmtString === 'GMT-7' ) {
-        gmtoffset = 3600 * 7;
-        return gmtoffset;
-    } else if ( gmtString === 'GMT-8' ) {
-        gmtoffset = 3600 * 8;
-        return gmtoffset;
-    } else if ( gmtString === 'GMT-9' ) {
-        gmtoffset = 3600 * 9;
-        return gmtoffset;
-    } else if ( gmtString === 'GMT-10' ) {
-        gmtoffset = 3600 * 10;
-        return gmtoffset;
-    } else if ( gmtString === 'GMT-11' ) {
-        gmtoffset = 3600 * 11;
-        return gmtoffset;
-    } else if ( gmtString === 'GMT-12' ) {
-        gmtoffset = 3600 * 12;
-        return gmtoffset;
-    } else if ( gmtString === 'GMT-13' ) {
-        gmtoffset = 3600 * 13;
-        return gmtoffset;
-    } else if ( gmtString === 'GMT-14' ) {
-        gmtoffset = 3600 * 14;
-        return gmtoffset;
-    } else if ( gmtString === 'GMT+1' ) {
-        gmtoffset = -3600;
-        return gmtoffset;
-    } else if ( gmtString === 'GMT+2' ) {
-        gmtoffset = -3600 * 2;
-        return gmtoffset;
-    } else if ( gmtString === 'GMT+3' ) {
-        gmtoffset = -3600 * 3;
-        return gmtoffset;
-    } else if ( gmtString === 'GMT+4' ) {
-        gmtoffset = -3600 * 4;
-        return gmtoffset;
-    } else if ( gmtString === 'GMT+5' ) {
-        gmtoffset = -3600 * 5;
-        return gmtoffset;
-    } else if ( gmtString === 'GMT+6' ) {
-        gmtoffset = -3600 * 6;
-        return gmtoffset;
-    } else if ( gmtString === 'GMT+7' ) {
-        gmtoffset = -3600 * 7;
-        return gmtoffset;
-    } else if ( gmtString === 'GMT+8' ) {
-        gmtoffset = -3600 * 8;
-        return gmtoffset;
-    } else if ( gmtString === 'GMT+9' ) {
-        gmtoffset = -3600 * 9;
-        return gmtoffset;
-    } else if ( gmtString === 'GMT+10' ) {
-        gmtoffset = -3600 * 10;
-        return gmtoffset;
-    } else if ( gmtString === 'GMT+11' ) {
-        gmtoffset = -3600 * 11;
-        return gmtoffset;
-    }
-}
+    //replace GMT code with number. GMT return 0
+    const offsetValue = Number(gmtString.replace('GMT', ''));
+    //multiply on seconds in one hour
+    return -offsetValue * 3600;
+};
 
-//value randomizer
+//Integer randomizer
 //effective range: getRandomInt(-999999999999999, 999999999999999));
 //for date: getRandomInt(-62135596800000, 62135596800000)
-function getRandomInt(min, max) {
-    if (min === undefined || min === null) {
-        var min = -999999999999999
-    }
-    if (max === undefined || max === null) {
-        var max = 999999999999999
-    }
+function getRandomInt(min = -999999999999999, max = 999999999999999) {
     return Math.floor(Math.random() * (max - min + 1)) + min;
-}
+};
 
 //getDateInt(year, 'month', day, hour, min, sec, ms). Month is required to be 'string'
-function getDateInt(year, month, day, hour, min, sec, ms) {
+function getDateInt(year = '0001', month = '01', day = '01', hour = '00', min = '00', sec = '00', ms = '000') {
     //Test if option is specified
     //this also convert integers to strings
     //This need for the date convertor to work. It length sensitive so if we use int '1' it needs to be '01'
-    if (year === undefined || year === null) {
-        var year = '0001'
+    if (year === '0001') {
     } else if (year < 10) {
-        var year = `000${year}`
+        year = `000${year}`
     } else if (year < 100) {
-        var year = `00${year}`
+        year = `00${year}`
     } else if (year < 1000) {
-        var year = `0${year}`
+        year = `0${year}`
     }
-    if (month === undefined || month === null) {
-        var month = '01'
+    //Month must be 'string'
+    if (month === '01') {
     } else if (month.length === 1) {
-        var month = `0${month}`
+        month = `0${month}`
     }
-    if (day === undefined || day === null) {
-        var day = '01'
+    if (day === '01') {
     } else if (day < 10) {
-        var day = `0${day}`
+        day = `0${day}`
     }
-    if (hour === undefined || hour === null) {
-        var hour = '00'
+    if (hour === '00') {
     } else {
         if (hour < 10) {
-            var hour = `0${hour}`
+            hour = `0${hour}`
         }
     }
-    if (min === undefined || min === null) {
-        var min = '00'
+    if (min === '00') {
     } else {
         if (min < 10) {
-            var min = `0${min}`
+            min = `0${min}`
         }
     }
-    if (sec === undefined || sec === null) {
-        var sec = '00'
+    if (sec === '00') {
     } else {
         if (sec < 10) {
-            var sec = `0${sec}`
+            sec = `0${sec}`
         }
     }
-    if (ms === undefined || ms === null) {
-        var ms = '000'
+    if (ms === '000') {
     } else {
         if (ms < 10) {
-            var ms = `00${ms}`
+            ms = `00${ms}`
         } else if (ms < 100) {
-            var ms = `0${ms}`
+            ms = `0${ms}`
         }
     }
     //datestring vars need to be filled with strings
-    var DateString = `${year}-${month}-${day}T${hour}:${min}:${sec}.${ms}Z`;
+    const DateString = `${year}-${month}-${day}T${hour}:${min}:${sec}.${ms}Z`;
     return new Date(DateString).getTime();
-}
+};
 
 //export
 module.exports = { convertGmtToSeconds, getRandomInt, getDateInt, loadlocale, getLoc, lunar };
