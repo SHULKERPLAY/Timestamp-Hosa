@@ -84,6 +84,8 @@ const timezonesgmtminus = [ tzgmtp0, tzgmtm1, tzgmtm2, tzgmtm3, tzgmtm4, tzgmtm5
 //Others
 const timezoneskey = [ tzutc, tzpst, tzcet, tzest, tzmst, tzjst, tzcst, tzaest, tzast, tzcest ]
 
+const alltimezones = [ tzgmtp13, tzgmtp12, tzgmtp11, tzgmtp10, tzgmtp9, tzgmtp8, tzgmtp7, tzgmtp6, tzgmtp5, tzgmtp4, tzgmtp3, tzgmtp2, tzgmtp1, tzgmtp0, tzgmtm1, tzgmtm2, tzgmtm3, tzgmtm4, tzgmtm5, tzgmtm6, tzgmtm7, tzgmtm8, tzgmtm9, tzgmtm10, tzgmtm11 ];
+
 const monthsoption = [
     { name: 'January',
       value: '01',
@@ -135,108 +137,6 @@ const monthsoption = [
     },
 ];
 
-const alltimezones = [
-    { name: 'GMT +13 (Tongatapu, Fakaofo, Apia)',
-      value: 'GMT-13',
-      name_localizations:(getLoc('gmtp13'))
-    },
-    { name: 'GMT +12 (Kamchatka, Fiji, Kwajalein)',
-      value: 'GMT-12',
-      name_localizations:(getLoc('gmtp12'))
-    },
-    { name: 'GMT +11 (Magadan, Sakhalin, Auckland)',
-      value: 'GMT-11',
-      name_localizations:(getLoc('gmtp11'))
-    },
-    { name: 'GMT +10 (Sydney, Vladivostok, Lindeman)',
-      value: 'GMT-10',
-      name_localizations:(getLoc('gmtp10'))
-    },
-    { name: 'GMT +9 (Chita, Seoul, Tokyo)',
-      value: 'GMT-9',
-      name_localizations:(getLoc('gmtp9'))
-    },
-    { name: 'GMT +8 (Singapore, Shanghai, Western Australia)',
-      value: 'GMT-8',
-      name_localizations:(getLoc('gmtp8'))
-    },
-    { name: 'GMT +7 (Novokuznetsk, Bangkok, Jakarta)',
-      value: 'GMT-7',
-      name_localizations:(getLoc('gmtp7'))
-    },
-    { name: 'GMT +6 (Bishkek, Omsk, Dhaka)',
-      value: 'GMT-6',
-      name_localizations:(getLoc('gmtp6'))
-    },
-    { name: 'GMT +5 (Almaty, Yekaterinburg, Tashkent)',
-      value: 'GMT-5',
-      name_localizations:(getLoc('gmtp5'))
-    },
-    { name: 'GMT +4 (Dubai, Samara, Baku)',
-      value: 'GMT-4',
-      name_localizations:(getLoc('gmtp4'))
-    },
-    { name: 'GMT +3 (Moscow, Istanbul, Qatar)',
-      value: 'GMT-3',
-      name_localizations:(getLoc('gmtp3'))
-    },
-    { name: 'GMT +2 (Kaliningrad, Helsinki, Kyiv)',
-      value: 'GMT-2',
-      name_localizations:(getLoc('gmtp2'))
-    },
-    { name: 'GMT +1 (Warsaw, Paris, Berlin)',
-      value: 'GMT-1',
-      name_localizations:(getLoc('gmtp1'))
-    },
-    { name: 'GMT +0 (Iceland, London, Dublin)',
-      value: 'GMT',
-      name_localizations:(getLoc('gmtp0'))
-    },
-    { name: 'GMT -1 (Azores, Cape Verde)',
-      value: 'GMT+1',
-      name_localizations:(getLoc('gmtm1'))
-    },
-    { name: 'GMT -2 (Greenland, Atlantic islands)',
-      value: 'GMT+2',
-      name_localizations:(getLoc('gmtm2'))
-    },
-    { name: 'GMT -3 (Catamarca, Mendoza, st.johns)',
-      value: 'GMT+3',
-      name_localizations:(getLoc('gmtm3'))
-    },
-    { name: 'GMT -4 (Puerto Rico, Halifax, Santiago)',
-      value: 'GMT+4',
-      name_localizations:(getLoc('gmtm4'))
-    },
-    { name: 'GMT -5 (New York, Jamaica, Louisville)',
-      value: 'GMT+5',
-      name_localizations:(getLoc('gmtm5'))
-    },
-    { name: 'GMT -6 (Costa Rica, Guatemala, Mexico City)',
-      value: 'GMT+6',
-      name_localizations:(getLoc('gmtm6'))
-    },
-    { name: 'GMT -7 (Denver, Phoenix, Mazatlan)',
-      value: 'GMT+7',
-      name_localizations:(getLoc('gmtm7'))
-    },
-    { name: 'GMT -8 (Pitcairn, Pacific Time (PT))',
-      value: 'GMT+8',
-      name_localizations:(getLoc('gmtm8'))
-    },
-    { name: 'GMT -9 (Alaska, Gambier Islands)',
-      value: 'GMT+9',
-      name_localizations:(getLoc('gmtm9'))
-    },
-    { name: 'GMT -10 (Rarotonga, Tahiti, Hawaii)',
-      value: 'GMT+10',
-      name_localizations:(getLoc('gmtm10'))
-    },
-    { name: 'GMT -11 (Niue, Pago Pago)',
-      value: 'GMT+11',
-      name_localizations:(getLoc('gmtm11'))
-    }
-];
 const mathargs = [
     {
         name: 'Add (+)',
