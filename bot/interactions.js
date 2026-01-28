@@ -21,7 +21,7 @@ tshosa.ping = async function(interaction, client, lang) {
     await lunar.reply(interaction, replycontent, true);
 };
 
-tshosa.about = async function(interaction, lang) {
+tshosa.about = async function(interaction, lang, corever) {
     //Building response
     let replycontent;
     if (lang) {
@@ -29,7 +29,7 @@ tshosa.about = async function(interaction, lang) {
     } else {
         replycontent = `:alarm_clock: Create timestamps for your messages with `/timestamp`, calculate dates with `/calc`! Check the full command list for more features! \n:knot: Noticed a localization error or a bug? Have a feature request? [Visit our GitHub](https://github.com/SHULKERPLAY/Timestamp-Hosa)! \n :gift_heart: [Support Server](https://discord.gg/e2HcXrQ) - <@459657842895486977> \n\n[Terms of Service](https://lunarcreators.ru/timestamp-hosa/tos/) and [Privacy Policy](https://lunarcreators.ru/timestamp-hosa/privacy/) \n:sparkles: Core version: ${corever} \n\n${locale.en_us.aboutanounce}`;
     }
-    await lunar.reply(interaction, replycontent, true);
+    await lunar.reply(interaction, replycontent, true, undefined, true);
 };
 
 tshosa.invite = async function(interaction, lang) {
@@ -40,7 +40,7 @@ tshosa.invite = async function(interaction, lang) {
     } else {
         replycontent = `:gift_heart: Add the app to your profile or server through the [Discord App Directory](https://discord.com/discovery/applications/1449839745910964254)! \n*By installing it to your profile, you can use the app's commands in any of your chats* \n\n[Or invite the bot to your server directly](https://discord.com/oauth2/authorize?client_id=1449839745910964254&permissions=277025410048&integration_type=0&scope=bot)`;
     }
-    await lunar.reply(interaction, replycontent, true);
+    await lunar.reply(interaction, replycontent, true, undefined, true);
 };
 
 tshosa.now = async function(interaction, lang, publicreplylog) {
@@ -173,12 +173,9 @@ tshosa.random = async function(interaction, lang, publicreplylog) {
         }
         await lunar.editReply(interaction, replycontent);
     } else if (interaction.options.getSubcommand() === 'dice') {
-        incrementStat(`randomdice.${interaction.options.getString('dicetype')}`);
         const dicetype = interaction.options.getString('dicetype') || 'D6';
         let randomdice;
-        if (dicetype === undefined || dicetype === null) {
-            randomdice = getRandomInt(1, 6)
-        } else if (dicetype === 'D4') {
+        if (dicetype === 'D4') {
             randomdice = getRandomInt(1, 4)
         } else if (dicetype === 'D6') {
             randomdice = getRandomInt(1, 6)
@@ -293,8 +290,8 @@ tshosa.calc = async function(interaction, lang, publicreplylog) {
         const calctomin = interaction.options.getInteger('tominute');
         const calctosec = interaction.options.getInteger('tosecond');
         //getDateInt(year, 'month', day, hour, min, sec, ms). Month is required to be 'string'
-        const calcfromtimestamp = getDateInt(calcfromyear, calcfrommonth, calcfromday, calcfromhour, calcfrommin, calcfromsec, 0);
-        const calctotimestamp = getDateInt(calctoyear, calctomonth, calctoday, calctohour, calctomin, calctosec, 0);        
+        const calcfromtimestamp = getDateInt(calcfromyear, calcfrommonth, calcfromday, calcfromhour, calcfrommin, calcfromsec);
+        const calctotimestamp = getDateInt(calctoyear, calctomonth, calctoday, calctohour, calctomin, calctosec);
         const calcdiff = Math.floor(Math.abs(calctotimestamp - calcfromtimestamp) / 1000)
         //now we get days, hours, mins and secs from seconds
         const daysdiff = Math.floor(calcdiff / 86400)

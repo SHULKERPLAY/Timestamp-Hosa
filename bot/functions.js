@@ -1,5 +1,6 @@
 const fs = require('fs');
 const path = require('path');
+const { MessageFlags } = require('discord.js');
 
 //Supported Locales
 const supportedlocales = ['ru', 'en-US', 'de', 'pl', 'fr', 'ja', 'pt-BR', 'ko', 'bg', 'sv-SE', 'uk'];
@@ -32,12 +33,11 @@ function getLoc(pathStr, prefix = '') {
 };
 
 function lunar() {};
-lunar.isephemeral = function(interaction) {
-    const isPublic = interaction.options.getBoolean('publicreply') ?? false;
+lunar.checkephemeral = function(interaction) {
+    const isPublic = interaction.options.getBoolean('publicreply') === true;
     if (isPublic) {
-        incrementStat(`use.publicreply`);
         return { publicreplylog: 'public', isephemeral: false };
-    }
+    };
     return { publicreplylog: '', isephemeral: true };
 };
 lunar.reply = async function(interaction, replycontent, isephemeral, embedcontent, hideembeds) {
@@ -80,14 +80,24 @@ function convertGmtToSeconds(gmtString) {
 //Integer randomizer
 //effective range: getRandomInt(-999999999999999, 999999999999999));
 //for date: getRandomInt(-62135596800000, 62135596800000)
-function getRandomInt(min = -999999999999999, max = 999999999999999) {
+function getRandomInt(min, max) {
+    //null test
+    min = min ?? -999999999999999;
+    max = max ?? 999999999999999;
     return Math.floor(Math.random() * (max - min + 1)) + min;
 };
 
 //getDateInt(year, 'month', day, hour, min, sec, ms). Month is required to be 'string'
-function getDateInt(year = '0001', month = '01', day = '01', hour = '00', min = '00', sec = '00', ms = '000') {
-    //Test if option is specified
-    //this also convert integers to strings
+function getDateInt(year, month, day, hour, min, sec, ms) {
+    //null test
+    year = year ?? '0001';
+    month = month ?? '01';
+    day = day ?? '01';
+    hour = hour ?? '00';
+    min = min ?? '00';
+    sec = sec ?? '00';
+    ms = ms ?? '000';
+    //convert integers to strings
     //This need for the date convertor to work. It length sensitive so if we use int '1' it needs to be '01'
     if (year === '0001') {
     } else if (year < 10) {

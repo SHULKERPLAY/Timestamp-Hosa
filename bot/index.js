@@ -8,7 +8,7 @@ const { tshosa } = require('./interactions.js');
 const { loadStats, incrementStat, statsAutoSave } = require('./botstats.js');
 
 // Require the necessary discord.js classes
-const { Client, Routes, Events, GatewayIntentBits, ActivityType } = require('discord.js');
+const { MessageFlags, Client, Routes, Events, GatewayIntentBits, ActivityType } = require('discord.js');
 const { token } = require('./config.json');
 
 //initialize statistics
@@ -23,14 +23,14 @@ const client = new Client({ intents: [GatewayIntentBits.Guilds], rest: { timeout
 //Convert builder objects to JSON
 const hosajson = Object.values(hosa).map(command => command.toJSON());
 //Define commands
-const commands = [ hosajson ];
+const commands = hosajson;
 
 client.on('interactionCreate', async (interaction) => {
     if (!interaction.isChatInputCommand()) return;
 
     //decide if reply be ephemeral (publicreply: false / true)
-    let { publicreplylog, isephemeral } = await lunar.isephemeral(interaction);
-    if (isephemeral = false) incrementStat(`use.publicreply`);
+    let { publicreplylog, isephemeral } = lunar.checkephemeral(interaction);
+    if (isephemeral === false) { incrementStat(`use.publicreply`) };
 
     //Get locale obj and null if not found
     const lang = locale[interaction.locale] || null;
@@ -41,7 +41,7 @@ client.on('interactionCreate', async (interaction) => {
         await tshosa.ping(interaction, client, lang);
         incrementStat('pingcmd');
     } else if (interaction.commandName === 'about') {
-        await tshosa.about(interaction, lang);
+        await tshosa.about(interaction, lang, corever);
         incrementStat('aboutcmd');
     } else if (interaction.commandName === 'invite') {
         await tshosa.invite(interaction, lang);
@@ -62,6 +62,7 @@ client.on('interactionCreate', async (interaction) => {
     } else if (interaction.commandName === 'random') {
         await interaction.deferReply({ flags: isephemeral ? [MessageFlags.Ephemeral] : [] });
         await tshosa.random(interaction, lang, publicreplylog);
+        if (interaction.options.getSubcommand() === 'dice') { incrementStat(`randomdice.${interaction.options.getString('dicetype')}`); }
         incrementStat(`randomcmd.${interaction.options.getSubcommand()}`);
     } else if (interaction.commandName === 'convert') {
         await interaction.deferReply({ flags: isephemeral ? [MessageFlags.Ephemeral] : [] });

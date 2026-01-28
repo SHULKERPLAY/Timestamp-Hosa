@@ -1,5 +1,5 @@
 const { SlashCommandBuilder } = require('discord.js');
-const { timestampstyles, timezonesgmtminus, timezonesgmtplus, timezoneskey, monthsoption, alltimezones, mathargs, dicetypes } = require('./constants.js');
+const { timezonesgmtminus, timezonesgmtplus, timezoneskey, alltimezones, dicetypes } = require('./constants.js');
 const { getLoc } = require('./functions.js');
 const { setAvailable, addPublicReply, addYearOption, addMonthOption, addDayOption, addHourOption, addMinuteOption, addSecondOption, addMillisecondOption, addYearsOption, addMonthsOption, addWeeksOption, addDaysOption, addHoursOption, addMinutesOption, addSecondsOption, addMillisecondsOption, addTimezoneOption, addStyleOption, addMathargOption } = require('./helpers.js');
 
