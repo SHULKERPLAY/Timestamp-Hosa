@@ -99,43 +99,42 @@ function getDateInt(year, month, day, hour, min, sec, ms) {
     ms = ms ?? '000';
     //convert integers to strings
     //This need for the date convertor to work. It length sensitive so if we use int '1' it needs to be '01'
-    if (year === '0001') {
-    } else if (year < 10) {
-        year = `000${year}`
-    } else if (year < 100) {
-        year = `00${year}`
-    } else if (year < 1000) {
-        year = `0${year}`
+    if (year !== '0001') {
+        if (year < 10) {
+            year = `000${year}`
+        } else if (year < 100) {
+            year = `00${year}`
+        } else if (year < 1000) {
+            year = `0${year}`
+        }
     }
     //Month must be 'string'
-    if (month === '01') {
-    } else if (month.length === 1) {
+    if (month !== '01') {
+        if (month.length === 1) {
         month = `0${month}`
+        }
     }
-    if (day === '01') {
-    } else if (day < 10) {
+    if (day !== '01') {
+        if (day < 10) {
         day = `0${day}`
+        }
     }
-    if (hour === '00') {
-    } else {
+    if (hour !== '00') {
         if (hour < 10) {
             hour = `0${hour}`
         }
     }
-    if (min === '00') {
-    } else {
+    if (min !== '00') {
         if (min < 10) {
             min = `0${min}`
         }
     }
-    if (sec === '00') {
-    } else {
+    if (sec !== '00') {
         if (sec < 10) {
             sec = `0${sec}`
         }
     }
-    if (ms === '000') {
-    } else {
+    if (ms !== '000') {
         if (ms < 10) {
             ms = `00${ms}`
         } else if (ms < 100) {
