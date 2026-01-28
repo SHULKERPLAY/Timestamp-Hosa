@@ -1,5 +1,5 @@
 {
-    "en_us": {
+    "en-US": {
         "arg": {
             "_comment": "arguments_must_be_lowercase_and_max_16_chars",
             "day": "day",
@@ -188,7 +188,8 @@
         "seldicetype": "Select type of dice",
         "randintreply": "Your Random Integer is",
         "dicethrown": "Dice Thrown",
-        "years": "Years"
+        "years": "Years",
+        "coreversion": "Core version"
     },
     "ru": {
         "arg": {
@@ -379,7 +380,8 @@
         "seldicetype": "Выберите тип кубика",
         "randintreply": "Ваше случайное число:",
         "dicethrown": "Кубик брошен",
-        "years": "Лет"
+        "years": "Лет",
+        "coreversion": "Версия ядра"
     },
     "de": {
         "arg": {
@@ -570,7 +572,8 @@
         "seldicetype": "Wähle den Würfeltyp aus",
         "randintreply": "Deine Zufallszahl ist",
         "dicethrown": "Gerebelter Würfel",
-        "years": "Jahre"
+        "years": "Jahre",
+        "coreversion": "Core-Version"
     },
     "pl": {
         "arg": {
@@ -761,7 +764,8 @@
         "seldicetype": "Wybierz rodzaj kości",
         "randintreply": "Twoja losowa liczba to",
         "dicethrown": "Kość została rzucona",
-        "years": "Lat"
+        "years": "Lat",
+        "coreversion": "Wersja rdzenia"
     },
     "fr": {
         "arg": {
@@ -952,7 +956,8 @@
         "seldicetype": "Sélectionnez le type de dé",
         "randintreply": "Votre nombre aléatoire est",
         "dicethrown": "Dé lancé",
-        "years": "Années"
+        "years": "Années",
+        "coreversion": "Version du noyau"
     },
     "ja": {
         "arg": {
@@ -1143,9 +1148,10 @@
         "seldicetype": "サイコロの種類を選択",
         "randintreply": "ランダムな整数は：",
         "dicethrown": "サイコロを振りました",
-        "years": "年"
+        "years": "年",
+        "coreversion": "コアバージョン"
     },
-    "pt_BR": {
+    "pt-BR": {
         "arg": {
             "_comment": "minusculas_e_max_16_caracteres",
             "day": "dia",
@@ -1334,7 +1340,8 @@
         "seldicetype": "Selecione o tipo de dado",
         "randintreply": "Seu número inteiro aleatório é",
         "dicethrown": "Dado lançado",
-        "years": "Anos"
+        "years": "Anos",
+        "coreversion": "Versão do núcleo"
     },
     "ko": {
         "arg": {
@@ -1525,7 +1532,8 @@
         "seldicetype": "주사위 종류 선택",
         "randintreply": "생성된 랜덤 정수는",
         "dicethrown": "주사위를 던졌습니다",
-        "years": "년"
+        "years": "년",
+        "coreversion": "코어 버전"
     },
     "bg": {
         "arg": {
@@ -1716,9 +1724,10 @@
         "seldicetype": "Изберете вид зарче",
         "randintreply": "Вашето случайно число е",
         "dicethrown": "Зарчето е хвърлено",
-        "years": "Години"
+        "years": "Години",
+        "coreversion": "Версия на ядрото"
     },
-    "sv_SE": {
+    "sv-SE": {
         "arg": {
             "_comment": "gemener_och_max_16_tecken",
             "day": "dag",
@@ -1907,7 +1916,8 @@
         "seldicetype": "Välj typ av tärning",
         "randintreply": "Ditt slumpmässiga heltal är",
         "dicethrown": "Tärningen är kastad",
-        "years": "År"
+        "years": "År",
+        "coreversion": "Kärnversion"
     },
     "uk": {
         "arg": {
@@ -2098,6 +2108,7 @@
         "seldicetype": "Виберіть тип кубика",
         "randintreply": "Ваше випадкове число:",
         "dicethrown": "Кубик кинуто",
-        "years": "Років"
+        "years": "Років",
+        "coreversion": "Версія ядра"
     }
 }
