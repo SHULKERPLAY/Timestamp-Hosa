@@ -83,55 +83,55 @@ const timezonesgmtplus = [ tzgmtp0, tzgmtp1, tzgmtp2, tzgmtp3, tzgmtp4, tzgmtp5,
 const timezonesgmtminus = [ tzgmtp0, tzgmtm1, tzgmtm2, tzgmtm3, tzgmtm4, tzgmtm5, tzgmtm6, tzgmtm7, tzgmtm8, tzgmtm9, tzgmtm10, tzgmtm11, tzgmtm12 ];
 //Others
 const timezoneskey = [ tzutc, tzpst, tzcet, tzest, tzmst, tzjst, tzcst, tzaest, tzast, tzcest ]
-
+//Combined
 const alltimezones = [ tzgmtp13, tzgmtp12, tzgmtp11, tzgmtp10, tzgmtp9, tzgmtp8, tzgmtp7, tzgmtp6, tzgmtp5, tzgmtp4, tzgmtp3, tzgmtp2, tzgmtp1, tzgmtp0, tzgmtm1, tzgmtm2, tzgmtm3, tzgmtm4, tzgmtm5, tzgmtm6, tzgmtm7, tzgmtm8, tzgmtm9, tzgmtm10, tzgmtm11 ];
 
 const monthsoption = [
-    { name: 'January',
+    { name: 'January (1)',
       value: '01',
       name_localizations:(getLoc('jan'))
     },
-    { name: 'February',
+    { name: 'February (2)',
       value: '02',
       name_localizations:(getLoc('feb'))
     },
-    { name: 'March',
+    { name: 'March (3)',
       value: '03',
       name_localizations:(getLoc('mar'))
     },
-    { name: 'April',
+    { name: 'April (4)',
       value: '04',
       name_localizations:(getLoc('apr'))
     },
-    { name: 'May',
+    { name: 'May (5)',
       value: '05',
       name_localizations:(getLoc('may'))
     },
-    { name: 'June',
+    { name: 'June (6)',
       value: '06',
       name_localizations:(getLoc('jun'))
     },
-    { name: 'July',
+    { name: 'July (7)',
       value: '07',
       name_localizations:(getLoc('jul'))
     },
-    { name: 'August',
+    { name: 'August (8)',
       value: '08',
       name_localizations:(getLoc('aug'))
     },
-    { name: 'September',
+    { name: 'September (9)',
       value: '09',
       name_localizations:(getLoc('sep'))
     },
-    { name: 'October',
+    { name: 'October (10)',
       value: '10',
       name_localizations:(getLoc('oct'))
     },
-    { name: 'November',
+    { name: 'November (11)',
       value: '11',
       name_localizations:(getLoc('nov'))
     },
-    { name: 'December',
+    { name: 'December (12)',
       value: '12',
       name_localizations:(getLoc('dec'))
     },

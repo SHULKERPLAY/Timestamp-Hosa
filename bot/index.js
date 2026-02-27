@@ -1,6 +1,6 @@
-const corever = 'v1.1.1';
+const corever = 'v1.1.2b';
 
-const { loadlocale, lunar } = require('./functions.js');
+const { getL, lunar } = require('./functions.js');
 const { hosa } = require('./builder.js');
 const { tshosa } = require('./interactions.js');
 
@@ -14,8 +14,6 @@ const { token } = require('./config.json');
 //initialize statistics
 loadStats();
 statsAutoSave(60); //Autosave stats every (mins)
-//loading bot localization
-const locale = loadlocale();
 
 // Create a new client instance
 const client = new Client({ intents: [GatewayIntentBits.Guilds], rest: { timeout: 60000 } });
@@ -33,7 +31,7 @@ client.on('interactionCreate', async (interaction) => {
     if (isephemeral === false) { incrementStat(`use.publicreply`) };
 
     //Get locale obj and null if not found
-    const lang = locale[interaction.locale] || null;
+    const lang = getL(interaction.locale, 'hello') ? `${interaction.locale}` : null;
     incrementStat(`interactionlang.${interaction.locale}`);
 
     //get commandName
@@ -85,29 +83,31 @@ client.once(Events.ClientReady, async(readyClient) => {
     console.log(`Logged in as ${readyClient.user.tag}. Approx installs: ${installCount}`);
     incrementStat('botlogin');
     
-    //Bot Presence List
-    const presencelist = [
-        { name: `📙 /about • ${corever}`, type: ActivityType.Streaming },
-        { name: `🎲 /random • Throw a Dice!`, type: ActivityType.Streaming },
-        { name: `⏱ /now • ${installCount}+ installs!`, type: ActivityType.Streaming },
-        { name: `⌛ /timestamp • Try it!`, type: ActivityType.Streaming },
-        { name: `🔗 /invite • Join Us!`, type: ActivityType.Streaming },
-        { name: `🧮 /calc • The Date calc!`, type: ActivityType.Streaming },
-        { name: `🔄 /convert • UNIX Time!`, type: ActivityType.Streaming },
-        { name: `🕒 /timezone • What time is it?`, type: ActivityType.Streaming }
-    ];
-    
     //index init
     let currentIndex = 0;
     
     function presenceupdate() {
+        //Bot Presence List
+        const presencelist = [
+            { name: `📙 /about • ${corever}`, type: ActivityType.Streaming },
+            { name: `🎲 /random • Throw a Dice!`, type: ActivityType.Streaming },
+            { name: `⏱ /now • ${installCount}+ installs!`, type: ActivityType.Streaming },
+            { name: `⌛ /timestamp • Try it!`, type: ActivityType.Streaming },
+            { name: `🔗 /invite • Join Us!`, type: ActivityType.Streaming },
+            { name: `🧮 /calc • The Date calc!`, type: ActivityType.Streaming },
+            { name: `🔄 /convert • UNIX Time!`, type: ActivityType.Streaming },
+            { name: `🕒 /timezone • What time is it?`, type: ActivityType.Streaming }
+        ];
+
         //check if client ready
         if (!client.user) return;
+
         //Set Presence
         client.user.setPresence({
             activities: [presencelist[currentIndex]],
             status: 'online',
         });
+
         //next index (0 in the end)
         currentIndex = (currentIndex + 1) % presencelist.length;
     };

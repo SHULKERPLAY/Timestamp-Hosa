@@ -32,6 +32,13 @@ function getLoc(pathStr, prefix = '') {
     return result;
 };
 
+// Get Locale key
+// Proper use it with this helper after defining lang variable: const l = (key) => getL(lang, key); l('pong');
+// lang is a string of langcode (e.g. 'en-us'), key is 'string' inside JSON we want to get
+function getL(lang, key) {
+    return locale[lang]?.[key] ?? '';
+};
+
 function lunar() {};
 lunar.checkephemeral = function(interaction) {
     const isPublic = interaction.options.getBoolean('publicreply') === true;
@@ -147,4 +154,4 @@ function getDateInt(year, month, day, hour, min, sec, ms) {
 };
 
 //export
-module.exports = { convertGmtToSeconds, getRandomInt, getDateInt, loadlocale, getLoc, lunar };
+module.exports = { convertGmtToSeconds, getRandomInt, getDateInt, getLoc, getL, lunar };

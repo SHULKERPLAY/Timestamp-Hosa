@@ -1,7 +1,6 @@
-const { convertGmtToSeconds, getRandomInt, getDateInt, loadlocale, lunar } = require('./functions.js');
+const { convertGmtToSeconds, getRandomInt, getDateInt, getL, lunar } = require('./functions.js');
 
 //init localization
-locale = loadlocale();
 const supportedtimelocale = ["en-US", "ru", "de", "pl", "fr", "ja", "pt-BR", "ko", "bg", "sv-SE", "uk"]; //and en-UK as default
 
 function tshosa() {};
@@ -12,8 +11,11 @@ tshosa.ping = async function(interaction, client, lang) {
 
     let replycontent;
     if (lang) {
+        // Helper to resolve locales
+        const l = (key) => getL(lang, key);
+
         //Building response
-        replycontent = `:ping_pong: *${lang.pong}!* ${lang.latency} ${latency} ${lang.milliseconds}! ${lang.apilatency} ${apiLatency} ${lang.milliseconds}.`;
+        replycontent = `:ping_pong: *${l('pong')}!* ${l('latency')} ${latency} ${l('milliseconds')}! ${l('apilatency')} ${apiLatency} ${l('milliseconds')}.`;
     } else {
         //if locale not supported
         replycontent = `:ping_pong: *Pong!* Latency ${latency} ms! API Latency ${apiLatency} ms.`;
@@ -25,9 +27,10 @@ tshosa.about = async function(interaction, lang, corever) {
     //Building response
     let replycontent;
     if (lang) {
-        replycontent = `${lang.aboutcmd} \n:sparkles: ${lang.coreversion} ${corever} \n\n ${lang.aboutanounce}`;
+        const l = (key) => getL(lang, key);
+        replycontent = `${l('aboutcmd')} \n:sparkles: ${l('coreversion')} ${corever} \n\n ${l('aboutanounce')}`;
     } else {
-        replycontent = `:alarm_clock: Create timestamps for your messages with `/timestamp`, calculate dates with `/calc`! Check the full command list for more features! \n:knot: Noticed a localization error or a bug? Have a feature request? [Visit our GitHub](https://github.com/SHULKERPLAY/Timestamp-Hosa)! \n :gift_heart: [Support Server](https://discord.gg/e2HcXrQ) - <@459657842895486977> \n\n[Terms of Service](https://lunarcreators.ru/timestamp-hosa/tos/) and [Privacy Policy](https://lunarcreators.ru/timestamp-hosa/privacy/) \n:sparkles: Core version: ${corever} \n\n${locale.en_us.aboutanounce}`;
+        replycontent = `:alarm_clock: Create timestamps for your messages with \`/timestamp\`, calculate dates with \`/calc\`! Check the full command list for more features! \n:knot: Noticed a localization error or a bug? Have a feature request? [Visit our GitHub](https://github.com/SHULKERPLAY/Timestamp-Hosa)!\n:gift_heart: [Support Server](https://discord.gg/e2HcXrQ) - <@459657842895486977>\n\n[Terms of Service](https://lunarcreators.ru/timestamp-hosa/tos/) and [Privacy Policy](https://lunarcreators.ru/timestamp-hosa/privacy/)\n:sparkles: Core version: ${corever} \n\n${getL('en-US', 'aboutanounce')}`;
     }
     await lunar.reply(interaction, replycontent, true, undefined, true);
 };
@@ -36,7 +39,7 @@ tshosa.invite = async function(interaction, lang) {
     //Building response
     let replycontent;
     if (lang) {
-        replycontent = `${lang.invitecmd}`;
+        replycontent = `${getL(lang, 'invitecmd')}`;
     } else {
         replycontent = `:gift_heart: Add the app to your profile or server through the [Discord App Directory](https://discord.com/discovery/applications/1449839745910964254)! \n*By installing it to your profile, you can use the app's commands in any of your chats* \n\n[Or invite the bot to your server directly](https://discord.com/oauth2/authorize?client_id=1449839745910964254&permissions=277025410048&integration_type=0&scope=bot)`;
     }
@@ -59,7 +62,8 @@ tshosa.now = async function(interaction, lang, publicreplylog) {
     //Building response
     let replycontent;
     if (lang) {
-        replycontent = `${lang.now}: <t:${nowtimestamp}${nowstyle}> \n${lang.timestamp}: \`<t:${nowtimestamp}${nowstyle}>\``;
+        const l = (key) => getL(lang, key);
+        replycontent = `${l('now')}: <t:${nowtimestamp}${nowstyle}> \n${l('timestamp')}: \`<t:${nowtimestamp}${nowstyle}>\``;
     } else {
         replycontent = `Now: <t:${nowtimestamp}${nowstyle}> \nTimestamp: \`<t:${nowtimestamp}${nowstyle}>\``;
     }
@@ -81,7 +85,8 @@ tshosa.timezone = async function(interaction, lang, publicreplylog) {
     //Building response
     let replycontent;
     if (lang) {
-        replycontent = `:alarm_clock: ${lang.nowintz}: **__${result}__** \n*${lang.localtime}: <t:${Math.floor(tztimestamp / 1000)}:F>*`;
+        const l = (key) => getL(lang, key);
+        replycontent = `:alarm_clock: ${l('nowintz')}: **__${result}__** \n*${l('localtime')}: <t:${Math.floor(tztimestamp / 1000)}:F>*`;
     } else {
         replycontent = `:alarm_clock: Now in this timezone: **__${result}__** \n*Local Time: <t:${Math.floor(tztimestamp / 1000)}:F>*`;
     }
@@ -113,7 +118,8 @@ tshosa.timestamp = async function(interaction, lang, publicreplylog) {
     //Building response
     let replycontent;
     if (lang) {
-        replycontent = `:white_check_mark: ${lang.preview}: <t:${gettimestamp}${tsstyle}> \n:arrow_right: **${lang.timestamp}:** \`<t:${gettimestamp}${tsstyle}>\``;
+        const l = (key) => getL(lang, key);
+        replycontent = `:white_check_mark: ${l('preview')}: <t:${gettimestamp}${tsstyle}> \n:arrow_right: **${l('timestamp')}:** \`<t:${gettimestamp}${tsstyle}>\``;
     } else {
         replycontent = `:white_check_mark: Preview: <t:${gettimestamp}${tsstyle}> \n:arrow_right: **Timestamp to Paste:** \`<t:${gettimestamp}${tsstyle}>\``;
     }
@@ -153,7 +159,7 @@ tshosa.random = async function(interaction, lang, publicreplylog) {
         //Building response
         let replycontent;
         if (lang) {
-            replycontent = `:game_die: ${lang.result}: **__${randdate}__** \n:hourglass_flowing_sand: UNIX: \`${Math.floor(randomdateint / 1000)}\``;
+            replycontent = `:game_die: ${getL(lang, 'result')}: **__${randdate}__** \n:hourglass_flowing_sand: UNIX: \`${Math.floor(randomdateint / 1000)}\``;
         } else {
             replycontent = `:game_die: Result: **__${randdate}__** \n:hourglass_flowing_sand: UNIX: \`${Math.floor(randomdateint / 1000)}\``;
         }
@@ -167,7 +173,7 @@ tshosa.random = async function(interaction, lang, publicreplylog) {
         //Building response
         let replycontent;
         if (lang) {
-            replycontent = `:game_die: **${lang.randintreply}** \`${randominteger}\``;
+            replycontent = `:game_die: **${getL(lang, 'randintreply')}** \`${randominteger}\``;
         } else {
             replycontent = `:game_die: **Your Random Integer is** \`${randominteger}\``;
         }
@@ -195,7 +201,8 @@ tshosa.random = async function(interaction, lang, publicreplylog) {
         //Building response
         let replycontent;
         if (lang) {
-            replycontent = `:game_die: *(${dicetype}) ${lang.dicethrown}!* **${lang.result}:** __\`${randomdice}\`__`;
+            const l = (key) => getL(lang, key);
+            replycontent = `:game_die: *(${dicetype}) ${l('dicethrown')}!* **${l('result')}:** __\`${randomdice}\`__`;
         } else {
             replycontent = `:game_die: *(${dicetype}) Dice Thrown!* **Result:** __\`${randomdice}\`__`;
         }
@@ -224,18 +231,19 @@ tshosa.convert = async function(interaction, lang, publicreplylog) {
         if ( cvmsdisplay === true ) {
             gettimestamp = calctimestamp - tzoffset * 1000
             //adjust interaction reply
-            cvreplystyle = lang.milliseconds ?? 'milliseconds';
+            cvreplystyle = getL(lang, 'milliseconds') || 'milliseconds';
         } else {
             gettimestamp = Math.floor(calctimestamp / 1000 - tzoffset)
             //adjust interaction reply
-            cvreplystyle = lang.seconds ?? 'seconds';
+            cvreplystyle = getL(lang, 'seconds') || 'seconds';
         }
         console.log(`Converted date to ${gettimestamp} ${publicreplylog}`)
 
         //Building response
         let replycontent;
         if (lang) {
-            replycontent = `:abacus: **${lang.result}:** \`${gettimestamp}\` *${cvreplystyle} ${lang.since1970} (UNIX)*`;
+            const l = (key) => getL(lang, key);
+            replycontent = `:abacus: **${l('result')}:** \`${gettimestamp}\` *${cvreplystyle} ${l('since1970')} (UNIX)*`;
         } else {
             replycontent = `:abacus: **Result:** \`${gettimestamp}\` *${cvreplystyle} since Jan 1, 1970 (UNIX)*`;
         }
@@ -267,7 +275,7 @@ tshosa.convert = async function(interaction, lang, publicreplylog) {
         //Building response
         let replycontent;
         if (lang) {
-            replycontent = `:date: ${locale.ru.result}: **__${cvreply}__**`;
+            replycontent = `:date: ${getL(lang, 'result')}: **__${cvreply}__**`;
         } else {
             replycontent = `:date: Result: **__${cvreply}__**`;
         }
@@ -303,7 +311,8 @@ tshosa.calc = async function(interaction, lang, publicreplylog) {
         //Building response
         let replycontent;
         if (lang) {
-            replycontent = `:white_check_mark: ${lang.datesdiff}: **__${daysdiff} ${lang.days} ${hoursdiff} ${lang.hours} ${minsdiff} ${lang.minutes} ${secsdiff} ${lang.seconds}__** \n:hourglass_flowing_sand: \`${calcdiff}\` *${lang.seconds}*`;
+            const l = (key) => getL(lang, key);
+            replycontent = `:white_check_mark: ${l('datesdiff')}: **__${daysdiff} ${l('days')} ${hoursdiff} ${l('hours')} ${minsdiff} ${l('minutes')} ${secsdiff} ${l('seconds')}__** \n:hourglass_flowing_sand: \`${calcdiff}\` *${l('seconds')}*`;
         } else {
             replycontent = `:white_check_mark: Difference between dates is: **__${daysdiff} Days ${hoursdiff} Hours ${minsdiff} Minutes ${secsdiff} Seconds__** \n:hourglass_flowing_sand: \`${calcdiff}\` *Seconds*`;
         }
@@ -353,7 +362,8 @@ tshosa.calc = async function(interaction, lang, publicreplylog) {
         //Building response
         let replycontent;
         if (lang) {
-            replycontent = `:white_check_mark: ${lang.result}: **__${calcreply}__** \n:hourglass_flowing_sand: *UNIX: \`${calcresult}\` ${lang.timestamp}: \`<t:${Math.floor(calcresult / 1000)}>\` ${lang.localtime}: <t:${Math.floor(calcresult / 1000)}>*`;
+            const l = (key) => getL(lang, key);
+            replycontent = `:white_check_mark: ${l('result')}: **__${calcreply}__** \n:hourglass_flowing_sand: *UNIX: \`${calcresult}\` ${l('timestamp')}: \`<t:${Math.floor(calcresult / 1000)}>\` ${l('localtime')}: <t:${Math.floor(calcresult / 1000)}>*`;
         } else {
             replycontent = `:white_check_mark: Result: **__${calcreply}__** \n:hourglass_flowing_sand: *UNIX: \`${calcresult}\` Timestamp to Paste: \`<t:${Math.floor(calcresult / 1000)}>\` Local Time: <t:${Math.floor(calcresult / 1000)}>*`;
         }
