@@ -1,75 +1,73 @@
-const corever = 'v1.1.2b';
+// Since 1.2.x core can be started only by shard manager
 
-const { getL, lunar } = require('./functions.js');
-const { hosa } = require('./builder.js');
+const corever = 'v1.2.0';
+
+const { getL, shardStat, lunar } = require('./functions.js');
 const { tshosa } = require('./interactions.js');
 
-//Statistics
-const { loadStats, incrementStat, statsAutoSave } = require('./botstats.js');
-
 // Require the necessary discord.js classes
-const { MessageFlags, Client, Routes, Events, GatewayIntentBits, ActivityType } = require('discord.js');
+const { MessageFlags, Client, Options, Events, GatewayIntentBits, ActivityType } = require('discord.js');
 const { token } = require('./config.json');
 
-//initialize statistics
-loadStats();
-statsAutoSave(60); //Autosave stats every (mins)
-
 // Create a new client instance
-const client = new Client({ intents: [GatewayIntentBits.Guilds], rest: { timeout: 60000 } });
-
-//Convert builder objects to JSON
-const hosajson = Object.values(hosa).map(command => command.toJSON());
-//Define commands
-const commands = hosajson;
+const client = new Client({
+    intents: [GatewayIntentBits.Guilds],
+    makeCache: Options.cacheWithLimits({
+        MessageManager: 0, // Not store messages
+        ThreadManager: 0,
+        UserManager: 0,    // Not store users
+        PresenceManager: 0,
+        GuildMemberManager: 0,
+    }),
+    rest: { timeout: 60000 } });
 
 client.on('interactionCreate', async (interaction) => {
     if (!interaction.isChatInputCommand()) return;
 
     //decide if reply be ephemeral (publicreply: false / true)
     let { publicreplylog, isephemeral } = lunar.checkephemeral(interaction);
-    if (isephemeral === false) { incrementStat(`use.publicreply`) };
+    if (isephemeral === false) { shardStat(`use.publicreply`) };
 
     //Get locale obj and null if not found
     const lang = getL(interaction.locale, 'hello') ? `${interaction.locale}` : null;
-    incrementStat(`interactionlang.${interaction.locale}`);
+    shardStat(`interactionlang.${interaction.locale}`);
 
     //get commandName
     if (interaction.commandName === 'ping') {
         await tshosa.ping(interaction, client, lang);
-        incrementStat('pingcmd');
+        shardStat('pingcmd');
     } else if (interaction.commandName === 'about') {
         await tshosa.about(interaction, lang, corever);
-        incrementStat('aboutcmd');
+        shardStat('aboutcmd');
     } else if (interaction.commandName === 'invite') {
         await tshosa.invite(interaction, lang);
-        incrementStat('invitecmd');
+        shardStat('invitecmd');
     } else if (interaction.commandName === 'now') {
         await interaction.deferReply({ flags: isephemeral ? [MessageFlags.Ephemeral] : [] });
         await tshosa.now(interaction, lang, publicreplylog)
-        incrementStat('nowcmd');
+        shardStat('nowcmd');
     } else if (interaction.commandName === 'timezone') {
         await interaction.deferReply({ flags: isephemeral ? [MessageFlags.Ephemeral] : [] });
         await tshosa.timezone(interaction, lang, publicreplylog);
         //subcommand string: interaction.options.getSubcommand()
-        incrementStat(`timezonecmd.${interaction.options.getSubcommand()}`);
+        shardStat(`timezonecmd.${interaction.options.getSubcommand()}`);
     } else if (interaction.commandName === 'timestamp') {
         await interaction.deferReply({ flags: isephemeral ? [MessageFlags.Ephemeral] : [] });
         await tshosa.timestamp(interaction, lang, publicreplylog);
-        incrementStat(`timestampcmd.${interaction.options.getString('style')}`);
+        shardStat(`timestampcmd.${interaction.options.getString('style')}`);
     } else if (interaction.commandName === 'random') {
         await interaction.deferReply({ flags: isephemeral ? [MessageFlags.Ephemeral] : [] });
         await tshosa.random(interaction, lang, publicreplylog);
-        if (interaction.options.getSubcommand() === 'dice') { incrementStat(`randomdice.${interaction.options.getString('dicetype')}`); }
-        incrementStat(`randomcmd.${interaction.options.getSubcommand()}`);
+        if (interaction.options.getSubcommand() === 'dice') { shardStat(`randomdice.${interaction.options.getString('dicetype')}`); }
+        shardStat(`randomcmd.${interaction.options.getSubcommand()}`);
     } else if (interaction.commandName === 'convert') {
         await interaction.deferReply({ flags: isephemeral ? [MessageFlags.Ephemeral] : [] });
         await tshosa.convert(interaction, lang, publicreplylog);
-        incrementStat(`convertcmd.${interaction.options.getSubcommand()}`);
+        shardStat(`convertcmd.${interaction.options.getSubcommand()}`);
     } else if (interaction.commandName === 'calc') {
         await interaction.deferReply({ flags: isephemeral ? [MessageFlags.Ephemeral] : [] });
         await tshosa.calc(interaction, lang, publicreplylog)
-        incrementStat(`calccmd.${interaction.options.getSubcommand()}`);
+        shardStat(`calccmd.${interaction.options.getSubcommand()}`);
     }
 });
 
@@ -80,13 +78,19 @@ client.once(Events.ClientReady, async(readyClient) => {
     //Installation Counter
     const installCount = readyClient.application.approximateUserInstallCount
     //Login output
-    console.log(`Logged in as ${readyClient.user.tag}. Approx installs: ${installCount}`);
-    incrementStat('botlogin');
+    console.log(`Logged in as ${readyClient.user.tag}: Shard ${client.shard.ids[0]}. Approx installs: ${installCount}`);
+    shardStat('shardlogin');
     
     //index init
     let currentIndex = 0;
     
     function presenceupdate() {
+        //check if client ready
+        if (!client.user) return;
+
+        // Update presence only by first shard!
+        if (client.shard && client.shard.ids[0] !== 0) return;
+
         //Bot Presence List
         const presencelist = [
             { name: `📙 /about • ${corever}`, type: ActivityType.Streaming },
@@ -98,9 +102,6 @@ client.once(Events.ClientReady, async(readyClient) => {
             { name: `🔄 /convert • UNIX Time!`, type: ActivityType.Streaming },
             { name: `🕒 /timezone • What time is it?`, type: ActivityType.Streaming }
         ];
-
-        //check if client ready
-        if (!client.user) return;
 
         //Set Presence
         client.user.setPresence({
@@ -118,13 +119,7 @@ client.once(Events.ClientReady, async(readyClient) => {
     setInterval(presenceupdate, 1800000);
 });
 
-//prelogin
-(async() => {
-    // Log in to Discord with your client's token
-    await client.login(token).catch((err) => {
-      throw err
-    });
-    
-    //app commands registration
-    await client.rest.put(Routes.applicationCommands(client.user.id), { body: commands });
-})();
+// Log in to Discord with your client's token
+client.login(token).catch((err) => {
+    throw err
+});

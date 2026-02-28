@@ -219,7 +219,7 @@ tshosa.convert = async function(interaction, lang, publicreplylog) {
         const cvmin = interaction.options.getInteger('minute');
         const cvsec = interaction.options.getInteger('second');
         const cvms = interaction.options.getInteger('millisecond');
-        const cvmsdisplay = interaction.options.getBoolean('displayms');
+        const cvmsdisplay = interaction.options.getBoolean('displayms') || false;
         //Offset value to selected timezone
         const timezonesel = interaction.options.getString('timezone') || 'GMT';
         let tzoffset = convertGmtToSeconds(timezonesel);

@@ -89,7 +89,7 @@ hosa.convertint.addSubcommand(subcommand =>
             .setNameLocalizations(getLoc('arg.displayms'))
             .setDescription('Whether or not to return value with milliseconds')
             .setDescriptionLocalizations(getLoc('returnmilliseconds'))
-            .setRequired(true)
+            .setRequired(false)
         )
         .addIntegerOption(addHourOption('Type Hour you want', 'typehour', false))
         .addIntegerOption(addMinuteOption('Type Minute you want', 'typeminute', false))

@@ -39,6 +39,14 @@ function getL(lang, key) {
     return locale[lang]?.[key] ?? '';
 };
 
+// Increase stat counter handled in shard manager
+function shardStat(key) {
+    // Is this process shard?
+    if (process.send) {
+        process.send({ type: 'incrementStat', stat: key });
+    }
+}
+
 function lunar() {};
 lunar.checkephemeral = function(interaction) {
     const isPublic = interaction.options.getBoolean('publicreply') === true;
@@ -154,4 +162,4 @@ function getDateInt(year, month, day, hour, min, sec, ms) {
 };
 
 //export
-module.exports = { convertGmtToSeconds, getRandomInt, getDateInt, getLoc, getL, lunar };
+module.exports = { convertGmtToSeconds, getRandomInt, getDateInt, getLoc, getL, shardStat, lunar };
