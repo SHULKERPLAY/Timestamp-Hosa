@@ -97,6 +97,7 @@ client.once(Events.ClientReady, async(readyClient) => {
             { name: `🎲 /random • Throw a Dice!`, type: ActivityType.Streaming },
             { name: `⏱ /now • ${installCount}+ installs!`, type: ActivityType.Streaming },
             { name: `⌛ /timestamp • Try it!`, type: ActivityType.Streaming },
+            { name: `📅 ${Math.floor(Date.now() / 1000 / 60 / 60)} hours since 1970!`, type: ActivityType.Streaming },
             { name: `🔗 /invite • Join Us!`, type: ActivityType.Streaming },
             { name: `🧮 /calc • The Date calc!`, type: ActivityType.Streaming },
             { name: `🔄 /convert • UNIX Time!`, type: ActivityType.Streaming },
